@@ -1,10 +1,44 @@
 import React from 'react';
 import Letter from '../Containers/Letter';
 import NumberKey from '../Containers/Number';
+import Data from '../data';
+
+class Keys extends React.Component {
+	render() {
+		let { row } = this.props
+
+		let keys = row.keys.map(item => {
+			return (
+				<Letter letter={item.title} key={item.title} />
+			)
+		})
+		return (
+			<span key={row.id}>{keys}</span>
+		)
+	}
+}
 
 export default class Soundboard extends React.Component {
 	render() {
 		const { showInstructions, soundboard } = this.props;
+		let trueSoundboard;
+
+		Data.soundboards.map( testSoundboard => {
+			if (testSoundboard.title === soundboard) {
+				trueSoundboard = testSoundboard;
+			}
+		})
+
+
+		let rows = trueSoundboard.rows.map( row => {
+			return (
+				<div className="row" key={row.id}>
+					<Keys row={row} />
+				</div>
+			)
+		});
+
+
 		if (showInstructions === true) {
 			return <div />
 		} else {
@@ -23,51 +57,8 @@ export default class Soundboard extends React.Component {
 						<NumberKey numberKey="9" enabled={false} />
 						<NumberKey numberKey="0" enabled={false} />
 					</div>
-					<div className="row">
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<Letter letter='q' />
-						<Letter letter='w' />
-						<Letter letter='e' />
-						<Letter letter='r' />
-						<Letter letter='t' />
-						<Letter letter='y' />
-						<Letter letter='u' />
-						<Letter letter='i' />
-						<Letter letter='o' />
-						<Letter letter='p' />
-					</div>
-					<div className="row">
-						<div className="spacer" />
-						<div className="spacer" />
-						<Letter letter='a' />
-						<Letter letter='s' />
-						<Letter letter='d' />
-						<Letter letter='f' />
-						<Letter letter='g' />
-						<Letter letter='h' />
-						<Letter letter='j' />
-						<Letter letter='k' />
-						<Letter letter='l' />
-					</div>
-					<div className="row">
-						<Letter letter='z' />
-						<Letter letter='x' />
-						<Letter letter='c' />
-						<Letter letter='v' />
-						<Letter letter='b' />
-						<Letter letter='n' />
-						<Letter letter='m' />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
-						<div className="spacer" />
+					<div className="soundboard-inner" key={trueSoundboard.title}>
+						{rows}
 					</div>
 				</div>
 			);  

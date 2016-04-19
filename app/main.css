@@ -15,13 +15,7 @@ body {
 
 .soundboard {
 	padding: 10px;
-	background: rgb(215, 215, 215);
 	text-align: center;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
 }
 .key {
 	display: inline-block;

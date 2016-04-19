@@ -111,7 +111,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\tbackground: rgb(215, 215, 215);\n\ttext-align: center;\n\tposition: absolute;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n}\n.key {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\twidth: 40px;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacer {\n\tdisplay: inline-block;\n\theight: 10px;\n\twidth: 10px;\n}", ""]);
+	exports.push([module.id, "body {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\twidth: 40px;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacer {\n\tdisplay: inline-block;\n\theight: 10px;\n\twidth: 10px;\n}", ""]);
 
 	// exports
 
@@ -22321,6 +22321,10 @@
 
 	var _Number2 = _interopRequireDefault(_Number);
 
+	var _data = __webpack_require__(203);
+
+	var _data2 = _interopRequireDefault(_data);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22329,8 +22333,37 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Soundboard = function (_React$Component) {
-		_inherits(Soundboard, _React$Component);
+	var Keys = function (_React$Component) {
+		_inherits(Keys, _React$Component);
+
+		function Keys() {
+			_classCallCheck(this, Keys);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Keys).apply(this, arguments));
+		}
+
+		_createClass(Keys, [{
+			key: 'render',
+			value: function render() {
+				var row = this.props.row;
+
+
+				var keys = row.keys.map(function (item) {
+					return _react2.default.createElement(_Letter2.default, { letter: item.title, key: item.title });
+				});
+				return _react2.default.createElement(
+					'span',
+					{ key: row.id },
+					keys
+				);
+			}
+		}]);
+
+		return Keys;
+	}(_react2.default.Component);
+
+	var Soundboard = function (_React$Component2) {
+		_inherits(Soundboard, _React$Component2);
 
 		function Soundboard() {
 			_classCallCheck(this, Soundboard);
@@ -22344,6 +22377,22 @@
 				var _props = this.props;
 				var showInstructions = _props.showInstructions;
 				var soundboard = _props.soundboard;
+
+				var trueSoundboard = void 0;
+
+				_data2.default.soundboards.map(function (testSoundboard) {
+					if (testSoundboard.title === soundboard) {
+						trueSoundboard = testSoundboard;
+					}
+				});
+
+				var rows = trueSoundboard.rows.map(function (row) {
+					return _react2.default.createElement(
+						'div',
+						{ className: 'row', key: row.id },
+						_react2.default.createElement(Keys, { row: row })
+					);
+				});
 
 				if (showInstructions === true) {
 					return _react2.default.createElement('div', null);
@@ -22372,55 +22421,8 @@
 						),
 						_react2.default.createElement(
 							'div',
-							{ className: 'row' },
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'q' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'w' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'e' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'r' }),
-							_react2.default.createElement(_Letter2.default, { letter: 't' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'y' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'u' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'i' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'o' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'p' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'row' },
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'a' }),
-							_react2.default.createElement(_Letter2.default, { letter: 's' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'd' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'f' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'g' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'h' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'j' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'k' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'l' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'row' },
-							_react2.default.createElement(_Letter2.default, { letter: 'z' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'x' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'c' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'v' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'b' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'n' }),
-							_react2.default.createElement(_Letter2.default, { letter: 'm' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' }),
-							_react2.default.createElement('div', { className: 'spacer' })
+							{ className: 'soundboard-inner', key: trueSoundboard.title },
+							rows
 						)
 					);
 				}
@@ -22539,12 +22541,21 @@
 	      var isPlaying = _props.isPlaying;
 	      var onLetterClick = _props.onLetterClick;
 
+	      var trueSoundboard = void 0;
 	      var foundKey = void 0;
-	      for (var i = 0; i < _data2.default[soundboard].length; i++) {
-	        var keys = _data2.default[soundboard][i].keys;
 
-	        for (var j = 0; j < keys.length; j++) {
-	          var key = keys[j];
+	      for (var i = 0; i < _data2.default.soundboards.length; i++) {
+	        if (_data2.default.soundboards[i].title === soundboard) {
+	          trueSoundboard = _data2.default.soundboards[i];
+	        }
+	      }
+
+	      for (var j = 0; j < trueSoundboard.rows.length; j++) {
+	        var keys = trueSoundboard.rows[j].keys;
+
+	        for (var k = 0; k < keys.length; k++) {
+	          var key = keys[k];
+
 	          if (key.title === letter) {
 	            foundKey = key;
 	          }
@@ -22587,199 +22598,215 @@
 	var _soundmanager = __webpack_require__(204);
 
 	exports.default = {
-		"Songs and Stings": [{
-			keys: [{
-				title: 'q'
+		soundboards: [{
+			title: "Songs and Stings",
+			rows: [{
+				id: 0,
+				keys: [{
+					title: 'q'
+				}, {
+					title: 'w',
+					urls: ['./audio/Chris/Wizard.mp3']
+				}, {
+					title: 'e'
+				}, {
+					title: 'r'
+				}, {
+					title: 't'
+				}, {
+					title: 'y'
+				}, {
+					title: 'u'
+				}, {
+					title: 'i'
+				}, {
+					title: 'o'
+				}, {
+					title: 'p'
+				}]
 			}, {
-				title: 'w',
-				urls: ['./audio/Chris/Wizard.mp3']
+				id: 1,
+				keys: [{
+					title: 'a'
+				}, {
+					title: 's'
+				}, {
+					title: 'd'
+				}, {
+					title: 'f'
+				}, {
+					title: 'g'
+				}, {
+					title: 'h'
+				}, {
+					title: 'j'
+				}, {
+					title: 'k'
+				}, {
+					title: 'l'
+				}]
 			}, {
-				title: 'e'
-			}, {
-				title: 'r'
-			}, {
-				title: 't'
-			}, {
-				title: 'y'
-			}, {
-				title: 'u'
-			}, {
-				title: 'i'
-			}, {
-				title: 'o'
-			}, {
-				title: 'p'
+				id: 2,
+				keys: [{
+					title: 'z'
+				}, {
+					title: 'x'
+				}, {
+					title: 'c'
+				}, {
+					title: 'v'
+				}, {
+					title: 'b'
+				}, {
+					title: 'n'
+				}, {
+					title: 'm'
+				}]
 			}]
 		}, {
-			keys: [{
-				title: 'a'
+			title: "Chris Remo",
+			rows: [{
+				id: 0,
+				keys: [{
+					title: 'q'
+				}, {
+					title: 'w'
+				}, {
+					title: 'e'
+				}, {
+					title: 'r'
+				}, {
+					title: 't'
+				}, {
+					title: 'y'
+				}, {
+					title: 'u'
+				}, {
+					title: 'i'
+				}, {
+					title: 'o',
+					urls: ['./audio/Chris/OhManFuckNo.mp3']
+				}, {
+					title: 'p'
+				}]
 			}, {
-				title: 's'
+				id: 1,
+				keys: [{
+					title: 'a'
+				}, {
+					title: 's'
+				}, {
+					title: 'd'
+				}, {
+					title: 'f'
+				}, {
+					title: 'g'
+				}, {
+					title: 'h'
+				}, {
+					title: 'j'
+				}, {
+					title: 'k'
+				}, {
+					title: 'l'
+				}]
 			}, {
-				title: 'd'
-			}, {
-				title: 'f'
-			}, {
-				title: 'g'
-			}, {
-				title: 'h'
-			}, {
-				title: 'j'
-			}, {
-				title: 'k'
-			}, {
-				title: 'l'
+				id: 2,
+				keys: [{
+					title: 'z'
+				}, {
+					title: 'x'
+				}, {
+					title: 'c'
+				}, {
+					title: 'v'
+				}, {
+					title: 'b'
+				}, {
+					title: 'n'
+				}, {
+					title: 'm'
+				}]
 			}]
 		}, {
-			keys: [{
-				title: 'z'
+			title: 'Nick Breckon',
+			rows: [{
+				id: 0,
+				keys: [{
+					title: 'q'
+				}, {
+					title: 'w'
+				}, {
+					title: 'e'
+				}, {
+					title: 'r'
+				}, {
+					title: 't'
+				}, {
+					title: 'y'
+				}, {
+					title: 'u'
+				}, {
+					title: 'i'
+				}, {
+					title: 'o'
+				}, {
+					title: 'p'
+				}]
 			}, {
-				title: 'x'
+				id: 1,
+				keys: [{
+					title: 'a'
+				}, {
+					title: 's'
+				}, {
+					title: 'd'
+				}, {
+					title: 'f'
+				}, {
+					title: 'g'
+				}, {
+					title: 'h'
+				}, {
+					title: 'j'
+				}, {
+					title: 'k'
+				}, {
+					title: 'l'
+				}]
 			}, {
-				title: 'c'
-			}, {
-				title: 'v'
-			}, {
-				title: 'b'
-			}, {
-				title: 'n'
-			}, {
-				title: 'm'
-			}]
-		}],
-		"Chris Remo": [{
-			keys: [{
-				title: 'q'
-			}, {
-				title: 'w'
-			}, {
-				title: 'e'
-			}, {
-				title: 'r'
-			}, {
-				title: 't'
-			}, {
-				title: 'y'
-			}, {
-				title: 'u'
-			}, {
-				title: 'i'
-			}, {
-				title: 'o',
-				urls: ['./audio/Chris/OhManFuckNo.mp3']
-			}, {
-				title: 'p'
-			}]
-		}, {
-			keys: [{
-				title: 'a'
-			}, {
-				title: 's'
-			}, {
-				title: 'd'
-			}, {
-				title: 'f'
-			}, {
-				title: 'g'
-			}, {
-				title: 'h'
-			}, {
-				title: 'j'
-			}, {
-				title: 'k'
-			}, {
-				title: 'l'
-			}]
-		}, {
-			keys: [{
-				title: 'z'
-			}, {
-				title: 'x'
-			}, {
-				title: 'c'
-			}, {
-				title: 'v'
-			}, {
-				title: 'b'
-			}, {
-				title: 'n'
-			}, {
-				title: 'm'
-			}]
-		}],
-		"Nick Breckon": [{
-			keys: [{
-				title: 'q'
-			}, {
-				title: 'w'
-			}, {
-				title: 'e'
-			}, {
-				title: 'r'
-			}, {
-				title: 't'
-			}, {
-				title: 'y'
-			}, {
-				title: 'u'
-			}, {
-				title: 'i'
-			}, {
-				title: 'o'
-			}, {
-				title: 'p'
-			}]
-		}, {
-			keys: [{
-				title: 'a'
-			}, {
-				title: 's'
-			}, {
-				title: 'd'
-			}, {
-				title: 'f'
-			}, {
-				title: 'g'
-			}, {
-				title: 'h'
-			}, {
-				title: 'j'
-			}, {
-				title: 'k'
-			}, {
-				title: 'l'
-			}]
-		}, {
-			keys: [{
-				title: 'z'
-			}, {
-				title: 'x'
-			}, {
-				title: 'c'
-			}, {
-				title: 'v'
-			}, {
-				title: 'b',
-				urls: ['./audio/Chris/BearStart.mp3', './audio/Chris/BearLoop.mp3'],
-				specialRules: function specialRules(urls, dispatch, togglePlaying) {
-					var mySound = _soundmanager.soundManager.createSound({
-						url: urls[0],
-						autoPlay: true,
-						onfinish: function onfinish() {
-							mySound = _soundmanager.soundManager.createSound({
-								url: urls[1],
-								autoPlay: true,
-								onfinish: function onfinish() {
-									mySound.play();
-								}
-							});
-						}
-					});
-				}
-			}, {
-				title: 'n'
-			}, {
-				title: 'm'
+				id: 2,
+				keys: [{
+					title: 'z'
+				}, {
+					title: 'x'
+				}, {
+					title: 'c'
+				}, {
+					title: 'v'
+				}, {
+					title: 'b',
+					urls: ['./audio/Chris/BearStart.mp3', './audio/Chris/BearLoop.mp3'],
+					specialRules: function specialRules(urls, dispatch, togglePlaying) {
+						var mySound = _soundmanager.soundManager.createSound({
+							url: urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								mySound = _soundmanager.soundManager.createSound({
+									url: urls[1],
+									autoPlay: true,
+									onfinish: function onfinish() {
+										mySound.play();
+									}
+								});
+							}
+						});
+					}
+				}, {
+					title: 'n'
+				}, {
+					title: 'm'
+				}]
 			}]
 		}]
 	};

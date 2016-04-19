@@ -4,17 +4,27 @@ import Data from '../data'
 export default class App extends React.Component {
   render() {
   	const { letter, soundboard, isPlaying, onLetterClick } = this.props;
+    let trueSoundboard;
     let foundKey;
-    for (var i = 0; i < Data[soundboard].length; i++) {
-      var keys = Data[soundboard][i].keys;
+    
+    for (var i = 0; i < Data.soundboards.length; i++) {
+      if (Data.soundboards[i].title === soundboard) {
+        trueSoundboard = Data.soundboards[i]
+      }
+    }
+
+    for (var j = 0; j < trueSoundboard.rows.length; j++) {
+      var keys = trueSoundboard.rows[j].keys;
       
-      for (var j = 0; j < keys.length; j++) {
-        var key = keys[j];
+      for (var k = 0; k < keys.length; k++) {
+        var key = keys[k];
+
         if (key.title === letter) {
           foundKey = key;
         }
       }
     }
+      
 
     if (foundKey.urls && isPlaying === false) {
     	return (<div className="key" onClick={() => {
