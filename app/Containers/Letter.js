@@ -14,36 +14,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLetterClick: (letter, soundboardName, isPlaying) => {
+		onLetterClick: (foundKey, soundboardName, isPlaying) => {
 			if (isPlaying === true) {
 				return;
 			}
 
 			dispatch(togglePlaying(true))
 
-			if (letter === 'b' && soundboardName === 'Nick Breckon') {
-				let mySound = soundManager.createSound({
-					url: Data[soundboardName][letter][0].url,
-					autoPlay: true,
-					onfinish: () => {
-						mySound = soundManager.createSound({
-							url: Data[soundboardName][letter][1].url,
-							autoPlay: true,
-							onfinish: () => {
-								mySound.play()
-							}
-						})
-					}
-				})
+			if (foundKey.specialRules) {
+				foundKey.specialRules(foundKey.urls, dispatch, togglePlaying);
 			} else {
 				const mySound = soundManager.createSound({
-					url: Data[soundboardName][letter][0].url,
+					url: foundKey.urls[0],
 					autoPlay: true,
 					onfinish: () => {
 						dispatch(togglePlaying(false))
 					}
-				})	
+				});	
 			}
+
+			
 		}
 	}
 }

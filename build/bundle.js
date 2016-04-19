@@ -22467,32 +22467,18 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onLetterClick: function onLetterClick(letter, soundboardName, isPlaying) {
+			onLetterClick: function onLetterClick(foundKey, soundboardName, isPlaying) {
 				if (isPlaying === true) {
 					return;
 				}
 
 				dispatch((0, _Actions.togglePlaying)(true));
 
-				if (letter === 'b' && soundboardName === 'Nick Breckon') {
-					(function () {
-						var mySound = _soundmanager.soundManager.createSound({
-							url: _data2.default[soundboardName][letter][0].url,
-							autoPlay: true,
-							onfinish: function onfinish() {
-								mySound = _soundmanager.soundManager.createSound({
-									url: _data2.default[soundboardName][letter][1].url,
-									autoPlay: true,
-									onfinish: function onfinish() {
-										mySound.play();
-									}
-								});
-							}
-						});
-					})();
+				if (foundKey.specialRules) {
+					foundKey.specialRules(foundKey.urls, dispatch, _Actions.togglePlaying);
 				} else {
-					var _mySound = _soundmanager.soundManager.createSound({
-						url: _data2.default[soundboardName][letter][0].url,
+					var mySound = _soundmanager.soundManager.createSound({
+						url: foundKey.urls[0],
 						autoPlay: true,
 						onfinish: function onfinish() {
 							dispatch((0, _Actions.togglePlaying)(false));
@@ -22553,12 +22539,23 @@
 	      var isPlaying = _props.isPlaying;
 	      var onLetterClick = _props.onLetterClick;
 
+	      var foundKey = void 0;
+	      for (var i = 0; i < _data2.default[soundboard].length; i++) {
+	        var keys = _data2.default[soundboard][i].keys;
 
-	      if (_data2.default[soundboard][letter].length > 0 && isPlaying === false) {
+	        for (var j = 0; j < keys.length; j++) {
+	          var key = keys[j];
+	          if (key.title === letter) {
+	            foundKey = key;
+	          }
+	        }
+	      }
+
+	      if (foundKey.urls && isPlaying === false) {
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', onClick: function onClick() {
-	              onLetterClick(letter, soundboard, isPlaying);
+	              onLetterClick(foundKey, soundboard, isPlaying);
 	            } },
 	          letter
 	        );
@@ -22579,106 +22576,212 @@
 
 /***/ },
 /* 203 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+
+	var _soundmanager = __webpack_require__(204);
+
 	exports.default = {
-		"Songs and Stings": {
-			a: [],
-			b: [],
-			c: [],
-			d: [],
-			e: [],
-			f: [],
-			g: [],
-			h: [],
-			i: [],
-			j: [],
-			k: [],
-			l: [],
-			m: [],
-			n: [],
-			o: [],
-			p: [],
-			q: [],
-			r: [],
-			s: [],
-			t: [],
-			u: [],
-			v: [],
-			w: [{
-				url: './audio/Chris/Wizard.mp3'
-			}],
-			x: [],
-			y: [],
-			z: []
-		},
-		"Chris Remo": {
-			a: [],
-			b: [],
-			c: [],
-			d: [],
-			e: [],
-			f: [],
-			g: [],
-			h: [],
-			i: [],
-			j: [],
-			k: [],
-			l: [],
-			m: [],
-			n: [],
-			o: [{
-				url: './audio/Chris/OhManFuckNo.mp3'
-			}],
-			p: [],
-			q: [],
-			r: [],
-			s: [],
-			t: [],
-			u: [],
-			v: [],
-			w: [],
-			x: [],
-			y: [],
-			z: []
-		},
-		"Nick Breckon": {
-			a: [],
-			b: [{
-				url: './audio/Chris/BearStart.mp3'
+		"Songs and Stings": [{
+			keys: [{
+				title: 'q'
 			}, {
-				url: './audio/Chris/BearLoop.mp3'
-			}],
-			c: [],
-			d: [],
-			e: [],
-			f: [],
-			g: [],
-			h: [],
-			i: [],
-			j: [],
-			k: [],
-			l: [],
-			m: [],
-			n: [],
-			o: [],
-			p: [],
-			q: [],
-			r: [],
-			s: [],
-			t: [],
-			u: [],
-			v: [],
-			w: [],
-			x: [],
-			y: [],
-			z: []
-		}
+				title: 'w',
+				urls: ['./audio/Chris/Wizard.mp3']
+			}, {
+				title: 'e'
+			}, {
+				title: 'r'
+			}, {
+				title: 't'
+			}, {
+				title: 'y'
+			}, {
+				title: 'u'
+			}, {
+				title: 'i'
+			}, {
+				title: 'o'
+			}, {
+				title: 'p'
+			}]
+		}, {
+			keys: [{
+				title: 'a'
+			}, {
+				title: 's'
+			}, {
+				title: 'd'
+			}, {
+				title: 'f'
+			}, {
+				title: 'g'
+			}, {
+				title: 'h'
+			}, {
+				title: 'j'
+			}, {
+				title: 'k'
+			}, {
+				title: 'l'
+			}]
+		}, {
+			keys: [{
+				title: 'z'
+			}, {
+				title: 'x'
+			}, {
+				title: 'c'
+			}, {
+				title: 'v'
+			}, {
+				title: 'b'
+			}, {
+				title: 'n'
+			}, {
+				title: 'm'
+			}]
+		}],
+		"Chris Remo": [{
+			keys: [{
+				title: 'q'
+			}, {
+				title: 'w'
+			}, {
+				title: 'e'
+			}, {
+				title: 'r'
+			}, {
+				title: 't'
+			}, {
+				title: 'y'
+			}, {
+				title: 'u'
+			}, {
+				title: 'i'
+			}, {
+				title: 'o',
+				urls: ['./audio/Chris/OhManFuckNo.mp3']
+			}, {
+				title: 'p'
+			}]
+		}, {
+			keys: [{
+				title: 'a'
+			}, {
+				title: 's'
+			}, {
+				title: 'd'
+			}, {
+				title: 'f'
+			}, {
+				title: 'g'
+			}, {
+				title: 'h'
+			}, {
+				title: 'j'
+			}, {
+				title: 'k'
+			}, {
+				title: 'l'
+			}]
+		}, {
+			keys: [{
+				title: 'z'
+			}, {
+				title: 'x'
+			}, {
+				title: 'c'
+			}, {
+				title: 'v'
+			}, {
+				title: 'b'
+			}, {
+				title: 'n'
+			}, {
+				title: 'm'
+			}]
+		}],
+		"Nick Breckon": [{
+			keys: [{
+				title: 'q'
+			}, {
+				title: 'w'
+			}, {
+				title: 'e'
+			}, {
+				title: 'r'
+			}, {
+				title: 't'
+			}, {
+				title: 'y'
+			}, {
+				title: 'u'
+			}, {
+				title: 'i'
+			}, {
+				title: 'o'
+			}, {
+				title: 'p'
+			}]
+		}, {
+			keys: [{
+				title: 'a'
+			}, {
+				title: 's'
+			}, {
+				title: 'd'
+			}, {
+				title: 'f'
+			}, {
+				title: 'g'
+			}, {
+				title: 'h'
+			}, {
+				title: 'j'
+			}, {
+				title: 'k'
+			}, {
+				title: 'l'
+			}]
+		}, {
+			keys: [{
+				title: 'z'
+			}, {
+				title: 'x'
+			}, {
+				title: 'c'
+			}, {
+				title: 'v'
+			}, {
+				title: 'b',
+				urls: ['./audio/Chris/BearStart.mp3', './audio/Chris/BearLoop.mp3'],
+				specialRules: function specialRules(urls, dispatch, togglePlaying) {
+					var mySound = _soundmanager.soundManager.createSound({
+						url: urls[0],
+						autoPlay: true,
+						onfinish: function onfinish() {
+							mySound = _soundmanager.soundManager.createSound({
+								url: urls[1],
+								autoPlay: true,
+								onfinish: function onfinish() {
+									mySound.play();
+								}
+							});
+						}
+					});
+				}
+			}, {
+				title: 'n'
+			}, {
+				title: 'm'
+			}]
+		}]
 	};
 
 /***/ },
