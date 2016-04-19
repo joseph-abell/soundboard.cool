@@ -38,6 +38,13 @@ export default class Soundboard extends React.Component {
 			)
 		});
 
+		let numberKeys = Data.numbers.map ( numberKey => {
+			if (numberKey.title) {
+				return <NumberKey numberKey={numberKey.numberKey} key={numberKey.id} enabled={true} />
+			} else {
+				return <NumberKey numberKey={numberKey.numberKey} key={numberKey.id} enabled={false} />
+			}
+		});
 
 		if (showInstructions === true) {
 			return <div />
@@ -46,16 +53,7 @@ export default class Soundboard extends React.Component {
 				<div className="soundboard">
 					<h1>{soundboard}</h1>
 					<div className="row">
-						<NumberKey numberKey="1" enabled={true} />
-						<NumberKey numberKey="2" enabled={true} />
-						<NumberKey numberKey="3" enabled={true} />
-						<NumberKey numberKey="4" enabled={false} />
-						<NumberKey numberKey="5" enabled={false} />
-						<NumberKey numberKey="6" enabled={false} />
-						<NumberKey numberKey="7" enabled={false} />
-						<NumberKey numberKey="8" enabled={false} />
-						<NumberKey numberKey="9" enabled={false} />
-						<NumberKey numberKey="0" enabled={false} />
+						{numberKeys}
 					</div>
 					<div className="soundboard-inner" key={trueSoundboard.title}>
 						{rows}

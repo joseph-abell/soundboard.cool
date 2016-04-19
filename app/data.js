@@ -1,6 +1,51 @@
 import { soundManager } from 'soundmanager2'
 
 export default {
+	numbers: [
+		{
+			id: 0,
+			numberKey: '1',
+			title: 'Songs and Stings'
+		},
+		{
+			id: 1,
+			numberKey: '2',
+			title: 'Chris Remo'
+		},
+		{
+			id: 2,
+			numberKey: '3',
+			title: 'Nick Breckon'
+		},
+		{
+			id: 3,
+			numberKey: '4'
+		},
+		{
+			id: 4,
+			numberKey: '5'
+		},
+		{
+			id: 5,
+			numberKey: '6'
+		},
+		{
+			id: 6,
+			numberKey: '7'
+		},
+		{
+			id: 7,
+			numberKey: '8'
+		},
+		{
+			id: 8,
+			numberKey: '9'
+		},
+		{
+			id: 9,
+			numberKey: '0'
+		}
+	],
 	soundboards: [
 		{
 			title: "Songs and Stings",

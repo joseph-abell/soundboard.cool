@@ -22394,6 +22394,14 @@
 					);
 				});
 
+				var numberKeys = _data2.default.numbers.map(function (numberKey) {
+					if (numberKey.title) {
+						return _react2.default.createElement(_Number2.default, { numberKey: numberKey.numberKey, key: numberKey.id, enabled: true });
+					} else {
+						return _react2.default.createElement(_Number2.default, { numberKey: numberKey.numberKey, key: numberKey.id, enabled: false });
+					}
+				});
+
 				if (showInstructions === true) {
 					return _react2.default.createElement('div', null);
 				} else {
@@ -22408,16 +22416,7 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'row' },
-							_react2.default.createElement(_Number2.default, { numberKey: '1', enabled: true }),
-							_react2.default.createElement(_Number2.default, { numberKey: '2', enabled: true }),
-							_react2.default.createElement(_Number2.default, { numberKey: '3', enabled: true }),
-							_react2.default.createElement(_Number2.default, { numberKey: '4', enabled: false }),
-							_react2.default.createElement(_Number2.default, { numberKey: '5', enabled: false }),
-							_react2.default.createElement(_Number2.default, { numberKey: '6', enabled: false }),
-							_react2.default.createElement(_Number2.default, { numberKey: '7', enabled: false }),
-							_react2.default.createElement(_Number2.default, { numberKey: '8', enabled: false }),
-							_react2.default.createElement(_Number2.default, { numberKey: '9', enabled: false }),
-							_react2.default.createElement(_Number2.default, { numberKey: '0', enabled: false })
+							numberKeys
 						),
 						_react2.default.createElement(
 							'div',
@@ -22598,6 +22597,40 @@
 	var _soundmanager = __webpack_require__(204);
 
 	exports.default = {
+		numbers: [{
+			id: 0,
+			numberKey: '1',
+			title: 'Songs and Stings'
+		}, {
+			id: 1,
+			numberKey: '2',
+			title: 'Chris Remo'
+		}, {
+			id: 2,
+			numberKey: '3',
+			title: 'Nick Breckon'
+		}, {
+			id: 3,
+			numberKey: '4'
+		}, {
+			id: 4,
+			numberKey: '5'
+		}, {
+			id: 5,
+			numberKey: '6'
+		}, {
+			id: 6,
+			numberKey: '7'
+		}, {
+			id: 7,
+			numberKey: '8'
+		}, {
+			id: 8,
+			numberKey: '9'
+		}, {
+			id: 9,
+			numberKey: '0'
+		}],
 		soundboards: [{
 			title: "Songs and Stings",
 			rows: [{
