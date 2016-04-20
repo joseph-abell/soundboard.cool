@@ -27,7 +27,7 @@ export default class App extends React.Component {
       
 
     if (foundKey.urls && isPlaying === false) {
-    	return (<div className="key" onClick={() => {
+    	return (<div className="key" id={"key" + letter} onClick={() => {
     		onLetterClick(foundKey, soundboard, isPlaying)
     	}}>{letter}</div>)	
     } else {

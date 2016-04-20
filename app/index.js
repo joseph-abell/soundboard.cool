@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import soundboardApp from './Reducers';
 import App from './Components/App';
+import './Utils';
 
 let store = createStore(soundboardApp);
 
