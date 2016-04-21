@@ -60,17 +60,17 @@
 
 	var _redux = __webpack_require__(176);
 
-	var _Reducers = __webpack_require__(195);
+	var _Reducers = __webpack_require__(191);
 
 	var _Reducers2 = _interopRequireDefault(_Reducers);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
-	var _App = __webpack_require__(197);
+	var _App = __webpack_require__(193);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(215);
+	__webpack_require__(211);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -312,8 +312,8 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	/* eslint-disable no-unused-vars */
 	'use strict';
+	/* eslint-disable no-unused-vars */
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -325,7 +325,51 @@
 		return Object(val);
 	}
 
-	module.exports = Object.assign || function (target, source) {
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+
+			// Detect buggy property enumeration order in older V8 versions.
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+
+			return true;
+		} catch (e) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 		var from;
 		var to = toObject(target);
 		var symbols;
@@ -20619,15 +20663,15 @@
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _isPlainObject = __webpack_require__(189);
+	var _isPlainObject = __webpack_require__(178);
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _hoistNonReactStatics = __webpack_require__(193);
+	var _hoistNonReactStatics = __webpack_require__(189);
 
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-	var _invariant = __webpack_require__(194);
+	var _invariant = __webpack_require__(190);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -21879,164 +21923,6 @@
 
 /***/ },
 /* 189 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getPrototype = __webpack_require__(190),
-	    isHostObject = __webpack_require__(191),
-	    isObjectLike = __webpack_require__(192);
-
-	/** `Object#toString` result references. */
-	var objectTag = '[object Object]';
-
-	/** Used for built-in method references. */
-	var objectProto = Object.prototype;
-
-	/** Used to resolve the decompiled source of functions. */
-	var funcToString = Function.prototype.toString;
-
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-
-	/** Used to infer the `Object` constructor. */
-	var objectCtorString = funcToString.call(Object);
-
-	/**
-	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
-	 * of values.
-	 */
-	var objectToString = objectProto.toString;
-
-	/**
-	 * Checks if `value` is a plain object, that is, an object created by the
-	 * `Object` constructor or one with a `[[Prototype]]` of `null`.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.8.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a plain object,
-	 *  else `false`.
-	 * @example
-	 *
-	 * function Foo() {
-	 *   this.a = 1;
-	 * }
-	 *
-	 * _.isPlainObject(new Foo);
-	 * // => false
-	 *
-	 * _.isPlainObject([1, 2, 3]);
-	 * // => false
-	 *
-	 * _.isPlainObject({ 'x': 0, 'y': 0 });
-	 * // => true
-	 *
-	 * _.isPlainObject(Object.create(null));
-	 * // => true
-	 */
-	function isPlainObject(value) {
-	  if (!isObjectLike(value) ||
-	      objectToString.call(value) != objectTag || isHostObject(value)) {
-	    return false;
-	  }
-	  var proto = getPrototype(value);
-	  if (proto === null) {
-	    return true;
-	  }
-	  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
-	  return (typeof Ctor == 'function' &&
-	    Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString);
-	}
-
-	module.exports = isPlainObject;
-
-
-/***/ },
-/* 190 */
-/***/ function(module, exports) {
-
-	/* Built-in method references for those with the same name as other `lodash` methods. */
-	var nativeGetPrototype = Object.getPrototypeOf;
-
-	/**
-	 * Gets the `[[Prototype]]` of `value`.
-	 *
-	 * @private
-	 * @param {*} value The value to query.
-	 * @returns {null|Object} Returns the `[[Prototype]]`.
-	 */
-	function getPrototype(value) {
-	  return nativeGetPrototype(Object(value));
-	}
-
-	module.exports = getPrototype;
-
-
-/***/ },
-/* 191 */
-/***/ function(module, exports) {
-
-	/**
-	 * Checks if `value` is a host object in IE < 9.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
-	 */
-	function isHostObject(value) {
-	  // Many host objects are `Object` objects that can coerce to strings
-	  // despite having improperly defined `toString` methods.
-	  var result = false;
-	  if (value != null && typeof value.toString != 'function') {
-	    try {
-	      result = !!(value + '');
-	    } catch (e) {}
-	  }
-	  return result;
-	}
-
-	module.exports = isHostObject;
-
-
-/***/ },
-/* 192 */
-/***/ function(module, exports) {
-
-	/**
-	 * Checks if `value` is object-like. A value is object-like if it's not `null`
-	 * and has a `typeof` result of "object".
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
-	 * @example
-	 *
-	 * _.isObjectLike({});
-	 * // => true
-	 *
-	 * _.isObjectLike([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isObjectLike(_.noop);
-	 * // => false
-	 *
-	 * _.isObjectLike(null);
-	 * // => false
-	 */
-	function isObjectLike(value) {
-	  return !!value && typeof value == 'object';
-	}
-
-	module.exports = isObjectLike;
-
-
-/***/ },
-/* 193 */
 /***/ function(module, exports) {
 
 	/**
@@ -22082,7 +21968,7 @@
 
 
 /***/ },
-/* 194 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22140,7 +22026,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 195 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22151,7 +22037,7 @@
 
 	var _redux = __webpack_require__(176);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
 	var soundboard = function soundboard() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? 'Chris Remo' : arguments[0];
@@ -22194,7 +22080,7 @@
 
 	var toggleKillBearVisible = function toggleKillBearVisible() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? {
-			killBearButton: false,
+			killBearButton: 0,
 			soundManager: {}
 		} : arguments[0];
 		var action = arguments[1];
@@ -22354,7 +22240,7 @@
 	exports.default = soundboardApp;
 
 /***/ },
-/* 196 */
+/* 192 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22494,7 +22380,7 @@
 	}
 
 /***/ },
-/* 197 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22509,23 +22395,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Instructions = __webpack_require__(198);
+	var _Instructions = __webpack_require__(194);
 
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 
-	var _Soundboard = __webpack_require__(200);
+	var _Soundboard = __webpack_require__(196);
 
 	var _Soundboard2 = _interopRequireDefault(_Soundboard);
 
-	var _KillButton = __webpack_require__(209);
-
-	var _KillButton2 = _interopRequireDefault(_KillButton);
-
-	var _AnimationElements = __webpack_require__(211);
+	var _AnimationElements = __webpack_require__(207);
 
 	var _AnimationElements2 = _interopRequireDefault(_AnimationElements);
 
-	var _Stats = __webpack_require__(213);
+	var _Stats = __webpack_require__(209);
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
@@ -22554,7 +22436,6 @@
 	        null,
 	        _react2.default.createElement(_Instructions2.default, null),
 	        _react2.default.createElement(_Soundboard2.default, null),
-	        _react2.default.createElement(_KillButton2.default, null),
 	        _react2.default.createElement(_AnimationElements2.default, null),
 	        _react2.default.createElement(_Stats2.default, null)
 	      );
@@ -22567,7 +22448,7 @@
 	exports.default = App;
 
 /***/ },
-/* 198 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22578,11 +22459,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Instructions = __webpack_require__(199);
+	var _Instructions = __webpack_require__(195);
 
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22605,7 +22486,7 @@
 	exports.default = InstructionsContainer;
 
 /***/ },
-/* 199 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22689,7 +22570,7 @@
 	exports.default = App;
 
 /***/ },
-/* 200 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22700,11 +22581,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Soundboard = __webpack_require__(201);
+	var _Soundboard = __webpack_require__(197);
 
 	var _Soundboard2 = _interopRequireDefault(_Soundboard);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22712,7 +22593,8 @@
 		return {
 			showInstructions: state.toggleInstructions,
 			soundboard: state.soundboard,
-			keyTitle: state.togglePlaying.title
+			keyTitle: state.togglePlaying.title,
+			killBearButton: state.toggleKillBearVisible.killBearButton
 		};
 	};
 
@@ -22721,7 +22603,7 @@
 	exports.default = SoundboardContainer;
 
 /***/ },
-/* 201 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22736,15 +22618,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Letter = __webpack_require__(202);
+	var _Letter = __webpack_require__(198);
 
 	var _Letter2 = _interopRequireDefault(_Letter);
 
-	var _Number = __webpack_require__(207);
+	var _Number = __webpack_require__(203);
 
 	var _Number2 = _interopRequireDefault(_Number);
 
-	var _data = __webpack_require__(204);
+	var _KillButton = __webpack_require__(205);
+
+	var _KillButton2 = _interopRequireDefault(_KillButton);
+
+	var _data = __webpack_require__(200);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -22801,6 +22687,7 @@
 				var showInstructions = _props.showInstructions;
 				var soundboard = _props.soundboard;
 				var keyTitle = _props.keyTitle;
+				var killBearButton = _props.killBearButton;
 
 				var trueSoundboard = void 0;
 
@@ -22835,6 +22722,7 @@
 						_react2.default.createElement(
 							'h1',
 							null,
+							'Current Soundboard: ',
 							soundboard
 						),
 						_react2.default.createElement(
@@ -22845,13 +22733,29 @@
 						),
 						_react2.default.createElement(
 							'div',
-							{ className: 'row' },
+							{ className: 'row soundboard-inner' },
+							_react2.default.createElement(
+								'h3',
+								null,
+								'Soundboards'
+							),
 							numberKeys
 						),
 						_react2.default.createElement(
 							'div',
 							{ className: 'soundboard-inner', key: trueSoundboard.title },
-							rows
+							_react2.default.createElement(
+								'h3',
+								null,
+								'Sounds'
+							),
+							rows,
+							killBearButton === 1 && _react2.default.createElement(
+								'div',
+								{ className: 'spacebar disabled' },
+								'Wait for it...'
+							),
+							_react2.default.createElement(_KillButton2.default, null)
 						)
 					);
 				}
@@ -22864,7 +22768,7 @@
 	exports.default = Soundboard;
 
 /***/ },
-/* 202 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22875,15 +22779,15 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Letter = __webpack_require__(203);
+	var _Letter = __webpack_require__(199);
 
 	var _Letter2 = _interopRequireDefault(_Letter);
 
-	var _soundmanager = __webpack_require__(205);
+	var _soundmanager = __webpack_require__(201);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
-	var _data = __webpack_require__(204);
+	var _data = __webpack_require__(200);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -22899,7 +22803,7 @@
 		return {
 			soundboard: state.soundboard,
 			canAnimate: state.canAnimate,
-			killBearButton: state.killBearButton,
+			killBearButton: state.toggleKillBearVisible.killBearButton,
 			globalCounter: state.globalCounter,
 			personalCounter: state.personalCounter,
 			baboos: state.baboos,
@@ -22927,7 +22831,7 @@
 	exports.default = LetterContainer;
 
 /***/ },
-/* 203 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22942,7 +22846,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _data = __webpack_require__(204);
+	var _data = __webpack_require__(200);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -22975,6 +22879,7 @@
 	      var personalCounter = _props.personalCounter;
 	      var baboos = _props.baboos;
 	      var wizards = _props.wizards;
+	      var killBearButton = _props.killBearButton;
 
 
 	      var trueSoundboard = void 0;
@@ -22998,7 +22903,7 @@
 	        }
 	      }
 
-	      if (foundKey.urls) {
+	      if (foundKey.urls && killBearButton !== 1 && killBearButton !== 2) {
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
@@ -23022,7 +22927,7 @@
 	exports.default = App;
 
 /***/ },
-/* 204 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23031,13 +22936,13 @@
 		value: true
 	});
 
-	var _soundmanager = __webpack_require__(205);
+	var _soundmanager = __webpack_require__(201);
 
 	var _firebase = __webpack_require__(33);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23103,7 +23008,8 @@
 			numberKey: '8'
 		}, {
 			id: 9,
-			numberKey: '9'
+			numberKey: '9',
+			title: 'Baboo'
 		}, {
 			id: 0,
 			numberKey: '0',
@@ -23119,7 +23025,7 @@
 				}, {
 					title: 'w',
 					audioTitle: 'Wizard',
-					urls: ['./audio/Jingles/Wizard.mp3'],
+					urls: ['./audio/Intros/Wizard.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23147,7 +23053,7 @@
 				}, {
 					title: 'o',
 					audioTitle: 'Ode To Waluigi, by Sam Daly (Grade 4)',
-					urls: ['./audio/Jingles/OdeToWaluigi.mp3'],
+					urls: ['./audio/Intros/OdeToWaluigi.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23203,15 +23109,7 @@
 					audioTitle: ''
 				}, {
 					title: 'b',
-					audioTitle: 'Baboo',
-					urls: ['./audio/Intros/BabooIntro.mp3'],
-					rules: function rules(foundKey, dispatch) {
-						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
-
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-					}
-
+					audioTitle: ''
 				}, {
 					title: 'n',
 					audioTitle: ''
@@ -23409,6 +23307,7 @@
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
 						dispatch((0, _Actions.togglePlaying)(foundKey.audioTitle));
+						dispatch((0, _Actions.toggleKillBearVisible)(1));
 
 						var visibleButton = false;
 						var mySound = void 0,
@@ -23423,7 +23322,7 @@
 									autoPlay: true,
 									onplay: function onplay() {
 										if (visibleButton === false) {
-											dispatch((0, _Actions.toggleKillBearVisible)(true, _soundmanager.soundManager));
+											dispatch((0, _Actions.toggleKillBearVisible)(2, _soundmanager.soundManager));
 											visibleButton = true;
 										}
 									},
@@ -23640,11 +23539,115 @@
 					}
 				}]
 			}]
+		}, {
+			title: 'Baboo',
+			rows: [{
+				id: 10,
+				keys: [{
+					title: 'q',
+					audioTitle: 'Baboo',
+					urls: ['./audio/Baboo/baboo001.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
+
+				}, {
+					title: 'w',
+					audioTitle: ''
+				}, {
+					title: 'e',
+					audioTitle: ''
+				}, {
+					title: 'r',
+					audioTitle: ''
+				}, {
+					title: 't',
+					audioTitle: ''
+				}, {
+					title: 'y',
+					audioTitle: ''
+				}, {
+					title: 'u',
+					audioTitle: ''
+				}, {
+					title: 'i',
+					audioTitle: ''
+				}, {
+					title: 'o',
+					audioTitle: ''
+				}, {
+					title: 'p',
+					audioTitle: ''
+				}]
+			}, {
+				id: 1,
+				keys: [{
+					title: 'a',
+					audioTitle: ''
+				}, {
+					title: 's',
+					audioTitle: ''
+				}, {
+					title: 'd',
+					audioTitle: ''
+				}, {
+					title: 'f',
+					audioTitle: ''
+				}, {
+					title: 'g',
+					audioTitle: ''
+				}, {
+					title: 'h',
+					audioTitle: ''
+				}, {
+					title: 'j',
+					audioTitle: ''
+				}, {
+					title: 'k',
+					audioTitle: ''
+				}, {
+					title: 'l',
+					audioTitle: ''
+				}]
+			}, {
+				id: 2,
+				keys: [{
+					title: 'z',
+					audioTitle: 'Baboo',
+					urls: ['./audio/Baboo/BabooIntro.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
+				}, {
+					title: 'x',
+					audioTitle: ''
+				}, {
+					title: 'c',
+					audioTitle: ''
+				}, {
+					title: 'v',
+					audioTitle: ''
+				}, {
+					title: 'b',
+					audioTitle: ''
+				}, {
+					title: 'n',
+					audioTitle: ''
+				}, {
+					title: 'm',
+					audioTitle: ''
+				}]
+			}]
 		}]
 	};
 
 /***/ },
-/* 205 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {/** @license
@@ -29950,10 +29953,10 @@
 
 	}(window));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(206)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(202)(module)))
 
 /***/ },
-/* 206 */
+/* 202 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -29969,7 +29972,7 @@
 
 
 /***/ },
-/* 207 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29980,13 +29983,13 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Number = __webpack_require__(208);
+	var _Number = __webpack_require__(204);
 
 	var _Number2 = _interopRequireDefault(_Number);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
-	var _data = __webpack_require__(204);
+	var _data = __webpack_require__(200);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -30017,7 +30020,7 @@
 	exports.default = NumberKeyContainer;
 
 /***/ },
-/* 208 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30090,7 +30093,7 @@
 	exports.default = NumberKey;
 
 /***/ },
-/* 209 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30101,11 +30104,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _KillButton = __webpack_require__(210);
+	var _KillButton = __webpack_require__(206);
 
 	var _KillButton2 = _interopRequireDefault(_KillButton);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
 	var _firebase = __webpack_require__(33);
 
@@ -30127,7 +30130,7 @@
 		return {
 			onKillBearClick: function onKillBearClick(soundManager, bears) {
 				soundManager.stopAll();
-				dispatch((0, _Actions.toggleKillBearVisible)(false, {}));
+				dispatch((0, _Actions.toggleKillBearVisible)(0));
 				fireRef.update({ 'bearsKilled': ++bears });
 			}
 		};
@@ -30138,7 +30141,7 @@
 	exports.default = KillButtonContainer;
 
 /***/ },
-/* 210 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30179,7 +30182,7 @@
 	      var onKillBearClick = _props.onKillBearClick;
 	      var bearsKilled = _props.bearsKilled;
 
-	      if (killBearButton === true) {
+	      if (killBearButton === 2) {
 	        return _react2.default.createElement(
 	          "div",
 	          { className: "row" },
@@ -30203,7 +30206,7 @@
 	exports.default = KillButton;
 
 /***/ },
-/* 211 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30214,7 +30217,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _AnimationElements = __webpack_require__(212);
+	var _AnimationElements = __webpack_require__(208);
 
 	var _AnimationElements2 = _interopRequireDefault(_AnimationElements);
 
@@ -30231,7 +30234,7 @@
 	exports.default = AnimationElementsContainer;
 
 /***/ },
-/* 212 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30290,7 +30293,7 @@
 	exports.default = App;
 
 /***/ },
-/* 213 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30301,11 +30304,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Stats = __webpack_require__(214);
+	var _Stats = __webpack_require__(210);
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
-	var _Actions = __webpack_require__(196);
+	var _Actions = __webpack_require__(192);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30334,7 +30337,7 @@
 	exports.default = StatsContainer;
 
 /***/ },
-/* 214 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30479,7 +30482,7 @@
 	exports.default = Stats;
 
 /***/ },
-/* 215 */
+/* 211 */
 /***/ function(module, exports) {
 
 	'use strict';
