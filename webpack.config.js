@@ -24,6 +24,8 @@ const common = {
   },
   module: {
     loaders: [
+      { test: /\.png$/, loader: "url-loader?limit=100000" },
+      { test: /\.jpg$/, loader: "file-loader" },
       {
         test: /\.css$/,
         loaders: ['style', 'css'],

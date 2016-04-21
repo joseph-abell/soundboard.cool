@@ -5,7 +5,7 @@ import { soundboard } from '../Actions'
 const mapStateToProps = (state) => {
 	return {
 		soundboard: state.soundboard,
-		isPlaying: state.togglePlaying
+		isPlaying: state.togglePlaying.isPlaying
 	}
 }
 
@@ -13,13 +13,13 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onNumberKeyPress: (title) => {
 			switch (title) {
-				case('1'):
+				case('0'):
 					dispatch(soundboard('Songs and Stings'))
 					break;
-				case('2'):
+				case('1'):
 					dispatch(soundboard('Nick Breckon'))
 					break;
-				case('3'):
+				case('2'):
 					dispatch(soundboard('Chris Remo'))
 					break;
 			}

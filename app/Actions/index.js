@@ -9,10 +9,11 @@ export function soundboard (title) {
 
 export const TOGGLE_PLAYING = "TOGGLE_PLAYING"
 
-export function togglePlaying (isPlaying) {
+export function togglePlaying (isPlaying, title) {
 	return {
 		type: TOGGLE_PLAYING,
-		isPlaying: isPlaying
+		isPlaying: isPlaying,
+		title: title
 	}
 }
 
@@ -32,5 +33,14 @@ export function toggleKillBearVisible (killBearButton, soundManager) {
 		type: TOGGLE_KILL_BEAR_VISIBLE,
 		killBearButton: killBearButton,
 		soundManager: soundManager
+	}
+}
+
+export const ANIMATION = "ANIMATION"
+
+export function animation (animation) {
+	return {
+		type: ANIMATION,
+		animation: animation
 	}
 }

@@ -5,7 +5,8 @@ import { soundboard } from '../Actions'
 const mapStateToProps = (state) => {
 	return {
 		showInstructions: state.toggleInstructions,
-		soundboard: state.soundboard
+		soundboard: state.soundboard,
+		keyTitle: state.togglePlaying.title
 	}
 }
 

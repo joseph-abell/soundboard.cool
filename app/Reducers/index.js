@@ -5,10 +5,11 @@ import {
 	TOGGLE_PLAYING,
 	TOGGLE_INSTRUCTIONS,
 	TOGGLE_KILL_BEAR_VISIBLE,
-	KILL_BEAR
+	KILL_BEAR,
+	ANIMATION
 } from '../Actions'
 
-const soundboard = ( state = 'Songs and Stings', action) => {
+const soundboard = ( state = 'Nick Breckon', action) => {
 	switch (action.type) {
 		case (SOUNDBOARD):
 			return action.title;
@@ -17,10 +18,13 @@ const soundboard = ( state = 'Songs and Stings', action) => {
 	}
 }
 
-const togglePlaying = ( state = false, action) => {
+const togglePlaying = ( state = { isPlaying: false, title: ''}, action) => {
 	switch (action.type) {
 		case (TOGGLE_PLAYING):
-			return action.isPlaying
+			return {
+				isPlaying: action.isPlaying,
+				title: action.title
+			}
 		default:
 			return state
 	}
@@ -63,13 +67,23 @@ const killBear = ( state = {
 	}
 }
 
+const animation = ( state = '', action) => {
+	switch (action.type) {
+		case (ANIMATION):
+			return action.animation
+		default:
+			return state
+	}
+}
+
 const soundboardApp = combineReducers(
 	{
 		soundboard, 
 		togglePlaying,
 		toggleInstructions,
 		toggleKillBearVisible,
-		killBear
+		killBear,
+		animation
 	}
 )
 

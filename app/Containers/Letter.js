@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
 import Letter from '../Components/Letter'
 import { soundManager } from 'soundmanager2'
-import { soundboard, togglePlaying } from '../Actions'
+import { soundboard, togglePlaying, animation } from '../Actions'
 import Data from '../data'
 
 
 const mapStateToProps = (state) => {
 	return {
 		soundboard: state.soundboard,
-		isPlaying: state.togglePlaying,
+		isPlaying: state.togglePlaying.isPlaying,
 		killBearButton: state.killBearButton
 	}
 }
@@ -20,21 +20,14 @@ const mapDispatchToProps = (dispatch) => {
 				return;
 			}
 
-			dispatch(togglePlaying(true))
+			dispatch(togglePlaying(true, foundKey.audioTitle))
 
-			if (foundKey.specialRules) {
-				foundKey.specialRules(foundKey.urls, dispatch);
-			} else {
-				const mySound = soundManager.createSound({
-					url: foundKey.urls[0],
-					autoPlay: true,
-					onfinish: () => {
-						dispatch(togglePlaying(false))
-					}
-				});	
+			if (foundKey.animation) {
+				dispatch(animation(foundKey.animation))
 			}
 
 			
+			foundKey.rules(foundKey, dispatch);
 		}
 	}
 }

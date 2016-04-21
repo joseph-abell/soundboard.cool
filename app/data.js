@@ -1,51 +1,51 @@
 import { soundManager } from 'soundmanager2'
-import { toggleKillBearVisible, togglePlaying } from './Actions'
+import { toggleKillBearVisible, togglePlaying, animation } from './Actions'
 
 export default {
 	numbers: [
 		{
-			id: 0,
-			numberKey: '1',
-			title: 'Songs and Stings'
-		},
-		{
 			id: 1,
-			numberKey: '2',
+			numberKey: '1',
 			title: 'Chris Remo'
 		},
 		{
 			id: 2,
-			numberKey: '3',
+			numberKey: '2',
 			title: 'Nick Breckon'
 		},
 		{
 			id: 3,
-			numberKey: '4'
+			numberKey: '3'
 		},
 		{
 			id: 4,
-			numberKey: '5'
+			numberKey: '4'
 		},
 		{
 			id: 5,
-			numberKey: '6'
+			numberKey: '5'
 		},
 		{
 			id: 6,
-			numberKey: '7'
+			numberKey: '6'
 		},
 		{
 			id: 7,
-			numberKey: '8'
+			numberKey: '7'
 		},
 		{
 			id: 8,
-			numberKey: '9'
+			numberKey: '8'
 		},
 		{
 			id: 9,
-			numberKey: '0'
-		}
+			numberKey: '9'
+		},
+		{
+			id: 0,
+			numberKey: '0',
+			title: 'Songs and Stings'
+		},
 	],
 	soundboards: [
 		{
@@ -55,37 +55,59 @@ export default {
 					id: 0,
 					keys: [
 						{
-							title: 'q'
+							title: 'q',
+							audioTitle: ''
 						},
 						{
 							title: 'w',
+							audioTitle: 'Wizard',
 							urls: [
 								'./audio/Jingles/Wizard.mp3'
-							]
+							],
+							rules: (foundKey, dispatch) => {
+								dispatch(animation('Wizard'))
+								
+								const mySound = soundManager.createSound({
+									url: foundKey.urls[0],
+									autoPlay: true,
+									onfinish: () => {
+										dispatch(togglePlaying(false, ''))
+										dispatch(animation(''))
+									}
+								});	
+							}
 						},
 						{
-							title: 'e'
+							title: 'e',
+							audioTitle: ''
 						},
 						{
-							title: 'r'
+							title: 'r',
+							audioTitle: ''
 						},
 						{
-							title: 't'
+							title: 't',
+							audioTitle: ''
 						},
 						{
-							title: 'y'
+							title: 'y',
+							audioTitle: ''
 						},
 						{
-							title: 'u'
+							title: 'u',
+							audioTitle: ''
 						},
 						{
-							title: 'i'
+							title: 'i',
+							audioTitle: ''
 						},
 						{
-							title: 'o'
+							title: 'o',
+							audioTitle: ''
 						},
 						{
-							title: 'p'
+							title: 'p',
+							audioTitle: ''
 						}
 					]
 				},
@@ -93,31 +115,40 @@ export default {
 					id: 1,
 					keys: [
 						{
-							title: 'a'
+							title: 'a',
+							audioTitle: ''
 						},
 						{
-							title: 's'
+							title: 's',
+							audioTitle: ''
 						},
 						{
-							title: 'd'
+							title: 'd',
+							audioTitle: ''
 						},
 						{
-							title: 'f'
+							title: 'f',
+							audioTitle: ''
 						},
 						{
-							title: 'g'
+							title: 'g',
+							audioTitle: ''
 						},
 						{
-							title: 'h'
+							title: 'h',
+							audioTitle: ''
 						},
 						{
-							title: 'j'
+							title: 'j',
+							audioTitle: ''
 						},
 						{
-							title: 'k'
+							title: 'k',
+							audioTitle: ''
 						},
 						{
-							title: 'l'
+							title: 'l',
+							audioTitle: ''
 						}
 					]
 				},
@@ -125,25 +156,32 @@ export default {
 					id: 2,
 					keys: [
 						{
-							title: 'z'
+							title: 'z',
+							audioTitle: ''
 						},
 						{
-							title: 'x'
+							title: 'x',
+							audioTitle: ''
 						},
 						{
-							title: 'c'
+							title: 'c',
+							audioTitle: ''
 						},
 						{
-							title: 'v'
+							title: 'v',
+							audioTitle: ''
 						},
 						{
-							title: 'b'
+							title: 'b',
+							audioTitle: ''
 						},
 						{
-							title: 'n'
+							title: 'n',
+							audioTitle: ''
 						},
 						{
-							title: 'm'
+							title: 'm',
+							audioTitle: ''
 						}
 					]
 				}
@@ -156,37 +194,57 @@ export default {
 					id: 0,
 					keys: [
 						{
-							title: 'q'
+							title: 'q',
+							audioTitle: ''
 						},
 						{
-							title: 'w'
+							title: 'w',
+							audioTitle: ''
 						},
 						{
-							title: 'e'
+							title: 'e',
+							audioTitle: ''
 						},
 						{
-							title: 'r'
+							title: 'r',
+							audioTitle: ''
 						},
 						{
-							title: 't'
+							title: 't',
+							audioTitle: ''
 						},
 						{
-							title: 'y'
+							title: 'y',
+							audioTitle: ''
 						},
 						{
-							title: 'u'
+							title: 'u',
+							audioTitle: ''
 						},
 						{
-							title: 'i'
+							title: 'i',
+							audioTitle: ''
 						},
 						{
 							title: 'o',
+							audioTitle: 'Oh Man',
 							urls: [
 								'./audio/Chris/OhManFuckNo.mp3'
-							]
+							],
+							rules: (foundKey, dispatch) => {
+								const mySound = soundManager.createSound({
+									url: foundKey.urls[0],
+									autoPlay: true,
+									onfinish: () => {
+										dispatch(togglePlaying(false, ''))
+										dispatch(animation(''))
+									}
+								});	
+							}
 						},
 						{
-							title: 'p'
+							title: 'p',
+							audioTitle: ''
 						}
 					]
 				},
@@ -194,31 +252,40 @@ export default {
 					id: 1,
 					keys: [
 						{
-							title: 'a'
+							title: 'a',
+							audioTitle: ''
 						},
 						{
-							title: 's'
+							title: 's',
+							audioTitle: ''
 						},
 						{
-							title: 'd'
+							title: 'd',
+							audioTitle: ''
 						},
 						{
-							title: 'f'
+							title: 'f',
+							audioTitle: ''
 						},
 						{
-							title: 'g'
+							title: 'g',
+							audioTitle: ''
 						},
 						{
-							title: 'h'
+							title: 'h',
+							audioTitle: ''
 						},
 						{
-							title: 'j'
+							title: 'j',
+							audioTitle: ''
 						},
 						{
-							title: 'k'
+							title: 'k',
+							audioTitle: ''
 						},
 						{
-							title: 'l'
+							title: 'l',
+							audioTitle: ''
 						}
 					]
 				},
@@ -226,25 +293,32 @@ export default {
 					id: 2,
 					keys: [
 						{
-							title: 'z'
+							title: 'z',
+							audioTitle: ''
 						},
 						{
-							title: 'x'
+							title: 'x',
+							audioTitle: ''
 						},
 						{
-							title: 'c'
+							title: 'c',
+							audioTitle: ''
 						},
 						{
-							title: 'v'
+							title: 'v',
+							audioTitle: ''
 						},
 						{
-							title: 'b'
+							title: 'b',
+							audioTitle: ''
 						},
 						{
-							title: 'n'
+							title: 'n',
+							audioTitle: ''
 						},
 						{
-							title: 'm'
+							title: 'm',
+							audioTitle: ''
 						}
 					]
 				}
@@ -257,34 +331,44 @@ export default {
 					id: 0,
 					keys: [
 						{
-							title: 'q'
+							title: 'q',
+							audioTitle: ''
 						},
 						{
-							title: 'w'
+							title: 'w',
+							audioTitle: ''
 						},
 						{
-							title: 'e'
+							title: 'e',
+							audioTitle: ''
 						},
 						{
-							title: 'r'
+							title: 'r',
+							audioTitle: ''
 						},
 						{
-							title: 't'
+							title: 't',
+							audioTitle: ''
 						},
 						{
-							title: 'y'
+							title: 'y',
+							audioTitle: ''
 						},
 						{
-							title: 'u'
+							title: 'u',
+							audioTitle: ''
 						},
 						{
-							title: 'i'
+							title: 'i',
+							audioTitle: ''
 						},
 						{
-							title: 'o'
+							title: 'o',
+							audioTitle: ''
 						},
 						{
-							title: 'p'
+							title: 'p',
+							audioTitle: ''
 						}
 					]
 				},
@@ -292,31 +376,40 @@ export default {
 					id: 1,
 					keys: [
 						{
-							title: 'a'
+							title: 'a',
+							audioTitle: ''
 						},
 						{
-							title: 's'
+							title: 's',
+							audioTitle: ''
 						},
 						{
-							title: 'd'
+							title: 'd',
+							audioTitle: ''
 						},
 						{
-							title: 'f'
+							title: 'f',
+							audioTitle: ''
 						},
 						{
-							title: 'g'
+							title: 'g',
+							audioTitle: ''
 						},
 						{
-							title: 'h'
+							title: 'h',
+							audioTitle: ''
 						},
 						{
-							title: 'j'
+							title: 'j',
+							audioTitle: ''
 						},
 						{
-							title: 'k'
+							title: 'k',
+							audioTitle: ''
 						},
 						{
-							title: 'l'
+							title: 'l',
+							audioTitle: ''
 						}
 					]
 				},
@@ -324,32 +417,37 @@ export default {
 					id: 2,
 					keys: [
 						{
-							title: 'z'
+							title: 'z',
+							audioTitle: ''
 						},
 						{
-							title: 'x'
+							title: 'x',
+							audioTitle: ''
 						},
 						{
-							title: 'c'
+							title: 'c',
+							audioTitle: ''
 						},
 						{
-							title: 'v'
+							title: 'v',
+							audioTitle: ''
 						},
 						{
 							title: 'b',
+							audioTitle: 'The Bear',
 							urls: [
 								'./audio/Nick/BearStart.mp3',
 								'./audio/Nick/BearLoop.mp3',
 								'./audio/Nick/BearEnd.mp3'
 							],
-							specialRules: (urls, dispatch) => {
+							rules: (foundKey, dispatch) => {
 								let visibleButton = false;
 								let mySound = soundManager.createSound({
-									url: urls[0],
+									url: foundKey.urls[0],
 									autoPlay: true,
 									onfinish: () => {
 										mySound = soundManager.createSound({
-											url: urls[1],
+											url: foundKey.urls[1],
 											autoPlay: true,
 											onfinish: () => {
 												if (visibleButton === false) {
@@ -360,10 +458,11 @@ export default {
 											},
 											onstop: () => {
 												mySound = soundManager.createSound({
-													url: urls[2],
+													url: foundKey.urls[2],
 													autoPlay: true,
 													onfinish: () => {
 														dispatch(togglePlaying(false))
+
 													}
 												})
 											}
@@ -373,10 +472,12 @@ export default {
 							}
 						},
 						{
-							title: 'n'
+							title: 'n',
+							audioTitle: ''
 						},
 						{
-							title: 'm'
+							title: 'm',
+							audioTitle: ''
 						}
 					]
 				}

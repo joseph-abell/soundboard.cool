@@ -20,7 +20,7 @@ class Keys extends React.Component {
 
 export default class Soundboard extends React.Component {
 	render() {
-		const { showInstructions, soundboard } = this.props;
+		const { showInstructions, soundboard, keyTitle } = this.props;
 		let trueSoundboard;
 
 		Data.soundboards.map( testSoundboard => {
@@ -52,6 +52,7 @@ export default class Soundboard extends React.Component {
 			return (
 				<div className="soundboard">
 					<h1>{soundboard}</h1>
+					<h2>Playing: {keyTitle}</h2>
 					<div className="row">
 						{numberKeys}
 					</div>
