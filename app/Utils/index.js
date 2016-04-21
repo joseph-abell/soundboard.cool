@@ -110,6 +110,10 @@ $(document).ready(function () {
 			case (109):
 				$('#keym').click();
 				break;
+			case (32):
+				$('#spacebar').click();
+				$('#startButton').click();
+				break;
 		}
 	});
 });

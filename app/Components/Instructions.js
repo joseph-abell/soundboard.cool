@@ -14,7 +14,7 @@ export default class App extends React.Component {
           <p>Click a number to change soundboards.</p>
           <p>Click a letter to play a sound.</p>
 
-          <button style={{cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', padding: '20px 40px', background: '#74B3F0', fontSize: 20, borderRadius: 5}}>Start</button>
+          <button id="startButton" style={{cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', padding: '20px 40px', background: '#74B3F0', fontSize: 20, borderRadius: 5}}>Start</button>
         </div>
       )
     }	else {

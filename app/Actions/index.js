@@ -24,3 +24,13 @@ export function toggleInstructions (instructions) {
 		instructions: instructions
 	}
 }
+
+export const TOGGLE_KILL_BEAR_VISIBLE = "TOGGLE_KILL_BEAR_VISIBLE"
+
+export function toggleKillBearVisible (killBearButton, soundManager) {
+	return {
+		type: TOGGLE_KILL_BEAR_VISIBLE,
+		killBearButton: killBearButton,
+		soundManager: soundManager
+	}
+}

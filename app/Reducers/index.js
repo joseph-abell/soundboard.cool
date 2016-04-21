@@ -3,7 +3,9 @@ import { combineReducers } from 'redux'
 import {
 	SOUNDBOARD,
 	TOGGLE_PLAYING,
-	TOGGLE_INSTRUCTIONS
+	TOGGLE_INSTRUCTIONS,
+	TOGGLE_KILL_BEAR_VISIBLE,
+	KILL_BEAR
 } from '../Actions'
 
 const soundboard = ( state = 'Songs and Stings', action) => {
@@ -33,11 +35,41 @@ const toggleInstructions = ( state = true, action) => {
 	}
 }
 
+const toggleKillBearVisible = ( state = {
+	killBearButton: false,
+	soundManager: {}
+}, action) => {
+	switch (action.type) {
+		case (TOGGLE_KILL_BEAR_VISIBLE):
+			return {
+				killBearButton: action.killBearButton,
+				soundManager: action.soundManager
+			}
+		default:
+			return state
+	}
+}
+
+const killBear = ( state = {
+	killBear: false, 
+}, action) => {
+	switch (action.type) {
+		case (KILL_BEAR):
+			return {
+				killBear: action.killBear
+			}
+		default:
+			return state
+	}
+}
+
 const soundboardApp = combineReducers(
 	{
 		soundboard, 
 		togglePlaying,
-		toggleInstructions
+		toggleInstructions,
+		toggleKillBearVisible,
+		killBear
 	}
 )
 

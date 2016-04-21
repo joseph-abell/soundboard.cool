@@ -8,7 +8,8 @@ import Data from '../data'
 const mapStateToProps = (state) => {
 	return {
 		soundboard: state.soundboard,
-		isPlaying: state.togglePlaying
+		isPlaying: state.togglePlaying,
+		killBearButton: state.killBearButton
 	}
 }
 
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(togglePlaying(true))
 
 			if (foundKey.specialRules) {
-				foundKey.specialRules(foundKey.urls, dispatch, togglePlaying);
+				foundKey.specialRules(foundKey.urls, dispatch);
 			} else {
 				const mySound = soundManager.createSound({
 					url: foundKey.urls[0],

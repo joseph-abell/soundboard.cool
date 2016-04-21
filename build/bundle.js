@@ -66,7 +66,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(208);
+	__webpack_require__(210);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -113,7 +113,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\twidth: 40px;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacer {\n\tdisplay: inline-block;\n\theight: 10px;\n\twidth: 10px;\n}", ""]);
+	exports.push([module.id, "body {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\twidth: 40px;\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n", ""]);
 
 	// exports
 
@@ -22041,10 +22041,46 @@
 		}
 	};
 
+	var toggleKillBearVisible = function toggleKillBearVisible() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? {
+			killBearButton: false,
+			soundManager: {}
+		} : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.TOGGLE_KILL_BEAR_VISIBLE:
+				return {
+					killBearButton: action.killBearButton,
+					soundManager: action.soundManager
+				};
+			default:
+				return state;
+		}
+	};
+
+	var killBear = function killBear() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? {
+			killBear: false
+		} : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.KILL_BEAR:
+				return {
+					killBear: action.killBear
+				};
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
-		toggleInstructions: toggleInstructions
+		toggleInstructions: toggleInstructions,
+		toggleKillBearVisible: toggleKillBearVisible,
+		killBear: killBear
 	});
 
 	exports.default = soundboardApp;
@@ -22061,6 +22097,7 @@
 	exports.soundboard = soundboard;
 	exports.togglePlaying = togglePlaying;
 	exports.toggleInstructions = toggleInstructions;
+	exports.toggleKillBearVisible = toggleKillBearVisible;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22088,6 +22125,16 @@
 		};
 	}
 
+	var TOGGLE_KILL_BEAR_VISIBLE = exports.TOGGLE_KILL_BEAR_VISIBLE = "TOGGLE_KILL_BEAR_VISIBLE";
+
+	function toggleKillBearVisible(killBearButton, soundManager) {
+		return {
+			type: TOGGLE_KILL_BEAR_VISIBLE,
+			killBearButton: killBearButton,
+			soundManager: soundManager
+		};
+	}
+
 /***/ },
 /* 196 */
 /***/ function(module, exports, __webpack_require__) {
@@ -22111,6 +22158,10 @@
 	var _Soundboard = __webpack_require__(199);
 
 	var _Soundboard2 = _interopRequireDefault(_Soundboard);
+
+	var _KillButton = __webpack_require__(208);
+
+	var _KillButton2 = _interopRequireDefault(_KillButton);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22136,7 +22187,8 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Instructions2.default, null),
-	        _react2.default.createElement(_Soundboard2.default, null)
+	        _react2.default.createElement(_Soundboard2.default, null),
+	        _react2.default.createElement(_KillButton2.default, null)
 	      );
 	    }
 	  }]);
@@ -22253,7 +22305,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { style: { cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', padding: '20px 40px', background: '#74B3F0', fontSize: 20, borderRadius: 5 } },
+	            { id: 'startButton', style: { cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', padding: '20px 40px', background: '#74B3F0', fontSize: 20, borderRadius: 5 } },
 	            'Start'
 	          )
 	        );
@@ -22464,7 +22516,8 @@
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
 			soundboard: state.soundboard,
-			isPlaying: state.togglePlaying
+			isPlaying: state.togglePlaying,
+			killBearButton: state.killBearButton
 		};
 	};
 
@@ -22478,7 +22531,7 @@
 				dispatch((0, _Actions.togglePlaying)(true));
 
 				if (foundKey.specialRules) {
-					foundKey.specialRules(foundKey.urls, dispatch, _Actions.togglePlaying);
+					foundKey.specialRules(foundKey.urls, dispatch);
 				} else {
 					var mySound = _soundmanager.soundManager.createSound({
 						url: foundKey.urls[0],
@@ -22598,6 +22651,8 @@
 
 	var _soundmanager = __webpack_require__(204);
 
+	var _Actions = __webpack_require__(195);
+
 	exports.default = {
 		numbers: [{
 			id: 0,
@@ -22641,7 +22696,7 @@
 					title: 'q'
 				}, {
 					title: 'w',
-					urls: ['./audio/Chris/Wizard.mp3']
+					urls: ['./audio/Jingles/Wizard.mp3']
 				}, {
 					title: 'e'
 				}, {
@@ -22821,8 +22876,9 @@
 					title: 'v'
 				}, {
 					title: 'b',
-					urls: ['./audio/Chris/BearStart.mp3', './audio/Chris/BearLoop.mp3'],
-					specialRules: function specialRules(urls, dispatch, togglePlaying) {
+					urls: ['./audio/Nick/BearStart.mp3', './audio/Nick/BearLoop.mp3', './audio/Nick/BearEnd.mp3'],
+					specialRules: function specialRules(urls, dispatch) {
+						var visibleButton = false;
 						var mySound = _soundmanager.soundManager.createSound({
 							url: urls[0],
 							autoPlay: true,
@@ -22831,7 +22887,20 @@
 									url: urls[1],
 									autoPlay: true,
 									onfinish: function onfinish() {
+										if (visibleButton === false) {
+											dispatch((0, _Actions.toggleKillBearVisible)(true, _soundmanager.soundManager));
+											visibleButton = true;
+										}
 										mySound.play();
+									},
+									onstop: function onstop() {
+										mySound = _soundmanager.soundManager.createSound({
+											url: urls[2],
+											autoPlay: true,
+											onfinish: function onfinish() {
+												dispatch((0, _Actions.togglePlaying)(false));
+											}
+										});
 									}
 								});
 							}
@@ -29295,6 +29364,110 @@
 
 /***/ },
 /* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _reactRedux = __webpack_require__(170);
+
+	var _KillButton = __webpack_require__(209);
+
+	var _KillButton2 = _interopRequireDefault(_KillButton);
+
+	var _Actions = __webpack_require__(195);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			killBearButton: state.toggleKillBearVisible.killBearButton,
+			soundManager: state.toggleKillBearVisible.soundManager
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onKillBearClick: function onKillBearClick(soundManager) {
+				soundManager.stopAll();
+				dispatch((0, _Actions.toggleKillBearVisible)(false, {}));
+			}
+		};
+	};
+
+	var KillButtonContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_KillButton2.default);
+
+	exports.default = KillButtonContainer;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var KillButton = function (_Component) {
+	  _inherits(KillButton, _Component);
+
+	  function KillButton() {
+	    _classCallCheck(this, KillButton);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(KillButton).apply(this, arguments));
+	  }
+
+	  _createClass(KillButton, [{
+	    key: "render",
+	    value: function render() {
+	      var _props = this.props;
+	      var killBearButton = _props.killBearButton;
+	      var soundManager = _props.soundManager;
+	      var onKillBearClick = _props.onKillBearClick;
+
+	      if (killBearButton === true) {
+	        return _react2.default.createElement(
+	          "div",
+	          { className: "row" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "spacebar", id: "spacebar", onClick: function onClick() {
+	                onKillBearClick(soundManager);
+	              } },
+	            "Kill Bear"
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement("span", null);
+	      }
+	    }
+	  }]);
+
+	  return KillButton;
+	}(_react.Component);
+
+	exports.default = KillButton;
+
+/***/ },
+/* 210 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29410,6 +29583,10 @@
 					break;
 				case 109:
 					$('#keym').click();
+					break;
+				case 32:
+					$('#spacebar').click();
+					$('#startButton').click();
 					break;
 			}
 		});

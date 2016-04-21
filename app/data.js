@@ -1,4 +1,5 @@
 import { soundManager } from 'soundmanager2'
+import { toggleKillBearVisible, togglePlaying } from './Actions'
 
 export default {
 	numbers: [
@@ -59,7 +60,7 @@ export default {
 						{
 							title: 'w',
 							urls: [
-								'./audio/Chris/Wizard.mp3'
+								'./audio/Jingles/Wizard.mp3'
 							]
 						},
 						{
@@ -337,10 +338,12 @@ export default {
 						{
 							title: 'b',
 							urls: [
-								'./audio/Chris/BearStart.mp3',
-								'./audio/Chris/BearLoop.mp3'
+								'./audio/Nick/BearStart.mp3',
+								'./audio/Nick/BearLoop.mp3',
+								'./audio/Nick/BearEnd.mp3'
 							],
-							specialRules: (urls, dispatch, togglePlaying) => {
+							specialRules: (urls, dispatch) => {
+								let visibleButton = false;
 								let mySound = soundManager.createSound({
 									url: urls[0],
 									autoPlay: true,
@@ -349,7 +352,20 @@ export default {
 											url: urls[1],
 											autoPlay: true,
 											onfinish: () => {
+												if (visibleButton === false) {
+													dispatch(toggleKillBearVisible(true, soundManager))
+													visibleButton = true;
+												}
 												mySound.play();
+											},
+											onstop: () => {
+												mySound = soundManager.createSound({
+													url: urls[2],
+													autoPlay: true,
+													onfinish: () => {
+														dispatch(togglePlaying(false))
+													}
+												})
 											}
 										});
 									}

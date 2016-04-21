@@ -17,13 +17,12 @@ body {
 	padding: 10px;
 	text-align: center;
 }
-.key {
+.key, .spacebar {
 	display: inline-block;
 	font-size: 20px;
 	border: 1px solid #ddd;
 	background: #000;
 	color: #fff;
-	width: 40px;
 	height: 40px;
 	text-align: center;
 	line-height: 40px;
@@ -33,12 +32,15 @@ body {
 	text-transform: uppercase;
 	cursor: pointer;
 }
+.key {
+	width: 40px;
+}
 .key.disabled {
 	background: #aaa;
 	cursor: default;
 }
-.spacer {
-	display: inline-block;
-	height: 10px;
-	width: 10px;
+.spacebar { 
+    width: 200px;
+    margin: 0 auto;
+    display: block;
 }
