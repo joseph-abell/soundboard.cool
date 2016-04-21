@@ -7,7 +7,11 @@ export default class App extends React.Component {
     if (animation === 'Wizard') {
       return (<div id="animElement1" className="wizard"></div>);  
     } else {
-      return <span />
+      return (
+        <div>
+          <div className="hidden-wizard"></div>
+        </div>
+      )
     }
   }
 }
