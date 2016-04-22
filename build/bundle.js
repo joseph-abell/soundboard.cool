@@ -113,7 +113,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\twidth: 40px;\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tleft: 0;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n\tanimation: scrollWizard 4.5s 1;\n}\n\n.hidden-wizard {\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n\twidth: 1px;\n\theight: 1px;\n\tposition: absolute;\n\tleft: -100%;\n\tbottom: -100%;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 50%;\n  }\n  100% {\n    bottom: -500px;\n    left: 100%;\n  }\n}", ""]);
+	exports.push([module.id, "body {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\twidth: 40px;\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tleft: 0;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n}\n.wizard.animating {\n\tanimation: scrollWizard 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 50%;\n  }\n  100% {\n    bottom: -500px;\n    left: 100%;\n  }\n}", ""]);
 
 	// exports
 
@@ -22511,7 +22511,7 @@
 							'h2',
 							null,
 							'Playing: ',
-							keyTitle
+							keyTitle || "Sweet, sweet silence"
 						),
 						_react2.default.createElement(
 							'div',
@@ -29672,16 +29672,11 @@
 	    value: function render() {
 	      var animation = this.props.animation;
 
-
+	      var wizardClasses = "wizard";
 	      if (animation === 'Wizard') {
-	        return _react2.default.createElement('div', { id: 'animElement1', className: 'wizard' });
-	      } else {
-	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('div', { className: 'hidden-wizard' })
-	        );
+	        wizardClasses = "wizard animating";
 	      }
+	      return _react2.default.createElement('div', { id: 'animElement1', className: wizardClasses });
 	    }
 	  }]);
 

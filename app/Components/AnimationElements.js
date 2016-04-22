@@ -3,15 +3,10 @@ import React from 'react'
 export default class App extends React.Component {
   render() {
     let { animation } = this.props;
-
+    let wizardClasses = "wizard";
     if (animation === 'Wizard') {
-      return (<div id="animElement1" className="wizard"></div>);  
-    } else {
-      return (
-        <div>
-          <div className="hidden-wizard"></div>
-        </div>
-      )
+      wizardClasses = "wizard animating";  
     }
+    return (<div id="animElement1" className={wizardClasses}></div>);  
   }
 }

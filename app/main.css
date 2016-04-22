@@ -54,16 +54,9 @@ body {
 	bottom: -500px;
 	left: 0;
 	background: url('./images/wizard.png') no-repeat top center;
-	animation: scrollWizard 4.5s 1;
 }
-
-.hidden-wizard {
-	background: url('./images/wizard.png') no-repeat top center;
-	width: 1px;
-	height: 1px;
-	position: absolute;
-	left: -100%;
-	bottom: -100%;
+.wizard.animating {
+	animation: scrollWizard 4.5s 1;
 }
 
 @keyframes scrollWizard {
