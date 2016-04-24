@@ -1,5 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
+html {
+	overflow: hidden;
+}
 body {
 	font-family: 'Roboto', sans-serif;
 	padding: 0;
@@ -36,6 +39,30 @@ body {
 .key {
 	width: 40px;
 }
+@media screen and (max-width: 767px) {
+	.key, .spacebar {
+		height: 30px;
+		line-height: 30px;
+	}
+	.key {
+		width: 30px;
+	}
+	.spacebar {
+		width: 150px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.key, .spacebar {
+		height: 20px;
+		line-height: 20px;
+	}
+	.key {
+		width: 20px;
+	}
+	.spacebar {
+		width: 100px;
+	}
+}
 .key.disabled {
 	background: #aaa;
 	cursor: default;
@@ -46,17 +73,27 @@ body {
     display: block;
 }
 
-.wizard {
+.wizard,
+.wizard2 {
 	content: '';
 	width: 1000px;
 	height: 500px;
 	position: absolute;
 	bottom: -500px;
-	left: 0;
 	background: url('./images/wizard.png') no-repeat top center;
+}
+.wizard {
+	left: -500px;
+}
+.wizard2 {
+	right: -500px;
+	transform: rotateY(180deg);
 }
 .wizard.animating {
 	animation: scrollWizard 4.5s 1;
+}
+.wizard2.animating {
+	animation: scrollWizard2 4.5s 1;
 }
 
 @keyframes scrollWizard {
@@ -69,10 +106,28 @@ body {
   }
   90% {
   	bottom: 0;
-  	left: 50%;
+  	left: 0;
   }
   100% {
     bottom: -500px;
-    left: 100%;
+    left: -500px;
+  }
+}
+
+@keyframes scrollWizard2 {
+  0% {
+    bottom: -500px;
+    right: -500px;
+  }
+  10% {
+  	bottom: 0;
+  }
+  90% {
+  	bottom: 0;
+  	right: 0;
+  }
+  100% {
+    bottom: -500px;
+    right: -500px;
   }
 }
