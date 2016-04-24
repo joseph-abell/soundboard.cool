@@ -83,6 +83,7 @@ body {
 	position: absolute;
 	bottom: -500px;
 	background: url('./images/wizard.png') no-repeat top center;
+	opacity: 0;
 }
 .wizard {
 	left: -500px;
@@ -92,9 +93,11 @@ body {
 	transform: rotateY(180deg);
 }
 .wizard.animating {
+	opacity: 1;
 	animation: scrollWizard 4.5s 1;
 }
 .wizard2.animating {
+	opacity: 1;
 	animation: scrollWizard2 4.5s 1;
 }
 
