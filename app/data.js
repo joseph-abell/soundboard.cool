@@ -448,7 +448,7 @@ export default {
 								mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,
-									onload: () => {
+									onplay: () => {
 										mySound2 = soundManager.createSound({
 											url: foundKey.urls[1],
 											onplay: () => {

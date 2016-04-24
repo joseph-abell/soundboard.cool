@@ -23024,7 +23024,7 @@
 						mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
-							onload: function onload() {
+							onplay: function onplay() {
 								mySound2 = _soundmanager.soundManager.createSound({
 									url: foundKey.urls[1],
 									onplay: function onplay() {
