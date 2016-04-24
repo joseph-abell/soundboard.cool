@@ -65,11 +65,12 @@ export default {
 								'./audio/Jingles/Wizard.mp3'
 							],
 							rules: (foundKey, dispatch) => {
-								dispatch(animation('Wizard'))
-								
 								const mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,
+									onplay: () => {
+										dispatch(animation('Wizard'))		
+									},
 									onfinish: () => {
 										dispatch(togglePlaying(false, ''))
 										dispatch(animation(''))
@@ -442,19 +443,22 @@ export default {
 							],
 							rules: (foundKey, dispatch) => {
 								let visibleButton = false;
-								let mySound = soundManager.createSound({
+								let mySound, mySound2;
+
+								mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,
-									onfinish: () => {
-										mySound = soundManager.createSound({
+									onload: () => {
+										mySound2 = soundManager.createSound({
 											url: foundKey.urls[1],
-											autoPlay: true,
-											onfinish: () => {
+											onplay: () => {
 												if (visibleButton === false) {
 													dispatch(toggleKillBearVisible(true, soundManager))
 													visibleButton = true;
 												}
-												mySound.play();
+											},
+											onfinish: () => {
+												mySound2.play();
 											},
 											onstop: () => {
 												mySound = soundManager.createSound({
@@ -462,11 +466,13 @@ export default {
 													autoPlay: true,
 													onfinish: () => {
 														dispatch(togglePlaying(false))
-
 													}
 												})
 											}
-										});
+										})
+									},
+									onfinish: () => {
+										mySound2.play();
 									}
 								});
 							}

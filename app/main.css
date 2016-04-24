@@ -2,11 +2,13 @@
 
 html {
 	overflow: hidden;
+	height: 100%;
 }
 body {
 	font-family: 'Roboto', sans-serif;
 	padding: 0;
 	margin: 0;
+	max-height: 100%;
 	overflow: hidden;
 }
 .clear {

@@ -113,7 +113,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "html {\n\toverflow: hidden;\n}\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\twidth: 40px;\n}\n@media screen and (max-width: 767px) {\n\t.key, .spacebar {\n\t\theight: 30px;\n\t\tline-height: 30px;\n\t}\n\t.key {\n\t\twidth: 30px;\n\t}\n\t.spacebar {\n\t\twidth: 150px;\n\t}\n}\n@media screen and (max-width: 600px) {\n\t.key, .spacebar {\n\t\theight: 20px;\n\t\tline-height: 20px;\n\t}\n\t.key {\n\t\twidth: 20px;\n\t}\n\t.spacebar {\n\t\twidth: 100px;\n\t}\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard,\n.wizard2 {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n}\n.wizard {\n\tleft: -500px;\n}\n.wizard2 {\n\tright: -500px;\n\ttransform: rotateY(180deg);\n}\n.wizard.animating {\n\tanimation: scrollWizard 4.5s 1;\n}\n.wizard2.animating {\n\tanimation: scrollWizard2 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 0;\n  }\n  100% {\n    bottom: -500px;\n    left: -500px;\n  }\n}\n\n@keyframes scrollWizard2 {\n  0% {\n    bottom: -500px;\n    right: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tright: 0;\n  }\n  100% {\n    bottom: -500px;\n    right: -500px;\n  }\n}", ""]);
+	exports.push([module.id, "html {\n\toverflow: hidden;\n\theight: 100%;\n}\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\tmax-height: 100%;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\twidth: 40px;\n}\n@media screen and (max-width: 767px) {\n\t.key, .spacebar {\n\t\theight: 30px;\n\t\tline-height: 30px;\n\t}\n\t.key {\n\t\twidth: 30px;\n\t}\n\t.spacebar {\n\t\twidth: 150px;\n\t}\n}\n@media screen and (max-width: 600px) {\n\t.key, .spacebar {\n\t\theight: 20px;\n\t\tline-height: 20px;\n\t}\n\t.key {\n\t\twidth: 20px;\n\t}\n\t.spacebar {\n\t\twidth: 100px;\n\t}\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard,\n.wizard2 {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n}\n.wizard {\n\tleft: -500px;\n}\n.wizard2 {\n\tright: -500px;\n\ttransform: rotateY(180deg);\n}\n.wizard.animating {\n\tanimation: scrollWizard 4.5s 1;\n}\n.wizard2.animating {\n\tanimation: scrollWizard2 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 0;\n  }\n  100% {\n    bottom: -500px;\n    left: -500px;\n  }\n}\n\n@keyframes scrollWizard2 {\n  0% {\n    bottom: -500px;\n    right: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tright: 0;\n  }\n  100% {\n    bottom: -500px;\n    right: -500px;\n  }\n}", ""]);
 
 	// exports
 
@@ -22740,11 +22740,12 @@
 					audioTitle: 'Wizard',
 					urls: ['./audio/Jingles/Wizard.mp3'],
 					rules: function rules(foundKey, dispatch) {
-						dispatch((0, _Actions.animation)('Wizard'));
-
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
+							onplay: function onplay() {
+								dispatch((0, _Actions.animation)('Wizard'));
+							},
 							onfinish: function onfinish() {
 								dispatch((0, _Actions.togglePlaying)(false, ''));
 								dispatch((0, _Actions.animation)(''));
@@ -23017,19 +23018,23 @@
 					urls: ['./audio/Nick/BearStart.mp3', './audio/Nick/BearLoop.mp3', './audio/Nick/BearEnd.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var visibleButton = false;
-						var mySound = _soundmanager.soundManager.createSound({
+						var mySound = void 0,
+						    mySound2 = void 0;
+
+						mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
-							onfinish: function onfinish() {
-								mySound = _soundmanager.soundManager.createSound({
+							onload: function onload() {
+								mySound2 = _soundmanager.soundManager.createSound({
 									url: foundKey.urls[1],
-									autoPlay: true,
-									onfinish: function onfinish() {
+									onplay: function onplay() {
 										if (visibleButton === false) {
 											dispatch((0, _Actions.toggleKillBearVisible)(true, _soundmanager.soundManager));
 											visibleButton = true;
 										}
-										mySound.play();
+									},
+									onfinish: function onfinish() {
+										mySound2.play();
 									},
 									onstop: function onstop() {
 										mySound = _soundmanager.soundManager.createSound({
@@ -23041,6 +23046,9 @@
 										});
 									}
 								});
+							},
+							onfinish: function onfinish() {
+								mySound2.play();
 							}
 						});
 					}
