@@ -20,7 +20,8 @@ export default {
 		},
 		{
 			id: 4,
-			numberKey: '4'
+			numberKey: '4',
+			title: 'Sean Vanaman'
 		},
 		{
 			id: 5,
@@ -40,7 +41,8 @@ export default {
 		},
 		{
 			id: 9,
-			numberKey: '9'
+			numberKey: '9',
+			title: "Intros and Outros"
 		},
 		{
 			id: 0,
@@ -488,8 +490,7 @@ export default {
 					]
 				}
 			]
-		}
-		,
+		},
 		{
 			title: 'Jake Rodkin',
 			rows: [
@@ -620,6 +621,280 @@ export default {
 						{
 							title: 'm',
 							audioTitle: ''
+						}
+					]
+				}
+			]
+		},
+		{
+			title: 'Sean Vanaman',
+			rows: [
+				{
+					id: 0,
+					keys: [
+						{
+							title: 'q',
+							audioTitle: ''
+						},
+						{
+							title: 'w',
+							audioTitle: ''
+						},
+						{
+							title: 'e',
+							audioTitle: ''
+						},
+						{
+							title: 'r',
+							audioTitle: ''
+						},
+						{
+							title: 't',
+							audioTitle: ''
+						},
+						{
+							title: 'y',
+							audioTitle: '',
+						},
+						{
+							title: 'u',
+							audioTitle: ''
+						},
+						{
+							title: 'i',
+							audioTitle: ''
+						},
+						{
+							title: 'o',
+							audioTitle: ''
+						},
+						{
+							title: 'p',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 1,
+					keys: [
+						{
+							title: 'a',
+							audioTitle: ''
+						},
+						{
+							title: 's',
+							audioTitle: ''
+						},
+						{
+							title: 'd',
+							audioTitle: ''
+						},
+						{
+							title: 'f',
+							audioTitle: ''
+						},
+						{
+							title: 'g',
+							audioTitle: ''
+						},
+						{
+							title: 'h',
+							audioTitle: ''
+						},
+						{
+							title: 'j',
+							audioTitle: ''
+						},
+						{
+							title: 'k',
+							audioTitle: ''
+						},
+						{
+							title: 'l',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 2,
+					keys: [
+						{
+							title: 'z',
+							audioTitle: ''
+						},
+						{
+							title: 'x',
+							audioTitle: ''
+						},
+						{
+							title: 'c',
+							audioTitle: ''
+						},
+						{
+							title: 'v',
+							audioTitle: ''
+						},
+						{
+							title: 'b',
+							audioTitle: ''
+						},
+						{
+							title: 'n',
+							audioTitle: ''
+						},
+						{
+							title: 'm',
+							audioTitle: 'Moore\'s Law',
+							urls: [
+								'./audio/Sean/MooresLaw.mp3'
+							],
+							rules: (foundKey, dispatch) => {
+								const mySound = soundManager.createSound({
+									url: foundKey.urls[0],
+									autoPlay: true,
+									onfinish: () => {
+										dispatch(togglePlaying(false, ''))
+										dispatch(animation(''))
+									}
+								});	
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			title: 'Intros and Outros',
+			rows: [
+				{
+					id: 0,
+					keys: [
+						{
+							title: 'q',
+							audioTitle: ''
+						},
+						{
+							title: 'w',
+							audioTitle: ''
+						},
+						{
+							title: 'e',
+							audioTitle: ''
+						},
+						{
+							title: 'r',
+							audioTitle: ''
+						},
+						{
+							title: 't',
+							audioTitle: ''
+						},
+						{
+							title: 'y',
+							audioTitle: '',
+						},
+						{
+							title: 'u',
+							audioTitle: ''
+						},
+						{
+							title: 'i',
+							audioTitle: ''
+						},
+						{
+							title: 'o',
+							audioTitle: ''
+						},
+						{
+							title: 'p',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 1,
+					keys: [
+						{
+							title: 'a',
+							audioTitle: ''
+						},
+						{
+							title: 's',
+							audioTitle: ''
+						},
+						{
+							title: 'd',
+							audioTitle: ''
+						},
+						{
+							title: 'f',
+							audioTitle: ''
+						},
+						{
+							title: 'g',
+							audioTitle: ''
+						},
+						{
+							title: 'h',
+							audioTitle: ''
+						},
+						{
+							title: 'j',
+							audioTitle: ''
+						},
+						{
+							title: 'k',
+							audioTitle: ''
+						},
+						{
+							title: 'l',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 2,
+					keys: [
+						{
+							title: 'z',
+							audioTitle: ''
+						},
+						{
+							title: 'x',
+							audioTitle: ''
+						},
+						{
+							title: 'c',
+							audioTitle: ''
+						},
+						{
+							title: 'v',
+							audioTitle: ''
+						},
+						{
+							title: 'b',
+							audioTitle: ''
+						},
+						{
+							title: 'n',
+							audioTitle: ''
+						},
+						{
+							title: 'm',
+							audioTitle: 'Morning Show',
+							urls: [
+								'./audio/Intros/MorningShow.mp3'
+							],
+							rules: (foundKey, dispatch) => {
+								const mySound = soundManager.createSound({
+									url: foundKey.urls[0],
+									autoPlay: true,
+									onfinish: () => {
+										dispatch(togglePlaying(false, ''))
+										dispatch(animation(''))
+									}
+								});	
+							}
 						}
 					]
 				}
