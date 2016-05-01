@@ -15,7 +15,8 @@ export default {
 		},
 		{
 			id: 3,
-			numberKey: '3'
+			numberKey: '3',
+			title: 'Jake Rodkin'
 		},
 		{
 			id: 4,
@@ -476,6 +477,142 @@ export default {
 									}
 								});
 							}
+						},
+						{
+							title: 'n',
+							audioTitle: ''
+						},
+						{
+							title: 'm',
+							audioTitle: ''
+						}
+					]
+				}
+			]
+		}
+		,
+		{
+			title: 'Jake Rodkin',
+			rows: [
+				{
+					id: 0,
+					keys: [
+						{
+							title: 'q',
+							audioTitle: ''
+						},
+						{
+							title: 'w',
+							audioTitle: ''
+						},
+						{
+							title: 'e',
+							audioTitle: ''
+						},
+						{
+							title: 'r',
+							audioTitle: ''
+						},
+						{
+							title: 't',
+							audioTitle: ''
+						},
+						{
+							title: 'y',
+							audioTitle: 'Year of the Playstation What?',
+							urls: ['./audio/Jake/YearOfThePs3.mp3'],
+							rules: (foundKey, dispatch) => {
+								const mySound = soundManager.createSound({
+									url: foundKey.urls[0],
+									autoPlay: true,
+									onfinish: () => {
+										dispatch(togglePlaying(false, ''))
+										dispatch(animation(''))
+									}
+								});
+							}
+						},
+						{
+							title: 'u',
+							audioTitle: ''
+						},
+						{
+							title: 'i',
+							audioTitle: ''
+						},
+						{
+							title: 'o',
+							audioTitle: ''
+						},
+						{
+							title: 'p',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 1,
+					keys: [
+						{
+							title: 'a',
+							audioTitle: ''
+						},
+						{
+							title: 's',
+							audioTitle: ''
+						},
+						{
+							title: 'd',
+							audioTitle: ''
+						},
+						{
+							title: 'f',
+							audioTitle: ''
+						},
+						{
+							title: 'g',
+							audioTitle: ''
+						},
+						{
+							title: 'h',
+							audioTitle: ''
+						},
+						{
+							title: 'j',
+							audioTitle: ''
+						},
+						{
+							title: 'k',
+							audioTitle: ''
+						},
+						{
+							title: 'l',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 2,
+					keys: [
+						{
+							title: 'z',
+							audioTitle: ''
+						},
+						{
+							title: 'x',
+							audioTitle: ''
+						},
+						{
+							title: 'c',
+							audioTitle: ''
+						},
+						{
+							title: 'v',
+							audioTitle: ''
+						},
+						{
+							title: 'b',
+							audioTitle: ''
 						},
 						{
 							title: 'n',

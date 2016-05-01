@@ -9,7 +9,6 @@ import './Utils';
 
 let store = createStore(soundboardApp);
 
-
 render(
 	<Provider store={store}>
 		<App />

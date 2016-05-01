@@ -6,7 +6,8 @@ import {
 	TOGGLE_INSTRUCTIONS,
 	TOGGLE_KILL_BEAR_VISIBLE,
 	KILL_BEAR,
-	ANIMATION
+	ANIMATION,
+	INCREMENT_PERSONAL_COUNTER
 } from '../Actions'
 
 const soundboard = ( state = 'Nick Breckon', action) => {
@@ -75,6 +76,16 @@ const animation = ( state = '', action) => {
 			return state
 	}
 }
+
+const incrementPersonalCounter = ( state = 0, action) => {
+	switch(action.type) {
+		case (INCREMENT_PERSONAL_COUNTER):
+			return action.incrementPersoanlCounter
+		default:
+			return state
+	}
+}
+
 
 const soundboardApp = combineReducers(
 	{

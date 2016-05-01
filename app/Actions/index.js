@@ -44,3 +44,11 @@ export function animation (animation) {
 		animation: animation
 	}
 }
+
+export const INCREMENT_PERSONAL_COUNTER = "INCREMENT_PERSONAL_COUNTER"
+
+export function incrementPersonalCounter () {
+	return {
+		type: INCREMENT_PERSONAL_COUNTER
+	}
+}

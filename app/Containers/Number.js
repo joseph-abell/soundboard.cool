@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 				case('2'):
 					dispatch(soundboard('Chris Remo'))
 					break;
+				case('3'):
+					dispatch(soundboard('Jake Rodkin'))
+					break;
 			}
 		}
 	}
