@@ -10,7 +10,7 @@ import {
 	INCREMENT_PERSONAL_COUNTER
 } from '../Actions'
 
-const soundboard = ( state = 'Nick Breckon', action) => {
+const soundboard = ( state = 'Chris Remo', action) => {
 	switch (action.type) {
 		case (SOUNDBOARD):
 			return action.title;

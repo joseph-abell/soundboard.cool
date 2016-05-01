@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import NumberKey from '../Components/Number'
 import { soundboard } from '../Actions'
+import data from '../data'
 
 const mapStateToProps = (state) => {
 	return {
@@ -11,21 +12,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onNumberKeyPress: (title) => {
-			switch (title) {
-				case('0'):
-					dispatch(soundboard('Songs and Stings'))
-					break;
-				case('1'):
-					dispatch(soundboard('Nick Breckon'))
-					break;
-				case('2'):
-					dispatch(soundboard('Chris Remo'))
-					break;
-				case('3'):
-					dispatch(soundboard('Jake Rodkin'))
-					break;
+		onNumberKeyPress: (number) => {
+			for (let dataId = 0; dataId < data.numbers.length; dataId++) {
+				if (parseInt(number) == data.numbers[dataId].id) {
+					dispatch(soundboard(data.numbers[dataId].title || "Chris Remo"))
+				}
 			}
+			return false;
 		}
 	}
 }

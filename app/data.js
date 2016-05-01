@@ -70,7 +70,7 @@ export default {
 									url: foundKey.urls[0],
 									autoPlay: true,
 									onplay: () => {
-										dispatch(animation('Wizard'))		
+										dispatch(animation('Wizard'))
 									},
 									onfinish: () => {
 										dispatch(togglePlaying(false, ''))
@@ -449,9 +449,10 @@ export default {
 								mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,
-									onplay: () => {
+									onfinish: () => {
 										mySound2 = soundManager.createSound({
 											url: foundKey.urls[1],
+											autoPlay: true,
 											onplay: () => {
 												if (visibleButton === false) {
 													dispatch(toggleKillBearVisible(true, soundManager))
@@ -459,6 +460,7 @@ export default {
 												}
 											},
 											onfinish: () => {
+												
 												mySound2.play();
 											},
 											onstop: () => {
@@ -471,9 +473,6 @@ export default {
 												})
 											}
 										})
-									},
-									onfinish: () => {
-										mySound2.play();
 									}
 								});
 							}
