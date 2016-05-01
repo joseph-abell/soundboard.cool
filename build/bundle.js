@@ -22012,7 +22012,7 @@
 	var _Actions = __webpack_require__(196);
 
 	var soundboard = function soundboard() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? 'Nick Breckon' : arguments[0];
+		var state = arguments.length <= 0 || arguments[0] === undefined ? 'Chris Remo' : arguments[0];
 		var action = arguments[1];
 
 		switch (action.type) {
@@ -22096,6 +22096,18 @@
 		}
 	};
 
+	var incrementPersonalCounter = function incrementPersonalCounter() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.INCREMENT_PERSONAL_COUNTER:
+				return action.incrementPersoanlCounter;
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
@@ -22121,6 +22133,7 @@
 	exports.toggleInstructions = toggleInstructions;
 	exports.toggleKillBearVisible = toggleKillBearVisible;
 	exports.animation = animation;
+	exports.incrementPersonalCounter = incrementPersonalCounter;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22165,6 +22178,14 @@
 		return {
 			type: ANIMATION,
 			animation: animation
+		};
+	}
+
+	var INCREMENT_PERSONAL_COUNTER = exports.INCREMENT_PERSONAL_COUNTER = "INCREMENT_PERSONAL_COUNTER";
+
+	function incrementPersonalCounter() {
+		return {
+			type: INCREMENT_PERSONAL_COUNTER
 		};
 	}
 
@@ -22704,10 +22725,12 @@
 			title: 'Nick Breckon'
 		}, {
 			id: 3,
-			numberKey: '3'
+			numberKey: '3',
+			title: 'Jake Rodkin'
 		}, {
 			id: 4,
-			numberKey: '4'
+			numberKey: '4',
+			title: 'Sean Vanaman'
 		}, {
 			id: 5,
 			numberKey: '5'
@@ -22726,10 +22749,10 @@
 		}, {
 			id: 0,
 			numberKey: '0',
-			title: 'Songs and Stings'
+			title: 'Intros, Outros, Songs and Stings'
 		}],
 		soundboards: [{
-			title: "Songs and Stings",
+			title: "Intros, Outros, Songs and Stings",
 			rows: [{
 				id: 0,
 				keys: [{
@@ -22829,7 +22852,18 @@
 					audioTitle: ''
 				}, {
 					title: 'm',
-					audioTitle: ''
+					audioTitle: 'Morning Show',
+					urls: ['./audio/Intros/MorningShow.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.togglePlaying)(false, ''));
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
 				}]
 			}]
 		}, {
@@ -23024,9 +23058,10 @@
 						mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
-							onplay: function onplay() {
+							onfinish: function onfinish() {
 								mySound2 = _soundmanager.soundManager.createSound({
 									url: foundKey.urls[1],
+									autoPlay: true,
 									onplay: function onplay() {
 										if (visibleButton === false) {
 											dispatch((0, _Actions.toggleKillBearVisible)(true, _soundmanager.soundManager));
@@ -23034,6 +23069,7 @@
 										}
 									},
 									onfinish: function onfinish() {
+
 										mySound2.play();
 									},
 									onstop: function onstop() {
@@ -23046,9 +23082,6 @@
 										});
 									}
 								});
-							},
-							onfinish: function onfinish() {
-								mySound2.play();
 							}
 						});
 					}
@@ -23058,6 +23091,208 @@
 				}, {
 					title: 'm',
 					audioTitle: ''
+				}]
+			}]
+		}, {
+			title: 'Jake Rodkin',
+			rows: [{
+				id: 0,
+				keys: [{
+					title: 'q',
+					audioTitle: ''
+				}, {
+					title: 'w',
+					audioTitle: ''
+				}, {
+					title: 'e',
+					audioTitle: ''
+				}, {
+					title: 'r',
+					audioTitle: ''
+				}, {
+					title: 't',
+					audioTitle: ''
+				}, {
+					title: 'y',
+					audioTitle: 'Year of the Playstation What?',
+					urls: ['./audio/Jake/YearOfThePs3.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.togglePlaying)(false, ''));
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'u',
+					audioTitle: ''
+				}, {
+					title: 'i',
+					audioTitle: ''
+				}, {
+					title: 'o',
+					audioTitle: ''
+				}, {
+					title: 'p',
+					audioTitle: ''
+				}]
+			}, {
+				id: 1,
+				keys: [{
+					title: 'a',
+					audioTitle: ''
+				}, {
+					title: 's',
+					audioTitle: ''
+				}, {
+					title: 'd',
+					audioTitle: ''
+				}, {
+					title: 'f',
+					audioTitle: ''
+				}, {
+					title: 'g',
+					audioTitle: ''
+				}, {
+					title: 'h',
+					audioTitle: ''
+				}, {
+					title: 'j',
+					audioTitle: ''
+				}, {
+					title: 'k',
+					audioTitle: ''
+				}, {
+					title: 'l',
+					audioTitle: ''
+				}]
+			}, {
+				id: 2,
+				keys: [{
+					title: 'z',
+					audioTitle: ''
+				}, {
+					title: 'x',
+					audioTitle: ''
+				}, {
+					title: 'c',
+					audioTitle: ''
+				}, {
+					title: 'v',
+					audioTitle: ''
+				}, {
+					title: 'b',
+					audioTitle: ''
+				}, {
+					title: 'n',
+					audioTitle: ''
+				}, {
+					title: 'm',
+					audioTitle: ''
+				}]
+			}]
+		}, {
+			title: 'Sean Vanaman',
+			rows: [{
+				id: 0,
+				keys: [{
+					title: 'q',
+					audioTitle: ''
+				}, {
+					title: 'w',
+					audioTitle: ''
+				}, {
+					title: 'e',
+					audioTitle: ''
+				}, {
+					title: 'r',
+					audioTitle: ''
+				}, {
+					title: 't',
+					audioTitle: ''
+				}, {
+					title: 'y',
+					audioTitle: ''
+				}, {
+					title: 'u',
+					audioTitle: ''
+				}, {
+					title: 'i',
+					audioTitle: ''
+				}, {
+					title: 'o',
+					audioTitle: ''
+				}, {
+					title: 'p',
+					audioTitle: ''
+				}]
+			}, {
+				id: 1,
+				keys: [{
+					title: 'a',
+					audioTitle: ''
+				}, {
+					title: 's',
+					audioTitle: ''
+				}, {
+					title: 'd',
+					audioTitle: ''
+				}, {
+					title: 'f',
+					audioTitle: ''
+				}, {
+					title: 'g',
+					audioTitle: ''
+				}, {
+					title: 'h',
+					audioTitle: ''
+				}, {
+					title: 'j',
+					audioTitle: ''
+				}, {
+					title: 'k',
+					audioTitle: ''
+				}, {
+					title: 'l',
+					audioTitle: ''
+				}]
+			}, {
+				id: 2,
+				keys: [{
+					title: 'z',
+					audioTitle: ''
+				}, {
+					title: 'x',
+					audioTitle: ''
+				}, {
+					title: 'c',
+					audioTitle: ''
+				}, {
+					title: 'v',
+					audioTitle: ''
+				}, {
+					title: 'b',
+					audioTitle: ''
+				}, {
+					title: 'n',
+					audioTitle: ''
+				}, {
+					title: 'm',
+					audioTitle: 'Moore\'s Law',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.togglePlaying)(false, ''));
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
 				}]
 			}]
 		}]
@@ -29406,6 +29641,10 @@
 
 	var _Actions = __webpack_require__(196);
 
+	var _data = __webpack_require__(204);
+
+	var _data2 = _interopRequireDefault(_data);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mapStateToProps = function mapStateToProps(state) {
@@ -29417,18 +29656,13 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onNumberKeyPress: function onNumberKeyPress(title) {
-				switch (title) {
-					case '0':
-						dispatch((0, _Actions.soundboard)('Songs and Stings'));
-						break;
-					case '1':
-						dispatch((0, _Actions.soundboard)('Nick Breckon'));
-						break;
-					case '2':
-						dispatch((0, _Actions.soundboard)('Chris Remo'));
-						break;
+			onNumberKeyPress: function onNumberKeyPress(number) {
+				for (var dataId = 0; dataId < _data2.default.numbers.length; dataId++) {
+					if (parseInt(number) == _data2.default.numbers[dataId].id) {
+						dispatch((0, _Actions.soundboard)(_data2.default.numbers[dataId].title || "Chris Remo"));
+					}
 				}
+				return false;
 			}
 		};
 	};
