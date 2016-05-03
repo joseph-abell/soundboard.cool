@@ -71,3 +71,12 @@ export function bearsKilled (bearsKilled) {
 		bearsKilled: bearsKilled
 	}
 }
+
+export const BABOOS = "BABOOS"
+
+export function baboos (baboos) {
+	return {
+		type: BABOOS,
+		baboos: baboos
+	}
+}

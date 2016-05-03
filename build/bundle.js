@@ -105,6 +105,15 @@
 		}
 	});
 
+	var babooLocalValue = 0;
+	fireRef.child("baboo").on("value", function (snapshot) {
+		var babooGlobalValue = snapshot.val();
+
+		if (babooLocalValue !== babooGlobalValue) {
+			babooLocalValue = babooGlobalValue;
+		}
+	});
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -22624,6 +22633,18 @@
 		}
 	};
 
+	var baboos = function baboos() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.BABOOS:
+				return action.baboos;
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
@@ -22633,7 +22654,8 @@
 		animation: animation,
 		personalCounter: personalCounter,
 		globalCounter: globalCounter,
-		bearsKilled: bearsKilled
+		bearsKilled: bearsKilled,
+		baboos: baboos
 	});
 
 	exports.default = soundboardApp;
@@ -22655,6 +22677,7 @@
 	exports.personalCounter = personalCounter;
 	exports.globalCounter = globalCounter;
 	exports.bearsKilled = bearsKilled;
+	exports.baboos = baboos;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22726,6 +22749,15 @@
 		return {
 			type: BEARS_KILLED,
 			bearsKilled: bearsKilled
+		};
+	}
+
+	var BABOOS = exports.BABOOS = "BABOOS";
+
+	function baboos(baboos) {
+		return {
+			type: BABOOS,
+			baboos: baboos
 		};
 	}
 
@@ -30526,7 +30558,8 @@
 		return {
 			globalCounter: state.globalCounter,
 			personalCounter: state.personalCounter,
-			bearsKilled: state.bearsKilled
+			bearsKilled: state.bearsKilled,
+			baboos: state.baboos
 		};
 	};
 
@@ -30574,6 +30607,7 @@
 	      var globalCounter = _props.globalCounter;
 	      var personalCounter = _props.personalCounter;
 	      var bearsKilled = _props.bearsKilled;
+	      var baboos = _props.baboos;
 
 	      var styles = {
 	        position: 'fixed',
@@ -30615,6 +30649,12 @@
 	          null,
 	          'Bears Killed: ',
 	          bearsKilled
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Baboos: ',
+	          baboos
 	        )
 	      );
 	    }

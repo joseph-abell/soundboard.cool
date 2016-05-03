@@ -38,3 +38,13 @@ fireRef.child("bearsKilled").on("value", function(snapshot) {
 		store.dispatch(bearsKilled(bearsKilledGlobalValue))
 	}
 });
+
+let babooLocalValue = 0;
+fireRef.child("baboo").on("value", function(snapshot) {
+	let babooGlobalValue = snapshot.val();
+
+	if (babooLocalValue !== babooGlobalValue) {
+		babooLocalValue = babooGlobalValue
+		
+	}
+});
