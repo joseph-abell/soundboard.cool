@@ -45,10 +45,29 @@ export function animation (animation) {
 	}
 }
 
-export const INCREMENT_PERSONAL_COUNTER = "INCREMENT_PERSONAL_COUNTER"
+export const PERSONAL_COUNTER = "PERSONAL_COUNTER"
 
-export function incrementPersonalCounter () {
+export function personalCounter (personalCounter) {
 	return {
-		type: INCREMENT_PERSONAL_COUNTER
+		type: PERSONAL_COUNTER,
+		personalCounter: personalCounter
+	}
+}
+
+export const GLOBAL_COUNTER = "GLOBAL_COUNTER"
+
+export function globalCounter (globalCounter) {
+	return {
+		type: GLOBAL_COUNTER,
+		globalCounter: globalCounter
+	}
+}
+
+export const BEARS_KILLED = "BEARS_KILLED"
+
+export function bearsKilled (bearsKilled) {
+	return {
+		type: BEARS_KILLED,
+		bearsKilled: bearsKilled
 	}
 }

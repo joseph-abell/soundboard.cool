@@ -7,7 +7,9 @@ import {
 	TOGGLE_KILL_BEAR_VISIBLE,
 	KILL_BEAR,
 	ANIMATION,
-	INCREMENT_PERSONAL_COUNTER
+	PERSONAL_COUNTER,
+	GLOBAL_COUNTER,
+	BEARS_KILLED
 } from '../Actions'
 
 const soundboard = ( state = 'Chris Remo', action) => {
@@ -77,15 +79,32 @@ const animation = ( state = '', action) => {
 	}
 }
 
-const incrementPersonalCounter = ( state = 0, action) => {
+const personalCounter = ( state = 0, action) => {
 	switch(action.type) {
-		case (INCREMENT_PERSONAL_COUNTER):
-			return action.incrementPersoanlCounter
+		case (PERSONAL_COUNTER):
+			return action.personalCounter
 		default:
 			return state
 	}
 }
 
+const globalCounter = ( state = 0, action) => {
+	switch(action.type) {
+		case (GLOBAL_COUNTER):
+			return action.globalCounter
+		default:
+			return state
+	}
+}
+
+const bearsKilled = ( state = 0, action) => {
+	switch(action.type) {
+		case (BEARS_KILLED):
+			return action.bearsKilled
+		default:
+			return state
+	}
+}
 
 const soundboardApp = combineReducers(
 	{
@@ -94,7 +113,10 @@ const soundboardApp = combineReducers(
 		toggleInstructions,
 		toggleKillBearVisible,
 		killBear,
-		animation
+		animation,
+		personalCounter,
+		globalCounter,
+		bearsKilled
 	}
 )
 

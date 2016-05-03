@@ -3,6 +3,7 @@ import Instructions from '../Containers/Instructions';
 import Soundboard from '../Containers/Soundboard';
 import KillButton from '../Containers/KillButton';
 import AnimationElements from '../Containers/AnimationElements';
+import Stats from '../Containers/Stats'
 
 export default class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ export default class App extends React.Component {
 	    	<Soundboard />
 	    	<KillButton />
 	    	<AnimationElements />
+        <Stats />
     	</div>
     );
   }

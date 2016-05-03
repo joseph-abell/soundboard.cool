@@ -1,19 +1,24 @@
 import { connect } from 'react-redux'
 import KillButton from '../Components/KillButton'
-import { toggleKillBearVisible } from '../Actions'
+import { toggleKillBearVisible, bearsKilled } from '../Actions'
+import Firebase from 'firebase'
+
+let fireRef = new Firebase('https://soundboardcool.firebaseio.com/')
 
 const mapStateToProps = (state) => {
 	return {
 		killBearButton: state.toggleKillBearVisible.killBearButton,
-		soundManager: state.toggleKillBearVisible.soundManager
+		soundManager: state.toggleKillBearVisible.soundManager,
+		bearsKilled: state.bearsKilled
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onKillBearClick: (soundManager) => {
+		onKillBearClick: (soundManager, bears) => {
 			soundManager.stopAll();
 			dispatch(toggleKillBearVisible(false, {}))
+			fireRef.update({'bearsKilled': ++bears})
 		}
 	}
 }

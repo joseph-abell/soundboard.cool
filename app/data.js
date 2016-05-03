@@ -456,7 +456,7 @@ export default {
 								'./audio/Nick/BearLoop.mp3',
 								'./audio/Nick/BearEnd.mp3'
 							],
-							rules: (foundKey, dispatch) => {
+							rules: (foundKey, dispatch, values = [0]) => {
 								let visibleButton = false;
 								let mySound, mySound2;
 
