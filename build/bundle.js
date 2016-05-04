@@ -23440,7 +23440,21 @@
 					audioTitle: ''
 				}, {
 					title: 'o',
-					audioTitle: ''
+					audioTitle: 'Ode To Waluigi, by Sam Daly (Grade 4)',
+					urls: ['./audio/Jingles/OdeToWaluigi.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.togglePlaying)(false, ''));
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
 				}, {
 					title: 'p',
 					audioTitle: ''

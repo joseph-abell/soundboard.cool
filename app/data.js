@@ -116,7 +116,21 @@ export default {
 						},
 						{
 							title: 'o',
-							audioTitle: ''
+							audioTitle: 'Ode To Waluigi, by Sam Daly (Grade 4)',
+							urls: [
+								'./audio/Jingles/OdeToWaluigi.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								dispatch(togglePlaying(true, foundKey.audioTitle))
+								const mySound = soundManager.createSound({
+									url: foundKey.urls[0],
+									autoPlay: true,
+									onfinish: () => {
+										dispatch(togglePlaying(false, ''))
+										dispatch(animation(''))
+									}
+								});	
+							}
 						},
 						{
 							title: 'p',
