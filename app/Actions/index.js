@@ -80,3 +80,12 @@ export function baboos (baboos) {
 		baboos: baboos
 	}
 }
+
+export const WIZARDS = "WIZARDS"
+
+export function wizards (wizards) {
+	return {
+		type: WIZARDS,
+		wizards: wizards
+	}
+}

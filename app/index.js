@@ -5,7 +5,12 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import soundboardApp from './Reducers';
-import { globalCounter, bearsKilled, baboos } from './Actions';
+import { 
+	globalCounter, 
+	bearsKilled, 
+	baboos,
+	wizards
+} from './Actions';
 import App from './Components/App';
 import './Utils';
 
@@ -38,3 +43,6 @@ setupFirebaseValue("bearsKilled", bearsKilled, bearsKilledLocalValue);
 
 let babooLocalValue = 0;
 setupFirebaseValue('baboos', baboos, babooLocalValue);
+
+let wizardLocalValue = 0;
+setupFirebaseValue('wizards', wizards, wizardLocalValue);

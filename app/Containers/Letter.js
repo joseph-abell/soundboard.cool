@@ -14,13 +14,14 @@ const mapStateToProps = (state) => {
 		killBearButton: state.killBearButton,
 		globalCounter: state.globalCounter,
 		personalCounter: state.personalCounter,
-		baboos: state.baboos
+		baboos: state.baboos,
+		wizards: state.wizards
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLetterClick: (foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos) => {
+		onLetterClick: (foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos, wizards) => {
 			if (isPlaying === true) {
 				return;
 			}
@@ -32,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(animation(foundKey.animation))
 			}
 
-			foundKey.rules(foundKey, dispatch, [baboos]);
+			foundKey.rules(foundKey, dispatch, [baboos, wizards]);
 		}
 	}
 }

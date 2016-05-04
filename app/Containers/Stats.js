@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
 		globalCounter: state.globalCounter,
 		personalCounter: state.personalCounter,
 		bearsKilled: state.bearsKilled,
-		baboos: state.baboos
+		baboos: state.baboos,
+		wizards: state.wizards
 	}
 }
 

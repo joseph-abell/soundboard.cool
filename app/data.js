@@ -4,7 +4,8 @@ import {
 	toggleKillBearVisible, 
 	togglePlaying, 
 	animation,
-	soundboard
+	soundboard, 
+	wizards
 } from './Actions'
 let fireRef = new Firebase('https://soundboardcool.firebaseio.com/');
 
@@ -79,7 +80,10 @@ export default {
 									url: foundKey.urls[0],
 									autoPlay: true,
 									onplay: () => {
+										let wizardCount = optionalExtras[1];
+
 										dispatch(animation('Wizard'))
+										dispatch(wizards(++wizardCount))
 									},
 									onfinish: () => {
 										dispatch(togglePlaying(false, ''))

@@ -2,7 +2,13 @@ import React, { PropTypes, Component } from 'react';
 
 class Stats extends Component {
   render() {
-    let { globalCounter, personalCounter, bearsKilled, baboos } = this.props;
+    let { 
+      globalCounter, 
+      personalCounter, 
+      bearsKilled, 
+      baboos,
+      wizards
+    } = this.props;
     let styles = {
       position: 'fixed',
       top: 0,
@@ -21,6 +27,7 @@ class Stats extends Component {
         <div>Sounds Played: {globalCounter}</div>
         <div>Bears Killed: {bearsKilled}</div>
         <div>Baboos: {baboos}</div>
+        <div>Wizards Summoned: {wizards}</div>
       </div>
     );
   }
