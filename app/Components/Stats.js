@@ -29,7 +29,7 @@ class Stats extends Component {
       }
     } else {
       styles = {
-        width: 50,
+        width: 38,
         height: 20,
         overflow: 'hidden',
         top: 0,
@@ -48,9 +48,9 @@ class Stats extends Component {
       }}>
         {showStats === true && 
           <div>
-            <h3>Your Stats</h3>
+            <h3 style={{marginTop: 0, marginBottom: 5}}>Your Stats</h3>
             <div>Sounds Played: {personalCounter}</div>
-            <h3>Global Stats</h3>
+            <h3 style={{marginBottom: 5}}>Global Stats</h3>
             <div>Sounds Played: {globalCounter}</div>
             <div>Bears Killed: {bearsKilled}</div>
             <div>Baboos: {baboos}</div>
