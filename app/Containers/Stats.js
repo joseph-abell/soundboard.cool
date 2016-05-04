@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
 		bearsKilled: state.bearsKilled,
 		baboos: state.baboos,
 		wizards: state.wizards,
+		neo: state.neo,
 		showStats: state.showStats
 	}
 }

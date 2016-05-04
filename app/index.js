@@ -9,7 +9,8 @@ import {
 	globalCounter, 
 	bearsKilled, 
 	baboos,
-	wizards
+	wizards,
+	neo
 } from './Actions';
 import App from './Components/App';
 import './Utils';
@@ -46,3 +47,6 @@ setupFirebaseValue('baboos', baboos, babooLocalValue);
 
 let wizardLocalValue = 0;
 setupFirebaseValue('wizards', wizards, wizardLocalValue);
+
+let neoLocalValue = 0;
+setupFirebaseValue('neo', neo, neoLocalValue);

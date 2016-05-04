@@ -8,6 +8,7 @@ class Stats extends Component {
       bearsKilled, 
       baboos,
       wizards,
+      neo,
       showStats,
       onStatsClick
     } = this.props;
@@ -54,6 +55,7 @@ class Stats extends Component {
             <div>Bears Killed: {bearsKilled}</div>
             <div>Baboos: {baboos}</div>
             <div>Wizards Summoned: {wizards}</div>
+            <div>Became Neo: {neo}</div>
           </div> 
         }
         {showStats === false && <div>Stats</div>}

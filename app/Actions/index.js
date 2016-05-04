@@ -90,6 +90,15 @@ export function wizards (wizards) {
 	}
 }
 
+export const NEO = "NEO"
+
+export function neo (neo) {
+	return {
+		type: NEO,
+		neo: neo
+	}
+}
+
 export const SHOW_STATS = "SHOW_STATS"
 
 export function showStats (showStats) {

@@ -12,6 +12,7 @@ import {
 	BEARS_KILLED,
 	BABOOS,
 	WIZARDS,
+	NEO,
 	SHOW_STATS
 } from '../Actions'
 
@@ -127,6 +128,15 @@ const wizards = (state = 0, action) => {
 	}
 }
 
+const neo = (state = 0, action) => {
+	switch(action.type) {
+		case(NEO):
+			return action.neo
+		default:
+			return state
+	}
+}
+
 const showStats = (state = false, action) => {
 	switch(action.type) {
 		case(SHOW_STATS):
@@ -149,6 +159,7 @@ const soundboardApp = combineReducers(
 		bearsKilled,
 		baboos,
 		wizards,
+		neo,
 		showStats
 	}
 )

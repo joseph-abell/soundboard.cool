@@ -108,6 +108,9 @@
 	var wizardLocalValue = 0;
 	setupFirebaseValue('wizards', _Actions.wizards, wizardLocalValue);
 
+	var neoLocalValue = 0;
+	setupFirebaseValue('neo', _Actions.neo, neoLocalValue);
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -22651,6 +22654,18 @@
 		}
 	};
 
+	var neo = function neo() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.NEO:
+				return action.neo;
+			default:
+				return state;
+		}
+	};
+
 	var showStats = function showStats() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
 		var action = arguments[1];
@@ -22675,6 +22690,7 @@
 		bearsKilled: bearsKilled,
 		baboos: baboos,
 		wizards: wizards,
+		neo: neo,
 		showStats: showStats
 	});
 
@@ -22699,6 +22715,7 @@
 	exports.bearsKilled = bearsKilled;
 	exports.baboos = baboos;
 	exports.wizards = wizards;
+	exports.neo = neo;
 	exports.showStats = showStats;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
@@ -22789,6 +22806,15 @@
 		return {
 			type: WIZARDS,
 			wizards: wizards
+		};
+	}
+
+	var NEO = exports.NEO = "NEO";
+
+	function neo(neo) {
+		return {
+			type: NEO,
+			neo: neo
 		};
 	}
 
@@ -30934,6 +30960,7 @@
 			bearsKilled: state.bearsKilled,
 			baboos: state.baboos,
 			wizards: state.wizards,
+			neo: state.neo,
 			showStats: state.showStats
 		};
 	};
@@ -30992,6 +31019,7 @@
 	      var bearsKilled = _props.bearsKilled;
 	      var baboos = _props.baboos;
 	      var wizards = _props.wizards;
+	      var neo = _props.neo;
 	      var showStats = _props.showStats;
 	      var onStatsClick = _props.onStatsClick;
 
@@ -31072,6 +31100,12 @@
 	            null,
 	            'Wizards Summoned: ',
 	            wizards
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Became Neo: ',
+	            neo
 	          )
 	        ),
 	        showStats === false && _react2.default.createElement(
