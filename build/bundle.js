@@ -105,6 +105,9 @@
 	var babooLocalValue = 0;
 	setupFirebaseValue('baboos', _Actions.baboos, babooLocalValue);
 
+	var wizardLocalValue = 0;
+	setupFirebaseValue('wizards', _Actions.wizards, wizardLocalValue);
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -22636,6 +22639,18 @@
 		}
 	};
 
+	var wizards = function wizards() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.WIZARDS:
+				return action.wizards;
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
@@ -22646,7 +22661,8 @@
 		personalCounter: personalCounter,
 		globalCounter: globalCounter,
 		bearsKilled: bearsKilled,
-		baboos: baboos
+		baboos: baboos,
+		wizards: wizards
 	});
 
 	exports.default = soundboardApp;
@@ -22669,6 +22685,7 @@
 	exports.globalCounter = globalCounter;
 	exports.bearsKilled = bearsKilled;
 	exports.baboos = baboos;
+	exports.wizards = wizards;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22749,6 +22766,15 @@
 		return {
 			type: BABOOS,
 			baboos: baboos
+		};
+	}
+
+	var WIZARDS = exports.WIZARDS = "WIZARDS";
+
+	function wizards(wizards) {
+		return {
+			type: WIZARDS,
+			wizards: wizards
 		};
 	}
 
@@ -23161,13 +23187,14 @@
 			killBearButton: state.killBearButton,
 			globalCounter: state.globalCounter,
 			personalCounter: state.personalCounter,
-			baboos: state.baboos
+			baboos: state.baboos,
+			wizards: state.wizards
 		};
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onLetterClick: function onLetterClick(foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos) {
+			onLetterClick: function onLetterClick(foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos, wizards) {
 				if (isPlaying === true) {
 					return;
 				}
@@ -23179,7 +23206,7 @@
 					dispatch((0, _Actions.animation)(foundKey.animation));
 				}
 
-				foundKey.rules(foundKey, dispatch, [baboos]);
+				foundKey.rules(foundKey, dispatch, [baboos, wizards]);
 			}
 		};
 	};
@@ -23236,6 +23263,7 @@
 	      var globalCounter = _props.globalCounter;
 	      var personalCounter = _props.personalCounter;
 	      var baboos = _props.baboos;
+	      var wizards = _props.wizards;
 
 
 	      var trueSoundboard = void 0;
@@ -23263,7 +23291,7 @@
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
-	              onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter, baboos);
+	              onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter, baboos, wizards);
 	            } },
 	          letter
 	        );
@@ -23360,7 +23388,10 @@
 							url: foundKey.urls[0],
 							autoPlay: true,
 							onplay: function onplay() {
+								var wizardCount = optionalExtras[1];
+
 								dispatch((0, _Actions.animation)('Wizard'));
+								dispatch((0, _Actions.wizards)(++wizardCount));
 							},
 							onfinish: function onfinish() {
 								dispatch((0, _Actions.togglePlaying)(false, ''));
@@ -30864,7 +30895,8 @@
 			globalCounter: state.globalCounter,
 			personalCounter: state.personalCounter,
 			bearsKilled: state.bearsKilled,
-			baboos: state.baboos
+			baboos: state.baboos,
+			wizards: state.wizards
 		};
 	};
 
@@ -30913,6 +30945,7 @@
 	      var personalCounter = _props.personalCounter;
 	      var bearsKilled = _props.bearsKilled;
 	      var baboos = _props.baboos;
+	      var wizards = _props.wizards;
 
 	      var styles = {
 	        position: 'fixed',
@@ -30960,6 +30993,12 @@
 	          null,
 	          'Baboos: ',
 	          baboos
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Wizards Summoned: ',
+	          wizards
 	        )
 	      );
 	    }
