@@ -23388,10 +23388,8 @@
 							url: foundKey.urls[0],
 							autoPlay: true,
 							onplay: function onplay() {
-								var wizardCount = optionalExtras[1];
-
 								dispatch((0, _Actions.animation)('Wizard'));
-								dispatch((0, _Actions.wizards)(++wizardCount));
+								fireRef.update({ 'wizards': ++optionalExtras[1] });
 							},
 							onfinish: function onfinish() {
 								dispatch((0, _Actions.togglePlaying)(false, ''));

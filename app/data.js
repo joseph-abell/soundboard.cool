@@ -80,10 +80,8 @@ export default {
 									url: foundKey.urls[0],
 									autoPlay: true,
 									onplay: () => {
-										let wizardCount = optionalExtras[1];
-
 										dispatch(animation('Wizard'))
-										dispatch(wizards(++wizardCount))
+										fireRef.update({'wizards': ++optionalExtras[1]})
 									},
 									onfinish: () => {
 										dispatch(togglePlaying(false, ''))
