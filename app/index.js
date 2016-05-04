@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import soundboardApp from './Reducers';
-import { globalCounter, bearsKilled } from './Actions';
+import { globalCounter, bearsKilled, baboos } from './Actions';
 import App from './Components/App';
 import './Utils';
 
@@ -19,32 +19,22 @@ render(
 	document.getElementById('app')
 );
 
+function setupFirebaseValue (firebaseReferenceName, action, localValue) {
+	fireRef.child(firebaseReferenceName).on("value", function(snapshot) {
+		let globalValue = snapshot.val();
+		
+		if (localValue !== globalValue) {
+			localValue = globalValue;
+			store.dispatch(action(globalValue))
+		}
+	});
+}
+
 let globalCounterLocalValue = 0;
-fireRef.child("globalCounter").on("value", function(snapshot) {
-	let globalCounterGlobalValue = snapshot.val();
-	
-	if (globalCounterLocalValue !== globalCounterGlobalValue) {
-		globalCounterLocalValue = globalCounterGlobalValue;
-		store.dispatch(globalCounter(globalCounterGlobalValue))
-	}
-});
+setupFirebaseValue("globalCounter", globalCounter, globalCounterLocalValue);
 
 let bearsKilledLocalValue = 0;
-fireRef.child("bearsKilled").on("value", function(snapshot) {
-	let bearsKilledGlobalValue = snapshot.val();
-
-	if (bearsKilledLocalValue !== bearsKilledGlobalValue) {
-		bearsKilledLocalValue = bearsKilledGlobalValue;
-		store.dispatch(bearsKilled(bearsKilledGlobalValue))
-	}
-});
+setupFirebaseValue("bearsKilled", bearsKilled, bearsKilledLocalValue);
 
 let babooLocalValue = 0;
-fireRef.child("baboo").on("value", function(snapshot) {
-	let babooGlobalValue = snapshot.val();
-
-	if (babooLocalValue !== babooGlobalValue) {
-		babooLocalValue = babooGlobalValue
-		
-	}
-});
+setupFirebaseValue('baboos', baboos, babooLocalValue);

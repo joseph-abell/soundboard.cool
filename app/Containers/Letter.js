@@ -13,27 +13,26 @@ const mapStateToProps = (state) => {
 		isPlaying: state.togglePlaying.isPlaying,
 		killBearButton: state.killBearButton,
 		globalCounter: state.globalCounter,
-		personalCounter: state.personalCounter
+		personalCounter: state.personalCounter,
+		baboos: state.baboos
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLetterClick: (foundKey, soundboardName, isPlaying, globalCounter, personalCount) => {
+		onLetterClick: (foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos) => {
 			if (isPlaying === true) {
 				return;
 			}
 
 			fireRef.update({'globalCounter': ++globalCounter})
-
-			dispatch(togglePlaying(true, foundKey.audioTitle))
 			dispatch(personalCounter(++personalCount))
 
 			if (foundKey.animation) {
 				dispatch(animation(foundKey.animation))
 			}
 
-			foundKey.rules(foundKey, dispatch);
+			foundKey.rules(foundKey, dispatch, [baboos]);
 		}
 	}
 }

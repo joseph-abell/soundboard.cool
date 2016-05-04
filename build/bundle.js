@@ -85,34 +85,25 @@
 		_react2.default.createElement(_App2.default, null)
 	), document.getElementById('app'));
 
-	var globalCounterLocalValue = 0;
-	fireRef.child("globalCounter").on("value", function (snapshot) {
-		var globalCounterGlobalValue = snapshot.val();
+	function setupFirebaseValue(firebaseReferenceName, action, localValue) {
+		fireRef.child(firebaseReferenceName).on("value", function (snapshot) {
+			var globalValue = snapshot.val();
 
-		if (globalCounterLocalValue !== globalCounterGlobalValue) {
-			globalCounterLocalValue = globalCounterGlobalValue;
-			store.dispatch((0, _Actions.globalCounter)(globalCounterGlobalValue));
-		}
-	});
+			if (localValue !== globalValue) {
+				localValue = globalValue;
+				store.dispatch(action(globalValue));
+			}
+		});
+	}
+
+	var globalCounterLocalValue = 0;
+	setupFirebaseValue("globalCounter", _Actions.globalCounter, globalCounterLocalValue);
 
 	var bearsKilledLocalValue = 0;
-	fireRef.child("bearsKilled").on("value", function (snapshot) {
-		var bearsKilledGlobalValue = snapshot.val();
-
-		if (bearsKilledLocalValue !== bearsKilledGlobalValue) {
-			bearsKilledLocalValue = bearsKilledGlobalValue;
-			store.dispatch((0, _Actions.bearsKilled)(bearsKilledGlobalValue));
-		}
-	});
+	setupFirebaseValue("bearsKilled", _Actions.bearsKilled, bearsKilledLocalValue);
 
 	var babooLocalValue = 0;
-	fireRef.child("baboo").on("value", function (snapshot) {
-		var babooGlobalValue = snapshot.val();
-
-		if (babooLocalValue !== babooGlobalValue) {
-			babooLocalValue = babooGlobalValue;
-		}
-	});
+	setupFirebaseValue('baboos', _Actions.baboos, babooLocalValue);
 
 /***/ },
 /* 1 */
@@ -149,7 +140,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "html {\n\toverflow: hidden;\n\theight: 100%;\n}\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\tmax-height: 100%;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\twidth: 40px;\n}\n@media screen and (max-width: 767px) {\n\t.key, .spacebar {\n\t\theight: 30px;\n\t\tline-height: 30px;\n\t}\n\t.key {\n\t\twidth: 30px;\n\t}\n\t.spacebar {\n\t\twidth: 150px;\n\t}\n}\n@media screen and (max-width: 600px) {\n\t.key, .spacebar {\n\t\theight: 20px;\n\t\tline-height: 20px;\n\t}\n\t.key {\n\t\twidth: 20px;\n\t}\n\t.spacebar {\n\t\twidth: 100px;\n\t}\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard,\n.wizard2 {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n\topacity: 0;\n}\n.wizard {\n\tleft: -500px;\n}\n.wizard2 {\n\tright: -500px;\n\ttransform: rotateY(180deg);\n}\n.wizard.animating {\n\topacity: 1;\n\tanimation: scrollWizard 4.5s 1;\n}\n.wizard2.animating {\n\topacity: 1;\n\tanimation: scrollWizard2 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 0;\n  }\n  100% {\n    bottom: -500px;\n    left: -500px;\n  }\n}\n\n@keyframes scrollWizard2 {\n  0% {\n    bottom: -500px;\n    right: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tright: 0;\n  }\n  100% {\n    bottom: -500px;\n    right: -500px;\n  }\n}", ""]);
+	exports.push([module.id, "html {\n\toverflow: hidden;\n\theight: 100%;\n}\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\tmax-height: 100%;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\tmin-width: 40px;\n}\n@media screen and (max-width: 767px) {\n\t.key, .spacebar {\n\t\theight: 30px;\n\t\tline-height: 30px;\n\t}\n\t.key {\n\t\twidth: 30px;\n\t}\n\t.spacebar {\n\t\twidth: 150px;\n\t}\n}\n@media screen and (max-width: 600px) {\n\t.key, .spacebar {\n\t\theight: 20px;\n\t\tline-height: 20px;\n\t}\n\t.key {\n\t\twidth: 20px;\n\t}\n\t.spacebar {\n\t\twidth: 100px;\n\t}\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard,\n.wizard2 {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n\topacity: 0;\n}\n.wizard {\n\tleft: -500px;\n}\n.wizard2 {\n\tright: -500px;\n\ttransform: rotateY(180deg);\n}\n.wizard.animating {\n\topacity: 1;\n\tanimation: scrollWizard 4.5s 1;\n}\n.wizard2.animating {\n\topacity: 1;\n\tanimation: scrollWizard2 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 0;\n  }\n  100% {\n    bottom: -500px;\n    left: -500px;\n  }\n}\n\n@keyframes scrollWizard2 {\n  0% {\n    bottom: -500px;\n    right: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tright: 0;\n  }\n  100% {\n    bottom: -500px;\n    right: -500px;\n  }\n}", ""]);
 
 	// exports
 
@@ -23169,27 +23160,26 @@
 			isPlaying: state.togglePlaying.isPlaying,
 			killBearButton: state.killBearButton,
 			globalCounter: state.globalCounter,
-			personalCounter: state.personalCounter
+			personalCounter: state.personalCounter,
+			baboos: state.baboos
 		};
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onLetterClick: function onLetterClick(foundKey, soundboardName, isPlaying, globalCounter, personalCount) {
+			onLetterClick: function onLetterClick(foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos) {
 				if (isPlaying === true) {
 					return;
 				}
 
 				fireRef.update({ 'globalCounter': ++globalCounter });
-
-				dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
 				dispatch((0, _Actions.personalCounter)(++personalCount));
 
 				if (foundKey.animation) {
 					dispatch((0, _Actions.animation)(foundKey.animation));
 				}
 
-				foundKey.rules(foundKey, dispatch);
+				foundKey.rules(foundKey, dispatch, [baboos]);
 			}
 		};
 	};
@@ -23245,6 +23235,8 @@
 	      var onLetterClick = _props.onLetterClick;
 	      var globalCounter = _props.globalCounter;
 	      var personalCounter = _props.personalCounter;
+	      var baboos = _props.baboos;
+
 
 	      var trueSoundboard = void 0;
 	      var foundKey = void 0;
@@ -23271,7 +23263,7 @@
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
-	              onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter);
+	              onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter, baboos);
 	            } },
 	          letter
 	        );
@@ -23302,7 +23294,15 @@
 
 	var _soundmanager = __webpack_require__(210);
 
+	var _firebase = __webpack_require__(38);
+
+	var _firebase2 = _interopRequireDefault(_firebase);
+
 	var _Actions = __webpack_require__(201);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
 	exports.default = {
 		numbers: [{
@@ -23353,6 +23353,9 @@
 					audioTitle: 'Wizard',
 					urls: ['./audio/Jingles/Wizard.mp3'],
 					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
@@ -23436,7 +23439,24 @@
 					audioTitle: ''
 				}, {
 					title: 'b',
-					audioTitle: ''
+					audioTitle: 'Baboo',
+					urls: ['./audio/Intros/MorningShow.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.togglePlaying)(false, ''));
+								dispatch((0, _Actions.animation)(''));
+								dispatch((0, _Actions.soundboard)('Baboo'));
+							}
+						});
+					}
+
 				}, {
 					title: 'n',
 					audioTitle: ''
@@ -23445,6 +23465,9 @@
 					audioTitle: 'Morning Show',
 					urls: ['./audio/Intros/MorningShow.mp3'],
 					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
@@ -23489,6 +23512,9 @@
 					audioTitle: 'Oh Man',
 					urls: ['./audio/Chris/OhManFuckNo.mp3'],
 					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
@@ -23641,7 +23667,9 @@
 					audioTitle: 'The Bear',
 					urls: ['./audio/Nick/BearStart.mp3', './audio/Nick/BearLoop.mp3', './audio/Nick/BearEnd.mp3'],
 					rules: function rules(foundKey, dispatch) {
-						var values = arguments.length <= 2 || arguments[2] === undefined ? [0] : arguments[2];
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
 
 						var visibleButton = false;
 						var mySound = void 0,
@@ -23661,7 +23689,6 @@
 										}
 									},
 									onfinish: function onfinish() {
-
 										mySound2.play();
 									},
 									onstop: function onstop() {
@@ -23709,6 +23736,10 @@
 					audioTitle: 'Year of the Playstation What?',
 					urls: ['./audio/Jake/YearOfThePs3.mp3'],
 					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
+
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
@@ -23876,6 +23907,10 @@
 					audioTitle: 'Moore\'s Law',
 					urls: ['./audio/Sean/MooresLaw.mp3'],
 					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
+
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
@@ -23885,6 +23920,276 @@
 							}
 						});
 					}
+				}]
+			}]
+		}, {
+			title: 'Baboo',
+			rows: [{
+				id: 10,
+				keys: [{
+					title: 'q',
+					audioTitle: ''
+				}, {
+					title: 'w',
+					audioTitle: 'Baboo in C#',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'e',
+					audioTitle: 'Baboo in D#',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'r',
+					audioTitle: ''
+				}, {
+					title: 't',
+					audioTitle: 'Baboo in F#',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'y',
+					audioTitle: 'Baboo in G#',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'u',
+					audioTitle: 'Baboo in A#',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'i',
+					audioTitle: ''
+				}, {
+					title: 'o',
+					audioTitle: ''
+				}, {
+					title: 'p',
+					audioTitle: ''
+				}]
+			}, {
+				id: 1,
+				keys: [{
+					title: 'a',
+					audioTitle: 'Baboo in C',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 's',
+					audioTitle: 'Baboo in D',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'd',
+					audioTitle: 'Baboo in E',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'f',
+					audioTitle: 'Baboo in F',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'g',
+					audioTitle: 'Baboo in G',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'h',
+					audioTitle: 'Baboo in A',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'j',
+					audioTitle: 'Baboo in B',
+					urls: ['./audio/Sean/MooresLaw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
+
+						var mySound = _soundmanager.soundManager.createSound({
+							url: foundKey.urls[0],
+							autoPlay: true,
+							onfinish: function onfinish() {
+								dispatch((0, _Actions.animation)(''));
+							}
+						});
+					}
+				}, {
+					title: 'k',
+					audioTitle: ''
+				}, {
+					title: 'l',
+					audioTitle: ''
+				}]
+			}, {
+				id: 2,
+				keys: [{
+					title: 'z',
+					audioTitle: ''
+				}, {
+					title: 'x',
+					audioTitle: ''
+				}, {
+					title: 'c',
+					audioTitle: ''
+				}, {
+					title: 'v',
+					audioTitle: ''
+				}, {
+					title: 'b',
+					audioTitle: ''
+				}, {
+					title: 'n',
+					audioTitle: ''
+				}, {
+					title: 'm',
+					audioTitle: ''
 				}]
 			}]
 		}]
@@ -30674,6 +30979,7 @@
 	$(document).ready(function () {
 		$('html').keypress(function (e) {
 			var keyCode = e.keyCode;
+
 			switch (keyCode) {
 				case 48:
 					$('#key0').click();

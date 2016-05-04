@@ -3,7 +3,16 @@ import Data from '../data'
 
 export default class App extends React.Component {
   render() {
-  	const { letter, soundboard, isPlaying, onLetterClick, globalCounter, personalCounter } = this.props;
+  	const { 
+      letter, 
+      soundboard, 
+      isPlaying, 
+      onLetterClick,
+      globalCounter, 
+      personalCounter,
+      baboos
+    } = this.props;
+
     let trueSoundboard;
     let foundKey;
     
@@ -28,7 +37,7 @@ export default class App extends React.Component {
 
     if (foundKey.urls && isPlaying === false) {
     	return (<div className="key" id={"key" + letter} onClick={() => {
-    		onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter)
+    		onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter, baboos)
     	}}>{letter}</div>)	
     } else {
     	return (<div className="key disabled">{letter}</div>)
