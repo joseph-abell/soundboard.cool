@@ -22651,6 +22651,18 @@
 		}
 	};
 
+	var showStats = function showStats() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.SHOW_STATS:
+				return action.showStats;
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
@@ -22662,7 +22674,8 @@
 		globalCounter: globalCounter,
 		bearsKilled: bearsKilled,
 		baboos: baboos,
-		wizards: wizards
+		wizards: wizards,
+		showStats: showStats
 	});
 
 	exports.default = soundboardApp;
@@ -22686,6 +22699,7 @@
 	exports.bearsKilled = bearsKilled;
 	exports.baboos = baboos;
 	exports.wizards = wizards;
+	exports.showStats = showStats;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22775,6 +22789,15 @@
 		return {
 			type: WIZARDS,
 			wizards: wizards
+		};
+	}
+
+	var SHOW_STATS = exports.SHOW_STATS = "SHOW_STATS";
+
+	function showStats(showStats) {
+		return {
+			type: SHOW_STATS,
+			showStats: showStats
 		};
 	}
 
@@ -30886,6 +30909,8 @@
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
+	var _Actions = __webpack_require__(201);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mapStateToProps = function mapStateToProps(state) {
@@ -30894,11 +30919,20 @@
 			personalCounter: state.personalCounter,
 			bearsKilled: state.bearsKilled,
 			baboos: state.baboos,
-			wizards: state.wizards
+			wizards: state.wizards,
+			showStats: state.showStats
 		};
 	};
 
-	var StatsContainer = (0, _reactRedux.connect)(mapStateToProps)(_Stats2.default);
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onStatsClick: function onStatsClick(stats) {
+				dispatch((0, _Actions.showStats)(!stats));
+			}
+		};
+	};
+
+	var StatsContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Stats2.default);
 
 	exports.default = StatsContainer;
 
@@ -30944,59 +30978,92 @@
 	      var bearsKilled = _props.bearsKilled;
 	      var baboos = _props.baboos;
 	      var wizards = _props.wizards;
+	      var showStats = _props.showStats;
+	      var onStatsClick = _props.onStatsClick;
 
-	      var styles = {
-	        position: 'fixed',
-	        top: 0,
-	        right: 0,
-	        textAlign: 'right',
-	        padding: 20,
-	        background: '#333',
-	        color: '#fff'
-	      };
+	      var styles = void 0;
+
+	      if (showStats === true) {
+	        styles = {
+	          position: 'fixed',
+	          top: 0,
+	          right: 0,
+	          textAlign: 'right',
+	          padding: 20,
+	          background: '#333',
+	          color: '#fff',
+	          width: 'auto',
+	          height: 'auto',
+	          cursor: 'pointer'
+	        };
+	      } else {
+	        styles = {
+	          width: 50,
+	          height: 20,
+	          overflow: 'hidden',
+	          top: 0,
+	          right: 0,
+	          background: '#333',
+	          color: '#fff',
+	          position: 'fixed',
+	          padding: 10,
+	          cursor: 'pointer'
+	        };
+	      }
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: styles },
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Your Stats'
-	        ),
-	        _react2.default.createElement(
+	        { style: styles, onClick: function onClick() {
+	            onStatsClick(showStats);
+	          } },
+	        showStats === true && _react2.default.createElement(
 	          'div',
 	          null,
-	          'Sounds Played: ',
-	          personalCounter
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Your Stats'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Sounds Played: ',
+	            personalCounter
+	          ),
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Global Stats'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Sounds Played: ',
+	            globalCounter
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Bears Killed: ',
+	            bearsKilled
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Baboos: ',
+	            baboos
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Wizards Summoned: ',
+	            wizards
+	          )
 	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Global Stats'
-	        ),
-	        _react2.default.createElement(
+	        showStats === false && _react2.default.createElement(
 	          'div',
 	          null,
-	          'Sounds Played: ',
-	          globalCounter
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          'Bears Killed: ',
-	          bearsKilled
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          'Baboos: ',
-	          baboos
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          'Wizards Summoned: ',
-	          wizards
+	          'Stats'
 	        )
 	      );
 	    }

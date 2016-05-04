@@ -11,7 +11,8 @@ import {
 	GLOBAL_COUNTER,
 	BEARS_KILLED,
 	BABOOS,
-	WIZARDS
+	WIZARDS,
+	SHOW_STATS
 } from '../Actions'
 
 const soundboard = ( state = 'Chris Remo', action) => {
@@ -126,6 +127,15 @@ const wizards = (state = 0, action) => {
 	}
 }
 
+const showStats = (state = false, action) => {
+	switch(action.type) {
+		case(SHOW_STATS):
+			return action.showStats
+		default:
+			return state
+	}
+}
+
 const soundboardApp = combineReducers(
 	{
 		soundboard, 
@@ -138,7 +148,8 @@ const soundboardApp = combineReducers(
 		globalCounter,
 		bearsKilled,
 		baboos,
-		wizards
+		wizards,
+		showStats
 	}
 )
 

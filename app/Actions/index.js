@@ -89,3 +89,12 @@ export function wizards (wizards) {
 		wizards: wizards
 	}
 }
+
+export const SHOW_STATS = "SHOW_STATS"
+
+export function showStats (showStats) {
+	return {
+		type: SHOW_STATS,
+		showStats: showStats
+	}
+}
