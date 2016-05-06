@@ -22755,6 +22755,11 @@
 								{ className: 'spacebar disabled' },
 								'Wait for it...'
 							),
+							killBearButton === 3 && _react2.default.createElement(
+								'div',
+								{ className: 'spacebar disabled' },
+								'You Monster'
+							),
 							_react2.default.createElement(_KillButton2.default, null)
 						)
 					);
@@ -22903,7 +22908,7 @@
 	        }
 	      }
 
-	      if (foundKey.urls && killBearButton !== 1 && killBearButton !== 2) {
+	      if (foundKey.urls && killBearButton === 0) {
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
@@ -23317,12 +23322,12 @@
 							url: foundKey.urls[0],
 							autoPlay: true,
 							onfinish: function onfinish() {
+								dispatch((0, _Actions.toggleKillBearVisible)(2, _soundmanager.soundManager));
 								mySound2 = _soundmanager.soundManager.createSound({
 									url: foundKey.urls[1],
 									autoPlay: true,
 									onplay: function onplay() {
 										if (visibleButton === false) {
-											dispatch((0, _Actions.toggleKillBearVisible)(2, _soundmanager.soundManager));
 											visibleButton = true;
 										}
 									},
@@ -23332,7 +23337,13 @@
 									onstop: function onstop() {
 										mySound = _soundmanager.soundManager.createSound({
 											url: foundKey.urls[2],
-											autoPlay: true
+											autoPlay: true,
+											onplay: function onplay() {
+												dispatch((0, _Actions.toggleKillBearVisible)(3));
+											},
+											onfinish: function onfinish() {
+												dispatch((0, _Actions.toggleKillBearVisible)(0));
+											}
 										});
 									}
 								});
@@ -29998,7 +30009,8 @@
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
 			soundboard: state.soundboard,
-			isPlaying: state.togglePlaying.isPlaying
+			isPlaying: state.togglePlaying.isPlaying,
+			killBearButton: state.toggleKillBearVisible.killBearButton
 		};
 	};
 
@@ -30026,7 +30038,7 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -30044,50 +30056,51 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var NumberKey = function (_Component) {
-		_inherits(NumberKey, _Component);
+	  _inherits(NumberKey, _Component);
 
-		function NumberKey() {
-			_classCallCheck(this, NumberKey);
+	  function NumberKey() {
+	    _classCallCheck(this, NumberKey);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(NumberKey).apply(this, arguments));
-		}
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NumberKey).apply(this, arguments));
+	  }
 
-		_createClass(NumberKey, [{
-			key: "render",
-			value: function render() {
-				var _props = this.props;
-				var numberKey = _props.numberKey;
-				var isPlaying = _props.isPlaying;
-				var onNumberKeyPress = _props.onNumberKeyPress;
-				var soundboard = _props.soundboard;
-				var enabled = _props.enabled;
+	  _createClass(NumberKey, [{
+	    key: "render",
+	    value: function render() {
+	      var _props = this.props;
+	      var numberKey = _props.numberKey;
+	      var isPlaying = _props.isPlaying;
+	      var onNumberKeyPress = _props.onNumberKeyPress;
+	      var soundboard = _props.soundboard;
+	      var enabled = _props.enabled;
+	      var killBearButton = _props.killBearButton;
 
 
-				if (enabled === true) {
-					return _react2.default.createElement(
-						"div",
-						{ className: "key", id: "key" + numberKey, onClick: function onClick() {
-								onNumberKeyPress(numberKey);
-							} },
-						numberKey
-					);
-				} else {
-					return _react2.default.createElement(
-						"div",
-						{ className: "key disabled" },
-						numberKey
-					);
-				}
-			}
-		}]);
+	      if (killBearButton === 0 && enabled === true) {
+	        return _react2.default.createElement(
+	          "div",
+	          { className: "key", id: "key" + numberKey, onClick: function onClick() {
+	              onNumberKeyPress(numberKey);
+	            } },
+	          numberKey
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          "div",
+	          { className: "key disabled" },
+	          numberKey
+	        );
+	      }
+	    }
+	  }]);
 
-		return NumberKey;
+	  return NumberKey;
 	}(_react.Component);
 
 	NumberKey.propTypes = {
-		numberKey: _react.PropTypes.string.isRequired,
-		onNumberKeyPress: _react.PropTypes.func.isRequired,
-		soundboard: _react.PropTypes.string.isRequired
+	  numberKey: _react.PropTypes.string.isRequired,
+	  onNumberKeyPress: _react.PropTypes.func.isRequired,
+	  soundboard: _react.PropTypes.string.isRequired
 	};
 
 	exports.default = NumberKey;
@@ -30130,7 +30143,6 @@
 		return {
 			onKillBearClick: function onKillBearClick(soundManager, bears) {
 				soundManager.stopAll();
-				dispatch((0, _Actions.toggleKillBearVisible)(0));
 				fireRef.update({ 'bearsKilled': ++bears });
 			}
 		};
