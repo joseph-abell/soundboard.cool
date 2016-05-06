@@ -1,4 +1,3 @@
-import './main.css';
 import React from 'react';
 import Firebase from 'firebase'
 import { render } from 'react-dom';
