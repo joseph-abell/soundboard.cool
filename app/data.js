@@ -490,12 +490,12 @@ export default {
 									url: foundKey.urls[0],
 									autoPlay: true,
 									onfinish: () => {
+										dispatch(toggleKillBearVisible(2, soundManager))
 										mySound2 = soundManager.createSound({
 											url: foundKey.urls[1],
 											autoPlay: true,
 											onplay: () => {
 												if (visibleButton === false) {
-													dispatch(toggleKillBearVisible(2, soundManager))
 													visibleButton = true;
 												}
 											},
@@ -505,7 +505,13 @@ export default {
 											onstop: () => {
 												mySound = soundManager.createSound({
 													url: foundKey.urls[2],
-													autoPlay: true
+													autoPlay: true,
+													onplay: () => {
+														dispatch(toggleKillBearVisible(3))
+													},
+													onfinish: () => {
+														dispatch(toggleKillBearVisible(0))
+													}
 												})
 											}
 										})

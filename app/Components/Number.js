@@ -2,9 +2,16 @@ import React, { PropTypes, Component } from 'react';
 
 class NumberKey extends Component {
   render() {
-  	const { numberKey, isPlaying, onNumberKeyPress, soundboard, enabled } = this.props;
+  	const { 
+  		numberKey, 
+  		isPlaying, 
+  		onNumberKeyPress, 
+  		soundboard, 
+  		enabled,
+  		killBearButton 
+  	} = this.props;
 
-    if (enabled === true) {
+	if (killBearButton === 0 && enabled === true) {
 		return (<div className="key" id={"key"+numberKey} onClick={() => {
 			onNumberKeyPress(numberKey)
 		}}>{numberKey}</div>)
