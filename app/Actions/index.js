@@ -12,7 +12,6 @@ export const TOGGLE_PLAYING = "TOGGLE_PLAYING"
 export function togglePlaying (title) {
 	return {
 		type: TOGGLE_PLAYING,
-		isPlaying: false,
 		title: title
 	}
 }
