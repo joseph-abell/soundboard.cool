@@ -11,7 +11,8 @@ export default class App extends React.Component {
       globalCounter, 
       personalCounter,
       baboos, 
-      wizards
+      wizards,
+      killBearButton
     } = this.props;
 
     let trueSoundboard;
@@ -36,7 +37,7 @@ export default class App extends React.Component {
     }
       
 
-    if (foundKey.urls) {
+    if (foundKey.urls && killBearButton !== 1 && killBearButton !== 2 ) {
     	return (<div className="key" id={"key" + letter} onClick={() => {
     		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards)
     	}}>{letter}</div>)	

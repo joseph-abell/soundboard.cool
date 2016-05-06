@@ -1,6 +1,7 @@
 import React from 'react';
 import Letter from '../Containers/Letter';
 import NumberKey from '../Containers/Number';
+import KillButton from '../Containers/KillButton';
 import Data from '../data';
 
 class Keys extends React.Component {
@@ -20,7 +21,7 @@ class Keys extends React.Component {
 
 export default class Soundboard extends React.Component {
 	render() {
-		const { showInstructions, soundboard, keyTitle } = this.props;
+		const { showInstructions, soundboard, keyTitle, killBearButton } = this.props;
 		let trueSoundboard;
 
 		Data.soundboards.map( testSoundboard => {
@@ -60,6 +61,8 @@ export default class Soundboard extends React.Component {
 					<div className="soundboard-inner" key={trueSoundboard.title}>
 						<h3>Sounds</h3>
 						{rows}
+						{killBearButton === 1 && <div className="spacebar disabled">Wait for it...</div>}
+						<KillButton />
 					</div>
 				</div>
 			);  

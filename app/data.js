@@ -481,6 +481,7 @@ export default {
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								dispatch(togglePlaying(foundKey.audioTitle))
+								dispatch(toggleKillBearVisible(1))
 
 								let visibleButton = false;
 								let mySound, mySound2;
@@ -494,7 +495,7 @@ export default {
 											autoPlay: true,
 											onplay: () => {
 												if (visibleButton === false) {
-													dispatch(toggleKillBearVisible(true, soundManager))
+													dispatch(toggleKillBearVisible(2, soundManager))
 													visibleButton = true;
 												}
 											},

@@ -51,7 +51,8 @@ body {
 .key {
 	min-width: 40px;
 }
-.key.disabled {
+.key.disabled,
+.spacebar.disabled {
 	background: #aaa;
 	cursor: default;
 }
@@ -102,27 +103,6 @@ body {
 	.spacebar {
 		width: 150px;
 	}
-	.soundboard-inner {
-		width: 575px;
-	}
-}
-@media screen and (max-width: 600px) {
-	.key, .spacebar {
-		height: 20px;
-		line-height: 20px;
-	}
-	.key {
-		width: 20px;
-		min-width: 20px;
-	}
-	.spacebar {
-		width: 100px;
-	}
-	.soundboard-inner {
-		width: 475px;
-	}
-}
-@media screen and (max-width: 500px) {
 	.soundboard-inner {
 		width: auto;
 	}

@@ -48,7 +48,7 @@ const toggleInstructions = ( state = true, action) => {
 }
 
 const toggleKillBearVisible = ( state = {
-	killBearButton: false,
+	killBearButton: 0,
 	soundManager: {}
 }, action) => {
 	switch (action.type) {

@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
 	return {
 		showInstructions: state.toggleInstructions,
 		soundboard: state.soundboard,
-		keyTitle: state.togglePlaying.title
+		keyTitle: state.togglePlaying.title,
+		killBearButton: state.toggleKillBearVisible.killBearButton
 	}
 }
 

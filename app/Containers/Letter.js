@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 	return {
 		soundboard: state.soundboard,
 		canAnimate: state.canAnimate,
-		killBearButton: state.killBearButton,
+		killBearButton: state.toggleKillBearVisible.killBearButton,
 		globalCounter: state.globalCounter,
 		personalCounter: state.personalCounter,
 		baboos: state.baboos,
