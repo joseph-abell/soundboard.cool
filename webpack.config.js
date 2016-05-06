@@ -6,7 +6,7 @@ const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: __dirname
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -26,11 +26,6 @@ const common = {
     loaders: [
       { test: /\.png$/, loader: "url-loader?limit=100000" },
       { test: /\.jpg$/, loader: "file-loader" },
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        include: PATHS.app
-      },
       {
         test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,
