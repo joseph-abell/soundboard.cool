@@ -9,6 +9,19 @@ import {
 } from './Actions'
 let fireRef = new Firebase('https://soundboardcool.firebaseio.com/');
 
+
+const defaultActionNoAnimation = (dispatch, audioTitle, audioFileUrl) => {
+	dispatch(togglePlaying(audioTitle))
+
+	const mySound = soundManager.createSound({
+		url: audioFileUrl,
+		autoPlay: true,
+		onfinish: () => {
+			dispatch(togglePlaying())
+		}
+	});	
+}
+
 export default {
 	numbers: [
 		{
@@ -75,7 +88,7 @@ export default {
 								'./audio/Jingles/Wizard.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
+								dispatch(togglePlaying(foundKey.audioTitle))
 								const mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,
@@ -84,7 +97,7 @@ export default {
 										fireRef.update({'wizards': ++optionalExtras[1]})
 									},
 									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
+										dispatch(togglePlaying(''))
 										dispatch(animation(''))
 									}
 								});	
@@ -121,15 +134,7 @@ export default {
 								'./audio/Jingles/OdeToWaluigi.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -206,12 +211,12 @@ export default {
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(true, foundKey.audioTitle))
+								dispatch(togglePlaying(foundKey.audioTitle))
 								const mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,
 									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
+										dispatch(togglePlaying(''))
 										dispatch(animation(''))
 										dispatch(soundboard('Baboo'))
 									}
@@ -230,15 +235,7 @@ export default {
 								'./audio/Intros/MorningShow.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						}
 					]
@@ -290,15 +287,7 @@ export default {
 								'./audio/Chris/OhManFuckNo.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -500,7 +489,7 @@ export default {
 								'./audio/Nick/BearEnd.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
+								dispatch(togglePlaying(foundKey.audioTitle))
 
 								let visibleButton = false;
 								let mySound, mySound2;
@@ -526,7 +515,7 @@ export default {
 													url: foundKey.urls[2],
 													autoPlay: true,
 													onfinish: () => {
-														dispatch(togglePlaying(false))
+														dispatch(togglePlaying())
 													}
 												})
 											}
@@ -578,16 +567,7 @@ export default {
 							audioTitle: 'Year of the Playstation What?',
 							urls: ['./audio/Jake/YearOfThePs3.mp3'],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
-										dispatch(animation(''))
-									}
-								});
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -807,16 +787,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(true, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(togglePlaying(false, ''))
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						}
 					]
@@ -840,16 +811,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -859,16 +821,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -882,16 +835,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -901,16 +845,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -920,16 +855,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -956,17 +882,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -976,16 +892,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -995,16 +902,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -1014,16 +912,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -1033,16 +922,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -1052,16 +932,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -1071,16 +942,7 @@ export default {
 								'./audio/Sean/MooresLaw.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								dispatch(togglePlaying(false, foundKey.audioTitle))
-
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onfinish: () => {
-										dispatch(animation(''))
-									}
-								});	
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
