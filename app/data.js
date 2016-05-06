@@ -80,7 +80,8 @@ export default {
 		},
 		{
 			id: 9,
-			numberKey: '9'
+			numberKey: '9',
+			title: 'Baboo'
 		},
 		{
 			id: 0,
@@ -103,7 +104,7 @@ export default {
 							title: 'w',
 							audioTitle: 'Wizard',
 							urls: [
-								'./audio/Jingles/Wizard.mp3'
+								'./audio/Intros/Wizard.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'wizards': ++optionalExtras[1]})
@@ -138,7 +139,7 @@ export default {
 							title: 'o',
 							audioTitle: 'Ode To Waluigi, by Sam Daly (Grade 4)',
 							urls: [
-								'./audio/Jingles/OdeToWaluigi.mp3'
+								'./audio/Intros/OdeToWaluigi.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
@@ -212,15 +213,7 @@ export default {
 						},
 						{
 							title: 'b',
-							audioTitle: 'Baboo',
-							urls: [
-								'./audio/Intros/BabooIntro.mp3'
-							],
-							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-							}
-
+							audioTitle: ''
 						},
 						{
 							title: 'n',
@@ -784,6 +777,144 @@ export default {
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
+						}
+					]
+				}
+			]
+		},
+		{
+			title: 'Baboo',
+			rows: [
+				{
+					id: 10,
+					keys: [
+						{
+							title: 'q',
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/baboo001.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
+
+						},
+						{
+							title: 'w',
+							audioTitle: ''
+						},
+						{
+							title: 'e',
+							audioTitle: ''
+						},
+						{
+							title: 'r',
+							audioTitle: ''
+						},
+						{
+							title: 't',
+							audioTitle: ''
+						},
+						{
+							title: 'y',
+							audioTitle: ''
+						},
+						{
+							title: 'u',
+							audioTitle: ''
+						},
+						{
+							title: 'i',
+							audioTitle: ''
+						},
+						{
+							title: 'o',
+							audioTitle: ''
+						},
+						{
+							title: 'p',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 1,
+					keys: [
+						{
+							title: 'a',
+							audioTitle: ''
+						},
+						{
+							title: 's',
+							audioTitle: ''
+						},
+						{
+							title: 'd',
+							audioTitle: ''
+						},
+						{
+							title: 'f',
+							audioTitle: ''
+						},
+						{
+							title: 'g',
+							audioTitle: ''
+						},
+						{
+							title: 'h',
+							audioTitle: ''
+						},
+						{
+							title: 'j',
+							audioTitle: ''
+						},
+						{
+							title: 'k',
+							audioTitle: ''
+						},
+						{
+							title: 'l',
+							audioTitle: ''
+						}
+					]
+				},
+				{
+					id: 2,
+					keys: [
+						{
+							title: 'z',
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/BabooIntro.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
+						},
+						{
+							title: 'x',
+							audioTitle: ''
+						},
+						{
+							title: 'c',
+							audioTitle: ''
+						},
+						{
+							title: 'v',
+							audioTitle: ''
+						},
+						{
+							title: 'b',
+							audioTitle: ''
+						},
+						{
+							title: 'n',
+							audioTitle: ''
+						},
+						{
+							title: 'm',
+							audioTitle: ''
 						}
 					]
 				}

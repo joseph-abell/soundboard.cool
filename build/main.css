@@ -23,6 +23,15 @@ body {
 	padding: 10px;
 	text-align: center;
 }
+.soundboard-inner {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding-bottom: 10px;
+	width: 680px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
 .key, .spacebar {
 	display: inline-block;
 	font-size: 20px;
@@ -38,34 +47,9 @@ body {
 	text-transform: uppercase;
 	cursor: pointer;
 }
+
 .key {
 	min-width: 40px;
-}
-@media screen and (max-width: 767px) {
-	.key, .spacebar {
-		height: 30px;
-		line-height: 30px;
-	}
-	.key {
-		width: 30px;
-		min-width: 30px;
-	}
-	.spacebar {
-		width: 150px;
-	}
-}
-@media screen and (max-width: 600px) {
-	.key, .spacebar {
-		height: 20px;
-		line-height: 20px;
-	}
-	.key {
-		width: 20px;
-		min-width: 20px;
-	}
-	.spacebar {
-		width: 100px;
-	}
 }
 .key.disabled {
 	background: #aaa;
@@ -101,6 +85,54 @@ body {
 .wizard2.animating {
 	opacity: 1;
 	animation: scrollWizard2 4.5s 1;
+}
+
+@media screen and (max-width: 767px) {
+	body {
+		overflow: auto;
+	}
+	.key, .spacebar {
+		height: 30px;
+		line-height: 30px;
+	}
+	.key {
+		width: 30px;
+		min-width: 30px;
+	}
+	.spacebar {
+		width: 150px;
+	}
+	.soundboard-inner {
+		width: 575px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.key, .spacebar {
+		height: 20px;
+		line-height: 20px;
+	}
+	.key {
+		width: 20px;
+		min-width: 20px;
+	}
+	.spacebar {
+		width: 100px;
+	}
+	.soundboard-inner {
+		width: 475px;
+	}
+}
+@media screen and (max-width: 500px) {
+	.soundboard-inner {
+		width: auto;
+	}
+	.soundboard-inner .key {
+		width: 40px;
+		min-width: 40px;
+		height: 40px;
+		min-height: 40px;
+		line-height: 40px;
+	}
 }
 
 @keyframes scrollWizard {
