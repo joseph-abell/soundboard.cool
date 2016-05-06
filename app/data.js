@@ -85,12 +85,12 @@ export default {
 		{
 			id: 0,
 			numberKey: '0',
-			title: 'Intros, Outros, Songs and Stings'
+			title: 'Intros, Outros, and Stings'
 		},
 	],
 	soundboards: [
 		{
-			title: "Intros, Outros, Songs and Stings",
+			title: "Intros, Outros, and Stings",
 			rows: [
 				{
 					id: 0,
