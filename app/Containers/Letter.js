@@ -10,6 +10,7 @@ let fireRef = new Firebase('https://soundboardcool.firebaseio.com/')
 const mapStateToProps = (state) => {
 	return {
 		soundboard: state.soundboard,
+		canAnimate: state.canAnimate,
 		killBearButton: state.killBearButton,
 		globalCounter: state.globalCounter,
 		personalCounter: state.personalCounter,
@@ -20,11 +21,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLetterClick: (foundKey, soundboardName, globalCounter, personalCount, baboos, wizards) => {
-			if (isPlaying === true) {
-				return;
-			}
-
+		onLetterClick: (foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards) => {
 			fireRef.update({'globalCounter': ++globalCounter})
 			dispatch(personalCounter(++personalCount))
 
@@ -32,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(animation(foundKey.animation))
 			}
 
-			foundKey.rules(foundKey, dispatch, [baboos, wizards]);
+			foundKey.rules(foundKey, dispatch, [baboos, wizards, canAnimate]);
 		}
 	}
 }

@@ -4,7 +4,8 @@ import {
 	toggleKillBearVisible, 
 	togglePlaying, 
 	animation,
-	soundboard, 
+	soundboard,
+	canAnimate, 
 	wizards
 } from './Actions'
 let fireRef = new Firebase('https://soundboardcool.firebaseio.com/');
@@ -18,6 +19,27 @@ const defaultActionNoAnimation = (dispatch, audioTitle, audioFileUrl) => {
 		autoPlay: true,
 		onfinish: () => {
 			dispatch(togglePlaying())
+		}
+	});	
+}
+const defaultActionWithAnimation = (dispatch, audioTitle, audioFileUrl, animationType, isNotAnimating) => {
+	dispatch(togglePlaying(audioTitle))
+	const canThisAnimate = isNotAnimating;
+	const mySound = soundManager.createSound({
+		url: audioFileUrl,
+		autoPlay: true,
+		onplay: () => {
+			if (canThisAnimate) {
+				dispatch(animation(animationType))	
+				dispatch(canAnimate(false))
+			}
+		},
+		onfinish: () => {
+			dispatch(togglePlaying())
+			if (canThisAnimate) {
+				dispatch(animation(''))
+				dispatch(canAnimate(true))
+			}
 		}
 	});	
 }
@@ -88,19 +110,8 @@ export default {
 								'./audio/Jingles/Wizard.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								dispatch(togglePlaying(foundKey.audioTitle))
-								const mySound = soundManager.createSound({
-									url: foundKey.urls[0],
-									autoPlay: true,
-									onplay: () => {
-										dispatch(animation('Wizard'))
-										fireRef.update({'wizards': ++optionalExtras[1]})
-									},
-									onfinish: () => {
-										dispatch(togglePlaying(''))
-										dispatch(animation(''))
-									}
-								});	
+								fireRef.update({'wizards': ++optionalExtras[1]})
+								defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2])
 							}
 						},
 						{

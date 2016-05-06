@@ -7,6 +7,7 @@ import {
 	TOGGLE_KILL_BEAR_VISIBLE,
 	KILL_BEAR,
 	ANIMATION,
+	CAN_ANIMATE,
 	PERSONAL_COUNTER,
 	GLOBAL_COUNTER,
 	BEARS_KILLED,
@@ -83,6 +84,15 @@ const animation = ( state = '', action) => {
 	}
 }
 
+const canAnimate = ( state = true, action) => {
+	switch (action.type) {
+		case (CAN_ANIMATE):
+			return action.canAnimate
+		default:
+			return state
+	}
+}
+
 const personalCounter = ( state = 0, action) => {
 	switch(action.type) {
 		case (PERSONAL_COUNTER):
@@ -154,6 +164,7 @@ const soundboardApp = combineReducers(
 		toggleKillBearVisible,
 		killBear,
 		animation,
+		canAnimate,
 		personalCounter,
 		globalCounter,
 		bearsKilled,

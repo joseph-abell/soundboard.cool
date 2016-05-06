@@ -5,7 +5,8 @@ export default class App extends React.Component {
   render() {
   	const { 
       letter, 
-      soundboard, 
+      soundboard,
+      canAnimate,
       onLetterClick,
       globalCounter, 
       personalCounter,
@@ -37,7 +38,7 @@ export default class App extends React.Component {
 
     if (foundKey.urls) {
     	return (<div className="key" id={"key" + letter} onClick={() => {
-    		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, baboos, wizards)
+    		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards)
     	}}>{letter}</div>)	
     } else {
     	return (<div className="key disabled">{letter}</div>)

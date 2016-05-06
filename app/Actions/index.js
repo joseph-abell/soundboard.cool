@@ -44,6 +44,15 @@ export function animation (animation) {
 	}
 }
 
+export const CAN_ANIMATE = "CAN_ANIMATE"
+
+export function canAnimate (canAnimate) {
+	return {
+		type: CAN_ANIMATE,
+		canAnimate: canAnimate
+	}
+}
+
 export const PERSONAL_COUNTER = "PERSONAL_COUNTER"
 
 export function personalCounter (personalCounter) {
