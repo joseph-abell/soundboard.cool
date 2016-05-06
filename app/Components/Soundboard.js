@@ -52,7 +52,7 @@ export default class Soundboard extends React.Component {
 			return (
 				<div className="soundboard">
 					<h1>{soundboard}</h1>
-					<h2>Playing: {keyTitle || "Sweet, sweet silence"}</h2>
+					<h2>Last Played: {keyTitle || "Sweet, sweet silence"}</h2>
 					<div className="row">
 						{numberKeys}
 					</div>

@@ -16,10 +16,7 @@ const defaultActionNoAnimation = (dispatch, audioTitle, audioFileUrl) => {
 
 	const mySound = soundManager.createSound({
 		url: audioFileUrl,
-		autoPlay: true,
-		onfinish: () => {
-			dispatch(togglePlaying())
-		}
+		autoPlay: true
 	});	
 }
 const defaultActionWithAnimation = (dispatch, audioTitle, audioFileUrl, animationType, isNotAnimating) => {
@@ -35,7 +32,6 @@ const defaultActionWithAnimation = (dispatch, audioTitle, audioFileUrl, animatio
 			}
 		},
 		onfinish: () => {
-			dispatch(togglePlaying())
 			if (canThisAnimate) {
 				dispatch(animation(''))
 				dispatch(canAnimate(true))
@@ -227,7 +223,6 @@ export default {
 									url: foundKey.urls[0],
 									autoPlay: true,
 									onfinish: () => {
-										dispatch(togglePlaying(''))
 										dispatch(animation(''))
 										dispatch(soundboard('Baboo'))
 									}
@@ -524,10 +519,7 @@ export default {
 											onstop: () => {
 												mySound = soundManager.createSound({
 													url: foundKey.urls[2],
-													autoPlay: true,
-													onfinish: () => {
-														dispatch(togglePlaying())
-													}
+													autoPlay: true
 												})
 											}
 										})
