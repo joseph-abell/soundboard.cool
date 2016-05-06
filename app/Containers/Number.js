@@ -6,7 +6,8 @@ import data from '../data'
 const mapStateToProps = (state) => {
 	return {
 		soundboard: state.soundboard,
-		isPlaying: state.togglePlaying.isPlaying
+		isPlaying: state.togglePlaying.isPlaying,
+		killBearButton: state.toggleKillBearVisible.killBearButton,
 	}
 }
 

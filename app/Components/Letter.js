@@ -37,7 +37,7 @@ export default class App extends React.Component {
     }
       
 
-    if (foundKey.urls && killBearButton !== 1 && killBearButton !== 2 ) {
+    if (foundKey.urls && killBearButton === 0 ) {
     	return (<div className="key" id={"key" + letter} onClick={() => {
     		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards)
     	}}>{letter}</div>)	

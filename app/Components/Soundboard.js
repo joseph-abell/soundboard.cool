@@ -62,6 +62,7 @@ export default class Soundboard extends React.Component {
 						<h3>Sounds</h3>
 						{rows}
 						{killBearButton === 1 && <div className="spacebar disabled">Wait for it...</div>}
+						{killBearButton === 3 && <div className="spacebar disabled">You Monster</div>}
 						<KillButton />
 					</div>
 				</div>
