@@ -146,7 +146,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "html {\n\toverflow: hidden;\n\theight: 100%;\n}\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\tmax-height: 100%;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\tmin-width: 40px;\n}\n@media screen and (max-width: 767px) {\n\t.key, .spacebar {\n\t\theight: 30px;\n\t\tline-height: 30px;\n\t}\n\t.key {\n\t\twidth: 30px;\n\t}\n\t.spacebar {\n\t\twidth: 150px;\n\t}\n}\n@media screen and (max-width: 600px) {\n\t.key, .spacebar {\n\t\theight: 20px;\n\t\tline-height: 20px;\n\t}\n\t.key {\n\t\twidth: 20px;\n\t}\n\t.spacebar {\n\t\twidth: 100px;\n\t}\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard,\n.wizard2 {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n\topacity: 0;\n}\n.wizard {\n\tleft: -500px;\n}\n.wizard2 {\n\tright: -500px;\n\ttransform: rotateY(180deg);\n}\n.wizard.animating {\n\topacity: 1;\n\tanimation: scrollWizard 4.5s 1;\n}\n.wizard2.animating {\n\topacity: 1;\n\tanimation: scrollWizard2 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 0;\n  }\n  100% {\n    bottom: -500px;\n    left: -500px;\n  }\n}\n\n@keyframes scrollWizard2 {\n  0% {\n    bottom: -500px;\n    right: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tright: 0;\n  }\n  100% {\n    bottom: -500px;\n    right: -500px;\n  }\n}", ""]);
+	exports.push([module.id, "html {\n\toverflow: hidden;\n\theight: 100%;\n}\nbody {\n\tfont-family: 'Roboto', sans-serif;\n\tpadding: 0;\n\tmargin: 0;\n\tmax-height: 100%;\n\toverflow: hidden;\n}\n.clear {\n\tclear: both;\n}\n\n.header {\n\ttext-align: center;\n}\n\n.soundboard {\n\tpadding: 10px;\n\ttext-align: center;\n}\n.key, .spacebar {\n\tdisplay: inline-block;\n\tfont-size: 20px;\n\tborder: 1px solid #ddd;\n\tbackground: #000;\n\tcolor: #fff;\n\theight: 40px;\n\ttext-align: center;\n\tline-height: 40px;\n\tborder-radius: 6px;\n\tpadding: 10px;\n\tmargin: 2px;\n\ttext-transform: uppercase;\n\tcursor: pointer;\n}\n.key {\n\tmin-width: 40px;\n}\n@media screen and (max-width: 767px) {\n\t.key, .spacebar {\n\t\theight: 30px;\n\t\tline-height: 30px;\n\t}\n\t.key {\n\t\twidth: 30px;\n\t\tmin-width: 30px;\n\t}\n\t.spacebar {\n\t\twidth: 150px;\n\t}\n}\n@media screen and (max-width: 600px) {\n\t.key, .spacebar {\n\t\theight: 20px;\n\t\tline-height: 20px;\n\t}\n\t.key {\n\t\twidth: 20px;\n\t\tmin-width: 20px;\n\t}\n\t.spacebar {\n\t\twidth: 100px;\n\t}\n}\n.key.disabled {\n\tbackground: #aaa;\n\tcursor: default;\n}\n.spacebar { \n    width: 200px;\n    margin: 0 auto;\n    display: block;\n}\n\n.wizard,\n.wizard2 {\n\tcontent: '';\n\twidth: 1000px;\n\theight: 500px;\n\tposition: absolute;\n\tbottom: -500px;\n\tbackground: url(" + __webpack_require__(4) + ") no-repeat top center;\n\topacity: 0;\n}\n.wizard {\n\tleft: -500px;\n}\n.wizard2 {\n\tright: -500px;\n\ttransform: rotateY(180deg);\n}\n.wizard.animating {\n\topacity: 1;\n\tanimation: scrollWizard 4.5s 1;\n}\n.wizard2.animating {\n\topacity: 1;\n\tanimation: scrollWizard2 4.5s 1;\n}\n\n@keyframes scrollWizard {\n  0% {\n    bottom: -500px;\n    left: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tleft: 0;\n  }\n  100% {\n    bottom: -500px;\n    left: -500px;\n  }\n}\n\n@keyframes scrollWizard2 {\n  0% {\n    bottom: -500px;\n    right: -500px;\n  }\n  10% {\n  \tbottom: 0;\n  }\n  90% {\n  \tbottom: 0;\n  \tright: 0;\n  }\n  100% {\n    bottom: -500px;\n    right: -500px;\n  }\n}", ""]);
 
 	// exports
 
@@ -22594,6 +22594,18 @@
 		}
 	};
 
+	var canAnimate = function canAnimate() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.CAN_ANIMATE:
+				return action.canAnimate;
+			default:
+				return state;
+		}
+	};
+
 	var personalCounter = function personalCounter() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
 		var action = arguments[1];
@@ -22685,6 +22697,7 @@
 		toggleKillBearVisible: toggleKillBearVisible,
 		killBear: killBear,
 		animation: animation,
+		canAnimate: canAnimate,
 		personalCounter: personalCounter,
 		globalCounter: globalCounter,
 		bearsKilled: bearsKilled,
@@ -22710,6 +22723,7 @@
 	exports.toggleInstructions = toggleInstructions;
 	exports.toggleKillBearVisible = toggleKillBearVisible;
 	exports.animation = animation;
+	exports.canAnimate = canAnimate;
 	exports.personalCounter = personalCounter;
 	exports.globalCounter = globalCounter;
 	exports.bearsKilled = bearsKilled;
@@ -22728,10 +22742,9 @@
 
 	var TOGGLE_PLAYING = exports.TOGGLE_PLAYING = "TOGGLE_PLAYING";
 
-	function togglePlaying(isPlaying, title) {
+	function togglePlaying(title) {
 		return {
 			type: TOGGLE_PLAYING,
-			isPlaying: isPlaying,
 			title: title
 		};
 	}
@@ -22761,6 +22774,15 @@
 		return {
 			type: ANIMATION,
 			animation: animation
+		};
+	}
+
+	var CAN_ANIMATE = exports.CAN_ANIMATE = "CAN_ANIMATE";
+
+	function canAnimate(canAnimate) {
+		return {
+			type: CAN_ANIMATE,
+			canAnimate: canAnimate
 		};
 	}
 
@@ -23174,7 +23196,7 @@
 						_react2.default.createElement(
 							'h2',
 							null,
-							'Playing: ',
+							'Last Played: ',
 							keyTitle || "Sweet, sweet silence"
 						),
 						_react2.default.createElement(
@@ -23232,7 +23254,7 @@
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
 			soundboard: state.soundboard,
-			isPlaying: state.togglePlaying.isPlaying,
+			canAnimate: state.canAnimate,
 			killBearButton: state.killBearButton,
 			globalCounter: state.globalCounter,
 			personalCounter: state.personalCounter,
@@ -23243,11 +23265,7 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onLetterClick: function onLetterClick(foundKey, soundboardName, isPlaying, globalCounter, personalCount, baboos, wizards) {
-				if (isPlaying === true) {
-					return;
-				}
-
+			onLetterClick: function onLetterClick(foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards) {
 				fireRef.update({ 'globalCounter': ++globalCounter });
 				dispatch((0, _Actions.personalCounter)(++personalCount));
 
@@ -23255,7 +23273,7 @@
 					dispatch((0, _Actions.animation)(foundKey.animation));
 				}
 
-				foundKey.rules(foundKey, dispatch, [baboos, wizards]);
+				foundKey.rules(foundKey, dispatch, [baboos, wizards, canAnimate]);
 			}
 		};
 	};
@@ -23307,7 +23325,7 @@
 	      var _props = this.props;
 	      var letter = _props.letter;
 	      var soundboard = _props.soundboard;
-	      var isPlaying = _props.isPlaying;
+	      var canAnimate = _props.canAnimate;
 	      var onLetterClick = _props.onLetterClick;
 	      var globalCounter = _props.globalCounter;
 	      var personalCounter = _props.personalCounter;
@@ -23336,11 +23354,11 @@
 	        }
 	      }
 
-	      if (foundKey.urls && isPlaying === false) {
+	      if (foundKey.urls) {
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
-	              onLetterClick(foundKey, soundboard, isPlaying, globalCounter, personalCounter, baboos, wizards);
+	              onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards);
 	            } },
 	          letter
 	        );
@@ -23381,6 +23399,35 @@
 
 	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
+	var defaultActionNoAnimation = function defaultActionNoAnimation(dispatch, audioTitle, audioFileUrl) {
+		dispatch((0, _Actions.togglePlaying)(audioTitle));
+
+		var mySound = _soundmanager.soundManager.createSound({
+			url: audioFileUrl,
+			autoPlay: true
+		});
+	};
+	var defaultActionWithAnimation = function defaultActionWithAnimation(dispatch, audioTitle, audioFileUrl, animationType, isNotAnimating) {
+		dispatch((0, _Actions.togglePlaying)(audioTitle));
+		var canThisAnimate = isNotAnimating;
+		var mySound = _soundmanager.soundManager.createSound({
+			url: audioFileUrl,
+			autoPlay: true,
+			onplay: function onplay() {
+				if (canThisAnimate) {
+					dispatch((0, _Actions.animation)(animationType));
+					dispatch((0, _Actions.canAnimate)(false));
+				}
+			},
+			onfinish: function onfinish() {
+				if (canThisAnimate) {
+					dispatch((0, _Actions.animation)(''));
+					dispatch((0, _Actions.canAnimate)(true));
+				}
+			}
+		});
+	};
+
 	exports.default = {
 		numbers: [{
 			id: 1,
@@ -23416,10 +23463,10 @@
 		}, {
 			id: 0,
 			numberKey: '0',
-			title: 'Intros, Outros, Songs and Stings'
+			title: 'Intros, Outros, and Stings'
 		}],
 		soundboards: [{
-			title: "Intros, Outros, Songs and Stings",
+			title: "Intros, Outros, and Stings",
 			rows: [{
 				id: 0,
 				keys: [{
@@ -23432,19 +23479,8 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onplay: function onplay() {
-								dispatch((0, _Actions.animation)('Wizard'));
-								fireRef.update({ 'wizards': ++optionalExtras[1] });
-							},
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
 					}
 				}, {
 					title: 'e',
@@ -23471,15 +23507,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'p',
@@ -23537,12 +23565,11 @@
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
 						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
+						dispatch((0, _Actions.togglePlaying)(foundKey.audioTitle));
 						var mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
 							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
 								dispatch((0, _Actions.animation)(''));
 								dispatch((0, _Actions.soundboard)('Baboo'));
 							}
@@ -23559,15 +23586,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}]
 			}]
@@ -23606,15 +23625,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'p',
@@ -23761,7 +23772,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
+						dispatch((0, _Actions.togglePlaying)(foundKey.audioTitle));
 
 						var visibleButton = false;
 						var mySound = void 0,
@@ -23786,10 +23797,7 @@
 									onstop: function onstop() {
 										mySound = _soundmanager.soundManager.createSound({
 											url: foundKey.urls[2],
-											autoPlay: true,
-											onfinish: function onfinish() {
-												dispatch((0, _Actions.togglePlaying)(false));
-											}
+											autoPlay: true
 										});
 									}
 								});
@@ -23830,16 +23838,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'u',
@@ -24001,16 +24000,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						dispatch((0, _Actions.togglePlaying)(true, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.togglePlaying)(false, ''));
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}]
 			}]
@@ -24028,16 +24018,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'e',
@@ -24046,16 +24027,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'r',
@@ -24067,16 +24039,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'y',
@@ -24085,16 +24048,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'u',
@@ -24103,16 +24057,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'i',
@@ -24133,16 +24078,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 's',
@@ -24151,16 +24087,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'd',
@@ -24169,16 +24096,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'f',
@@ -24187,16 +24105,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'g',
@@ -24205,16 +24114,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'h',
@@ -24223,16 +24123,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'j',
@@ -24241,16 +24132,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
-						dispatch((0, _Actions.togglePlaying)(false, foundKey.audioTitle));
-
-						var mySound = _soundmanager.soundManager.createSound({
-							url: foundKey.urls[0],
-							autoPlay: true,
-							onfinish: function onfinish() {
-								dispatch((0, _Actions.animation)(''));
-							}
-						});
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'k',
@@ -30704,7 +30586,7 @@
 				var enabled = _props.enabled;
 
 
-				if (isPlaying === false && enabled === true) {
+				if (enabled === true) {
 					return _react2.default.createElement(
 						"div",
 						{ className: "key", id: "key" + numberKey, onClick: function onClick() {
@@ -31040,7 +30922,7 @@
 	        };
 	      } else {
 	        styles = {
-	          width: 50,
+	          width: 38,
 	          height: 20,
 	          overflow: 'hidden',
 	          top: 0,
@@ -31063,7 +30945,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'h3',
-	            null,
+	            { style: { marginTop: 0, marginBottom: 5 } },
 	            'Your Stats'
 	          ),
 	          _react2.default.createElement(
@@ -31074,7 +30956,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'h3',
-	            null,
+	            { style: { marginBottom: 5 } },
 	            'Global Stats'
 	          ),
 	          _react2.default.createElement(
