@@ -120,7 +120,14 @@ export default {
 						},
 						{
 							title: 'e',
-							audioTitle: ''
+							audioTitle: 'Wizard',
+							urls: [
+								'./audio/Intros/Wizard3.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'wizards': ++optionalExtras[1]})
+								defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2])								
+							}
 						},
 						{
 							title: 'r',

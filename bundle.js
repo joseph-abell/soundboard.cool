@@ -23036,7 +23036,14 @@
 					}
 				}, {
 					title: 'e',
-					audioTitle: ''
+					audioTitle: 'Wizard',
+					urls: ['./audio/Intros/Wizard3.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
+					}
 				}, {
 					title: 'r',
 					audioTitle: ''
