@@ -23107,7 +23107,13 @@
 					audioTitle: ''
 				}, {
 					title: 'n',
-					audioTitle: ''
+					audioTitle: 'No Game Disc or Cartridge',
+					urls: ['./audio/Intro/NoDiscOrCartridge.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'm',
 					audioTitle: 'Morning Show',

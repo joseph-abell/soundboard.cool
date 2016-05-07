@@ -217,7 +217,13 @@ export default {
 						},
 						{
 							title: 'n',
-							audioTitle: ''
+							audioTitle: 'No Game Disc or Cartridge',
+							urls: [
+								'./audio/Intro/NoDiscOrCartridge.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'm',
