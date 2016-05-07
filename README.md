@@ -1,9 +1,11 @@
 # soundboard.cool
 
 Prerequisites:
+
 Node. go to https://nodejs.org/en/download/ to download it, and follow the instructions for installation.
 
 Installation:
+
 1: download this project, either using git, github's software, or sourcetree.
 
 2: open up your command prompt. For windows, press the windows button, and search for cmd, and press enter. For Macs, open up your Terminal, or terminal alternative.
