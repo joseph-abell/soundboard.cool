@@ -23008,10 +23008,10 @@
 		}, {
 			id: 0,
 			numberKey: '0',
-			title: 'Intros, Outros, and Stings'
+			title: 'Intros, Outros, Songs and Stings'
 		}],
 		soundboards: [{
-			title: "Intros, Outros, and Stings",
+			title: "Intros, Outros, Songs and Stings",
 			rows: [{
 				id: 0,
 				keys: [{
@@ -23072,7 +23072,13 @@
 					audioTitle: ''
 				}, {
 					title: 's',
-					audioTitle: ''
+					audioTitle: 'Oh Snap',
+					urls: ['./audio/Intros/OhSnap.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'd',
 					audioTitle: ''

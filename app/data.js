@@ -86,12 +86,12 @@ export default {
 		{
 			id: 0,
 			numberKey: '0',
-			title: 'Intros, Outros, and Stings'
+			title: 'Intros, Outros, Songs and Stings'
 		},
 	],
 	soundboards: [
 		{
-			title: "Intros, Outros, and Stings",
+			title: "Intros, Outros, Songs and Stings",
 			rows: [
 				{
 					id: 0,
@@ -167,7 +167,13 @@ export default {
 						},
 						{
 							title: 's',
-							audioTitle: ''
+							audioTitle: 'Oh Snap',
+							urls: [
+								'./audio/Intros/OhSnap.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'd',
