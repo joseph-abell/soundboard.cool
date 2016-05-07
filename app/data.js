@@ -98,7 +98,14 @@ export default {
 					keys: [
 						{
 							title: 'q',
-							audioTitle: ''
+							audioTitle: 'Wizard',
+							urls: [
+								'./audio/Intros/Wizard2.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'wizards': ++optionalExtras[1]})
+								defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2])
+							}
 						},
 						{
 							title: 'w',
@@ -219,7 +226,7 @@ export default {
 							title: 'n',
 							audioTitle: 'No Game Disc or Cartridge',
 							urls: [
-								'./audio/Intro/NoDiscOrCartridge.mp3'
+								'./audio/Intro/NoDiscOrCartidge.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);

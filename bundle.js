@@ -23016,7 +23016,14 @@
 				id: 0,
 				keys: [{
 					title: 'q',
-					audioTitle: ''
+					audioTitle: 'Wizard',
+					urls: ['./audio/Intros/Wizard2.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
+					}
 				}, {
 					title: 'w',
 					audioTitle: 'Wizard',
@@ -23108,7 +23115,7 @@
 				}, {
 					title: 'n',
 					audioTitle: 'No Game Disc or Cartridge',
-					urls: ['./audio/Intro/NoDiscOrCartridge.mp3'],
+					urls: ['./audio/Intro/NoDiscOrCartidge.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
