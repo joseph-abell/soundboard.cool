@@ -23597,10 +23597,24 @@
 					}
 				}, {
 					title: 'e',
-					audioTitle: ''
+					audioTitle: 'Baboo',
+					urls: ['./audio/Baboo/baboo003.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'r',
-					audioTitle: ''
+					audioTitle: 'Baboo',
+					urls: ['./audio/Baboo/baboo004.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 't',
 					audioTitle: ''

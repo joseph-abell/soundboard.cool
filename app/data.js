@@ -850,11 +850,25 @@ export default {
 						},
 						{
 							title: 'e',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/baboo003.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'r',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/baboo004.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 't',
