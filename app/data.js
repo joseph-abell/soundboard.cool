@@ -115,7 +115,7 @@ export default {
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'wizards': ++optionalExtras[1]})
-								defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2])
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
@@ -226,7 +226,7 @@ export default {
 							title: 'n',
 							audioTitle: 'No Game Disc or Cartridge',
 							urls: [
-								'./audio/Intro/NoDiscOrCartidge.mp3'
+								'./audio/Intros/NoDiscOrCartidge.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);

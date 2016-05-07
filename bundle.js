@@ -23032,7 +23032,7 @@
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
 						fireRef.update({ 'wizards': ++optionalExtras[1] });
-						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'e',
@@ -23115,7 +23115,7 @@
 				}, {
 					title: 'n',
 					audioTitle: 'No Game Disc or Cartridge',
-					urls: ['./audio/Intro/NoDiscOrCartidge.mp3'],
+					urls: ['./audio/Intros/NoDiscOrCartidge.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
