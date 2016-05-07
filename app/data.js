@@ -126,7 +126,7 @@ export default {
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'wizards': ++optionalExtras[1]})
-								defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2])								
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
 						{
