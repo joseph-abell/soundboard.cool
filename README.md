@@ -10,11 +10,7 @@ Installation:
 
 3: change directories to the root folder of this project.
 
-4: run 'npm install  -g n'
-
-5: When done, run 'n latest'. Thi makes sure you are running a compatible version of node, and it's package control manager, npm
-
-6: run 'npm install'. This will install all the dependencies that you need.
+4: run 'npm install'. This will install all the dependencies that you need.
 
 To run, for development:
 
