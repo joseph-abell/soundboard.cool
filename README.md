@@ -1,10 +1,10 @@
 # soundboard.cool
 
-Prerequisites:
+## Prerequisites:
 
 Node. go to https://nodejs.org/en/download/ to download it, and follow the instructions for installation.
 
-Installation:
+## Installation:
 
 1: download this project, either using git, github's software, or sourcetree.
 
@@ -14,10 +14,10 @@ Installation:
 
 4: run 'npm install'. This will install all the dependencies that you need.
 
-To run, for development:
+## To run, for development:
 
 In your command line, make sure you are still at the root directory of the project, run 'npm run start'. This will start up a server for you, for development purposes.
 
-To build:
+## To build:
 
 When you are happy with your changes, run 'npm run build', to run a packaged version. Then check your changes in using the git software of your choice.
