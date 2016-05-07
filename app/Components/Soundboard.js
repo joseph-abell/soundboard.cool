@@ -52,14 +52,12 @@ export default class Soundboard extends React.Component {
 		} else {
 			return (
 				<div className="soundboard">
-					<h1>Current Soundboard: {soundboard}</h1>
-					<h2>Last Played: {keyTitle || "Sweet, sweet silence"}</h2>
 					<div className="row soundboard-inner">
-						<h3>Soundboards</h3>
+						<h2>Soundboards: {soundboard}</h2>
 						{numberKeys}
 					</div>
 					<div className="soundboard-inner" key={trueSoundboard.title}>
-						<h3>Sounds</h3>
+						<h2>Sounds: {keyTitle || "Sweet, sweet silence"}</h2>
 						{rows}
 						{killBearButton === 1 && <div className="spacebar disabled">Wait for it...</div>}
 						{killBearButton === 3 && <div className="spacebar disabled">You Monster</div>}

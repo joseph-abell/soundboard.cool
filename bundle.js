@@ -22720,24 +22720,13 @@
 						'div',
 						{ className: 'soundboard' },
 						_react2.default.createElement(
-							'h1',
-							null,
-							'Current Soundboard: ',
-							soundboard
-						),
-						_react2.default.createElement(
-							'h2',
-							null,
-							'Last Played: ',
-							keyTitle || "Sweet, sweet silence"
-						),
-						_react2.default.createElement(
 							'div',
 							{ className: 'row soundboard-inner' },
 							_react2.default.createElement(
-								'h3',
+								'h2',
 								null,
-								'Soundboards'
+								'Soundboards: ',
+								soundboard
 							),
 							numberKeys
 						),
@@ -22745,9 +22734,10 @@
 							'div',
 							{ className: 'soundboard-inner', key: trueSoundboard.title },
 							_react2.default.createElement(
-								'h3',
+								'h2',
 								null,
-								'Sounds'
+								'Sounds: ',
+								keyTitle || "Sweet, sweet silence"
 							),
 							rows,
 							killBearButton === 1 && _react2.default.createElement(
