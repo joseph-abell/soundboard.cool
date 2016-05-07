@@ -23022,7 +23022,7 @@
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
 						fireRef.update({ 'wizards': ++optionalExtras[1] });
-						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
 					title: 'w',
@@ -23032,7 +23032,7 @@
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
 						fireRef.update({ 'wizards': ++optionalExtras[1] });
-						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
 					}
 				}, {
 					title: 'e',
