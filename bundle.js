@@ -23114,10 +23114,22 @@
 					audioTitle: ''
 				}, {
 					title: 'v',
-					audioTitle: ''
+					audioTitle: 'Video Games',
+					urls: ['./audio/Intros/VideoGames.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'b',
-					audioTitle: ''
+					audioTitle: 'Best Video Game',
+					urls: ['./audio/Intros/BestVideoGame.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'n',
 					audioTitle: 'No Game Disc or Cartridge',
@@ -23573,10 +23585,16 @@
 						fireRef.update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
-
 				}, {
 					title: 'w',
-					audioTitle: ''
+					audioTitle: 'Baboo',
+					urls: ['./audio/Baboo/baboo002.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'e',
 					audioTitle: ''

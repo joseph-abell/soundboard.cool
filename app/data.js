@@ -222,11 +222,23 @@ export default {
 						},
 						{
 							title: 'v',
-							audioTitle: ''
+							audioTitle: 'Video Games',
+							urls: [
+								'./audio/Intros/VideoGames.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'b',
-							audioTitle: ''
+							audioTitle: 'Best Video Game',
+							urls: [
+								'./audio/Intros/BestVideoGame.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'n',
@@ -824,11 +836,17 @@ export default {
 								fireRef.update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
-
 						},
 						{
 							title: 'w',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/baboo002.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'e',
