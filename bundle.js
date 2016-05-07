@@ -23561,6 +23561,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 

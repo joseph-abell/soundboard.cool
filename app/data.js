@@ -802,6 +802,7 @@ export default {
 								'./audio/Baboo/baboo001.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 
