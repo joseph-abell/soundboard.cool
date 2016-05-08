@@ -131,11 +131,25 @@ export default {
 						},
 						{
 							title: 'r',
-							audioTitle: ''
+							audioTitle: 'Wizard',
+							urls: [
+								'./audio/Intros/Wizard4.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'wizards': ++optionalExtras[1]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 't',
-							audioTitle: ''
+							audioTitle: 'Wizard',
+							urls: [
+								'./audio/Intros/Wizard5.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'wizards': ++optionalExtras[1]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'y',
@@ -857,31 +871,21 @@ export default {
 						},
 						{
 							title: 'e',
-							audioTitle: 'Baboo',
-							urls: [
-								'./audio/Baboo/baboo003.mp3'
-							],
-							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-							}
+							audioTitle: ''
 						},
 						{
 							title: 'r',
-							audioTitle: 'Baboo',
-							urls: [
-								'./audio/Baboo/baboo004.mp3'
-							],
-							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
-								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-							}
+							audioTitle: ''
 						},
 						{
 							title: 't',
+							audioTitle: ''
+						},
+						{
+							title: 'y',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/BabooIntro.mp3'
+								'./audio/Baboo/Baboo005.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -889,24 +893,48 @@ export default {
 							}
 						},
 						{
-							title: 'y',
-							audioTitle: ''
-						},
-						{
 							title: 'u',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/Baboo006.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'i',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/Baboo007.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'o',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/Baboo009.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'p',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/Baboo010.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				},
@@ -935,19 +963,46 @@ export default {
 						},
 						{
 							title: 'h',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/baboo004.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'j',
-							audioTitle: ''
+							audioTitle: 'The Metaphorical Bird',
+							urls: [
+								'./audio/Baboo/BabooIntro.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'k',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/baboo003.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'l',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/Baboo008.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				},
@@ -956,21 +1011,20 @@ export default {
 					keys: [
 						{
 							title: 'z',
-							audioTitle: 'User Baboos (Knight)',
+							audioTitle: 'Reader Baboo (Xeneth)',
 							urls: [
-								'./audio/Baboo/knight_baboo.mp3'
+								'./audio/Baboo/BabooXeneth001.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
-							
 						},
 						{
 							title: 'x',
-							audioTitle: 'User Baboos (Xeneth)',
+							audioTitle: 'Reader Baboo (Xeneth)',
 							urls: [
-								'./audio/Baboo/BabooXeneth.mp3'
+								'./audio/Baboo/BabooXeneth002.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -979,23 +1033,59 @@ export default {
 						},
 						{
 							title: 'c',
-							audioTitle: ''
+							audioTitle: 'Reader Baboo (Knight)',
+							urls: [
+								'./audio/Baboo/BabooKnight001.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
+							
 						},
 						{
 							title: 'v',
-							audioTitle: ''
+							audioTitle: 'Reader Baboo (Knight)',
+							urls: [
+								'./audio/Baboo/BabooKnight002.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'b',
-							audioTitle: ''
+							audioTitle: 'Reader Baboo (Knight)',
+							urls: [
+								'./audio/Baboo/BabooKnight003.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'n',
-							audioTitle: ''
+							audioTitle: 'Reader Baboo (Knight)',
+							urls: [
+								'./audio/Baboo/BabooKnight004.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'm',
-							audioTitle: ''
+							audioTitle: 'Reader Baboo (Knight)',
+							urls: [
+								'./audio/Baboo/BabooKnight005.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				}
