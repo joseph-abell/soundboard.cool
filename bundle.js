@@ -23624,7 +23624,14 @@
 					}
 				}, {
 					title: 't',
-					audioTitle: ''
+					audioTitle: 'Baboo',
+					urls: ['./audio/Baboo/BabooIntro.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'y',
 					audioTitle: ''
@@ -23675,17 +23682,25 @@
 				id: 2,
 				keys: [{
 					title: 'z',
-					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/BabooIntro.mp3'],
+					audioTitle: 'User Baboos (Knight)',
+					urls: ['./audio/Baboo/knight_baboo.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
 						fireRef.update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
+
 				}, {
 					title: 'x',
-					audioTitle: ''
+					audioTitle: 'User Baboos (Xeneth)',
+					urls: ['./audio/Baboo/BabooXeneth.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'c',
 					audioTitle: ''

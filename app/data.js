@@ -879,7 +879,14 @@ export default {
 						},
 						{
 							title: 't',
-							audioTitle: ''
+							audioTitle: 'Baboo',
+							urls: [
+								'./audio/Baboo/BabooIntro.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'y',
@@ -949,18 +956,26 @@ export default {
 					keys: [
 						{
 							title: 'z',
-							audioTitle: 'Baboo',
+							audioTitle: 'User Baboos (Knight)',
 							urls: [
-								'./audio/Baboo/BabooIntro.mp3'
+								'./audio/Baboo/knight_baboo.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
+							
 						},
 						{
 							title: 'x',
-							audioTitle: ''
+							audioTitle: 'User Baboos (Xeneth)',
+							urls: [
+								'./audio/Baboo/BabooXeneth.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'c',
