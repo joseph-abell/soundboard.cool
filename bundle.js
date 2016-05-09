@@ -22931,6 +22931,8 @@
 		value: true
 	});
 
+	var _ref;
+
 	var _soundmanager = __webpack_require__(201);
 
 	var _firebase = __webpack_require__(33);
@@ -22940,6 +22942,8 @@
 	var _Actions = __webpack_require__(192);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
@@ -23219,10 +23223,22 @@
 					audioTitle: ''
 				}, {
 					title: 's',
-					audioTitle: ''
+					audioTitle: 'Strange',
+					urls: ['./audio/Nick/Strange.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'd',
-					audioTitle: ''
+					audioTitle: 'DuhDuh, DuhDuh, DuhDuh (Money Sound)',
+					urls: ['./audio/Nick/DuhDuhDuh.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'f',
 					audioTitle: ''
@@ -23285,7 +23301,13 @@
 					audioTitle: ''
 				}, {
 					title: 't',
-					audioTitle: ''
+					audioTitle: 'That\'s Cool',
+					urls: ['./audio/Nick/ThatsCool.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'y',
 					audioTitle: ''
@@ -23304,10 +23326,14 @@
 				}]
 			}, {
 				id: 1,
-				keys: [{
+				keys: [(_ref = {
 					title: 'a',
 					audioTitle: ''
-				}, {
+				}, _defineProperty(_ref, 'audioTitle', 'All The Money'), _defineProperty(_ref, 'urls', ['./audio/Nick/AllTheMoney.mp3']), _defineProperty(_ref, 'rules', function rules(foundKey, dispatch) {
+					var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+					defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+				}), _ref), {
 					title: 's',
 					audioTitle: ''
 				}, {

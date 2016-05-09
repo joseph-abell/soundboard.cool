@@ -348,11 +348,23 @@ export default {
 						},
 						{
 							title: 's',
-							audioTitle: ''
+							audioTitle: 'Strange',
+							urls: [
+								'./audio/Nick/Strange.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'd',
-							audioTitle: ''
+							audioTitle: 'DuhDuh, DuhDuh, DuhDuh (Money Sound)',
+							urls: [
+								'./audio/Nick/DuhDuhDuh.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'f',
@@ -439,7 +451,13 @@ export default {
 						},
 						{
 							title: 't',
-							audioTitle: ''
+							audioTitle: 'That\'s Cool',
+							urls: [
+								'./audio/Nick/ThatsCool.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'y',
@@ -468,7 +486,14 @@ export default {
 					keys: [
 						{
 							title: 'a',
-							audioTitle: ''
+							audioTitle: '',
+							audioTitle: 'All The Money',
+							urls: [
+								'./audio/Nick/AllTheMoney.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 's',
