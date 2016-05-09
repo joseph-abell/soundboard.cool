@@ -934,7 +934,7 @@ export default {
 							title: 'y',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/Baboo005.mp3'
+								'./audio/Baboo/baboo005.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -945,7 +945,7 @@ export default {
 							title: 'u',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/Baboo006.mp3'
+								'./audio/Baboo/baboo006.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -956,7 +956,7 @@ export default {
 							title: 'i',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/Baboo007.mp3'
+								'./audio/Baboo/baboo007.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -967,7 +967,7 @@ export default {
 							title: 'o',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/Baboo009.mp3'
+								'./audio/Baboo/baboo009.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -978,7 +978,7 @@ export default {
 							title: 'p',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/Baboo010.mp3'
+								'./audio/Baboo/baboo010.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								fireRef.update({'baboos': ++optionalExtras[0]})
@@ -1047,7 +1047,7 @@ export default {
 							title: 'l',
 							audioTitle: 'Baboo',
 							urls: [
-								'./audio/Baboo/Baboo008.mp3'
+								'./audio/Baboo/baboo008.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
