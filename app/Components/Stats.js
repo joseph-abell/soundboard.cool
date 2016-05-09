@@ -21,11 +21,14 @@ class Stats extends Component {
         right: 0,
         textAlign: 'right',
         padding: 20,
-        background: '#333',
-        color: '#fff',
+        background: '#ddd',
+        color: '#333',
         width: 'auto',
         height: 'auto',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        borderBottomLeftRadius: 3,
+        borderBottom: "1px solid #333",
+        borderLeft: "1px solid #333"
       }
     } else {
       styles = {
@@ -34,11 +37,14 @@ class Stats extends Component {
         overflow: 'hidden',
         top: 0,
         right: 0,
-        background: '#333',
-        color: '#fff',
+        background: '#ddd',
+        color: '#333',
         position: 'fixed',
         padding: 10,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        borderBottomLeftRadius: 3,
+        borderBottom: "1px solid #333",
+        borderLeft: "1px solid #333"
       }
     }
 
