@@ -348,23 +348,11 @@ export default {
 						},
 						{
 							title: 's',
-							audioTitle: 'Strange',
-							urls: [
-								'./audio/Nick/Strange.mp3'
-							],
-							rules: (foundKey, dispatch, optionalExtras = []) => {
-								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-							}
+							audioTitle: ''
 						},
 						{
 							title: 'd',
-							audioTitle: 'DuhDuh, DuhDuh, DuhDuh (Money Sound)',
-							urls: [
-								'./audio/Nick/DuhDuhDuh.mp3'
-							],
-							rules: (foundKey, dispatch, optionalExtras = []) => {
-								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-							}
+							audioTitle: ''
 						},
 						{
 							title: 'f',
@@ -435,11 +423,23 @@ export default {
 					keys: [
 						{
 							title: 'q',
-							audioTitle: ''
+							audioTitle: 'What The Hell Was That!?',
+							urls: [
+								'./audio/Nick/WhatWasThat.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'w',
-							audioTitle: ''
+							audioTitle: 'Weird',
+							urls: [
+								'./audio/Nick/weird.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'e',
@@ -497,11 +497,23 @@ export default {
 						},
 						{
 							title: 's',
-							audioTitle: ''
+							audioTitle: 'Strange',
+							urls: [
+								'./audio/Nick/Strange.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'd',
-							audioTitle: ''
+							audioTitle: 'DuhDuhDuhDuhDuhDuh',
+							urls: [
+								'./audio/Nick/DuhDuhDuh.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'f',
@@ -517,7 +529,13 @@ export default {
 						},
 						{
 							title: 'j',
-							audioTitle: ''
+							audioTitle: 'The Joker',
+							urls: [
+								'./audio/Nick/Stroke.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'k',

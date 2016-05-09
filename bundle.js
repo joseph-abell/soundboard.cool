@@ -23223,22 +23223,10 @@
 					audioTitle: ''
 				}, {
 					title: 's',
-					audioTitle: 'Strange',
-					urls: ['./audio/Nick/Strange.mp3'],
-					rules: function rules(foundKey, dispatch) {
-						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
-
-						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-					}
+					audioTitle: ''
 				}, {
 					title: 'd',
-					audioTitle: 'DuhDuh, DuhDuh, DuhDuh (Money Sound)',
-					urls: ['./audio/Nick/DuhDuhDuh.mp3'],
-					rules: function rules(foundKey, dispatch) {
-						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
-
-						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
-					}
+					audioTitle: ''
 				}, {
 					title: 'f',
 					audioTitle: ''
@@ -23289,10 +23277,22 @@
 				id: 0,
 				keys: [{
 					title: 'q',
-					audioTitle: ''
+					audioTitle: 'What The Hell Was That!?',
+					urls: ['./audio/Nick/WhatWasThat.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'w',
-					audioTitle: ''
+					audioTitle: 'Weird',
+					urls: ['./audio/Nick/weird.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'e',
 					audioTitle: ''
@@ -23335,10 +23335,22 @@
 					defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 				}), _ref), {
 					title: 's',
-					audioTitle: ''
+					audioTitle: 'Strange',
+					urls: ['./audio/Nick/Strange.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'd',
-					audioTitle: ''
+					audioTitle: 'DuhDuhDuhDuhDuhDuh',
+					urls: ['./audio/Nick/DuhDuhDuh.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'f',
 					audioTitle: ''
@@ -23350,7 +23362,13 @@
 					audioTitle: ''
 				}, {
 					title: 'j',
-					audioTitle: ''
+					audioTitle: 'The Joker',
+					urls: ['./audio/Nick/Stroke.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'k',
 					audioTitle: ''
