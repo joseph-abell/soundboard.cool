@@ -23553,7 +23553,13 @@
 					audioTitle: ''
 				}, {
 					title: 'j',
-					audioTitle: ''
+					audioTitle: 'Jake is a Liar',
+					urls: ['./audio/Sean/JakeLiar.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'k',
 					audioTitle: ''

@@ -788,7 +788,13 @@ export default {
 						},
 						{
 							title: 'j',
-							audioTitle: ''
+							audioTitle: 'Jake is a Liar',
+							urls: [
+								'./audio/Sean/JakeLiar.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}	
 						},
 						{
 							title: 'k',
