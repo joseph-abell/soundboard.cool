@@ -22554,7 +22554,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { id: 'startButton', style: { cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', padding: '20px 40px', background: '#74B3F0', fontSize: 20, borderRadius: 5 } },
+	            { id: 'startButton', style: { cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', color: '#ddd', padding: '20px 40px', background: '#714766', fontSize: 20, borderRadius: 5 } },
 	            'Start'
 	          )
 	        );
@@ -22721,7 +22721,7 @@
 						{ className: 'soundboard' },
 						_react2.default.createElement(
 							'div',
-							{ className: 'row soundboard-inner' },
+							{ className: 'row header soundboard-inner' },
 							_react2.default.createElement(
 								'h2',
 								null,
@@ -22732,7 +22732,7 @@
 						),
 						_react2.default.createElement(
 							'div',
-							{ className: 'soundboard-inner', key: trueSoundboard.title },
+							{ className: 'soundboard-inner article', key: trueSoundboard.title },
 							_react2.default.createElement(
 								'h2',
 								null,
@@ -23678,7 +23678,7 @@
 				}, {
 					title: 'y',
 					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/Baboo005.mp3'],
+					urls: ['./audio/Baboo/baboo005.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23688,7 +23688,7 @@
 				}, {
 					title: 'u',
 					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/Baboo006.mp3'],
+					urls: ['./audio/Baboo/baboo006.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23698,7 +23698,7 @@
 				}, {
 					title: 'i',
 					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/Baboo007.mp3'],
+					urls: ['./audio/Baboo/baboo007.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23708,7 +23708,7 @@
 				}, {
 					title: 'o',
 					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/Baboo009.mp3'],
+					urls: ['./audio/Baboo/baboo009.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23718,7 +23718,7 @@
 				}, {
 					title: 'p',
 					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/Baboo010.mp3'],
+					urls: ['./audio/Baboo/baboo010.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -23776,7 +23776,7 @@
 				}, {
 					title: 'l',
 					audioTitle: 'Baboo',
-					urls: ['./audio/Baboo/Baboo008.mp3'],
+					urls: ['./audio/Baboo/baboo008.mp3'],
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -30607,11 +30607,14 @@
 	          right: 0,
 	          textAlign: 'right',
 	          padding: 20,
-	          background: '#333',
-	          color: '#fff',
+	          background: '#ddd',
+	          color: '#333',
 	          width: 'auto',
 	          height: 'auto',
-	          cursor: 'pointer'
+	          cursor: 'pointer',
+	          borderBottomLeftRadius: 3,
+	          borderBottom: "1px solid #333",
+	          borderLeft: "1px solid #333"
 	        };
 	      } else {
 	        styles = {
@@ -30620,11 +30623,14 @@
 	          overflow: 'hidden',
 	          top: 0,
 	          right: 0,
-	          background: '#333',
-	          color: '#fff',
+	          background: '#ddd',
+	          color: '#333',
 	          position: 'fixed',
 	          padding: 10,
-	          cursor: 'pointer'
+	          cursor: 'pointer',
+	          borderBottomLeftRadius: 3,
+	          borderBottom: "1px solid #333",
+	          borderLeft: "1px solid #333"
 	        };
 	      }
 
