@@ -8,12 +8,17 @@ const mapStateToProps = (state) => {
 		soundboard: state.soundboard,
 		isPlaying: state.togglePlaying.isPlaying,
 		killBearButton: state.toggleKillBearVisible.killBearButton,
+		cheatMenu: state.cheatMenu
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onNumberKeyPress: (number) => {
+		onNumberKeyPress: (number, cheatMenu) => {
+			if (cheatMenu === true) {
+				return false;
+			}
+
 			for (let dataId = 0; dataId < data.numbers.length; dataId++) {
 				if (parseInt(number) == data.numbers[dataId].id) {
 					dispatch(soundboard(data.numbers[dataId].title || "Chris Remo"))

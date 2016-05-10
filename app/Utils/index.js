@@ -1,8 +1,10 @@
 $(document).ready(function () {
 	$('html').keypress(function (e) {
 		var keyCode = e.keyCode;
-
 		switch (keyCode) {
+			case (13):
+				$('#cheatMenuButton').click();
+				break;
 			case (48):
 				$('#key0').click();
 				break;

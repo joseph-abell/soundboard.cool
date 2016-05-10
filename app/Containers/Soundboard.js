@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Soundboard from '../Components/Soundboard'
-import { soundboard } from '../Actions'
+import { soundboard, enableCheatMenu } from '../Actions'
 
 const mapStateToProps = (state) => {
 	return {
@@ -11,6 +11,14 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const SoundboardContainer = connect(mapStateToProps)(Soundboard);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onCheatMenuButtonClick: (cheatMenu) => {
+			dispatch(enableCheatMenu(!cheatMenu))
+		}
+	}
+}
+
+const SoundboardContainer = connect(mapStateToProps, mapDispatchToProps)(Soundboard);
 
 export default SoundboardContainer

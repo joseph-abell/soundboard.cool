@@ -15,13 +15,18 @@ const mapStateToProps = (state) => {
 		globalCounter: state.globalCounter,
 		personalCounter: state.personalCounter,
 		baboos: state.baboos,
-		wizards: state.wizards
+		wizards: state.wizards,
+		cheatMenu: state.cheatMenu
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLetterClick: (foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards) => {
+		onLetterClick: (foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards, cheatMenu) => {
+			if (cheatMenu === true) {
+				return false;
+			}
+			
 			fireRef.update({'globalCounter': ++globalCounter})
 			dispatch(personalCounter(++personalCount))
 

@@ -21,7 +21,7 @@ class Keys extends React.Component {
 
 export default class Soundboard extends React.Component {
 	render() {
-		const { showInstructions, soundboard, keyTitle, killBearButton } = this.props;
+		const { showInstructions, soundboard, keyTitle, killBearButton, onCheatMenuButtonClick } = this.props;
 		let trueSoundboard;
 
 		Data.soundboards.map( testSoundboard => {
@@ -63,6 +63,9 @@ export default class Soundboard extends React.Component {
 						{killBearButton === 3 && <div className="spacebar disabled">You Monster</div>}
 						<KillButton />
 					</div>
+					<span id="cheatMenuButton" onClick={() => {
+						onCheatMenuButtonClick();
+					}}></span>
 				</div>
 			);  
 		}

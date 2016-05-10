@@ -12,7 +12,8 @@ export default class App extends React.Component {
       personalCounter,
       baboos, 
       wizards,
-      killBearButton
+      killBearButton,
+      cheatMenu
     } = this.props;
 
     let trueSoundboard;

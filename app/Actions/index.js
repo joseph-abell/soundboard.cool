@@ -115,3 +115,12 @@ export function showStats (showStats) {
 		showStats: showStats
 	}
 }
+
+export const ENABLE_CHEAT_MENU = "ENABLE_CHEAT_MENU"
+
+export function enableCheatMenu (cheatMenu) {
+	return {
+		type: ENABLE_CHEAT_MENU,
+		cheatMenu: cheatMenu
+	}
+}

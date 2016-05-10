@@ -8,7 +8,8 @@ class NumberKey extends Component {
   		onNumberKeyPress, 
   		soundboard, 
   		enabled,
-  		killBearButton 
+  		killBearButton,
+      cheatMenu
   	} = this.props;
 
 	if (killBearButton === 0 && enabled === true) {

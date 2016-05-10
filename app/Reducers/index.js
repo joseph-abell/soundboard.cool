@@ -14,7 +14,8 @@ import {
 	BABOOS,
 	WIZARDS,
 	NEO,
-	SHOW_STATS
+	SHOW_STATS,
+	ENABLE_CHEAT_MENU
 } from '../Actions'
 
 const soundboard = ( state = 'Chris Remo', action) => {
@@ -156,6 +157,15 @@ const showStats = (state = false, action) => {
 	}
 }
 
+const cheatMenu = (state = false, action) => {
+	switch(action.type) {
+		case(ENABLE_CHEAT_MENU):
+			return action.cheatMenu
+		default:
+			return state
+	}
+}
+
 const soundboardApp = combineReducers(
 	{
 		soundboard, 
@@ -171,7 +181,8 @@ const soundboardApp = combineReducers(
 		baboos,
 		wizards,
 		neo,
-		showStats
+		showStats,
+		cheatMenu
 	}
 )
 
