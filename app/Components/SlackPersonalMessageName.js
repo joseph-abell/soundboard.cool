@@ -28,7 +28,7 @@ export default class App extends React.Component {
     }
 
     return (
-      <div style={{marginBottom: 5}} onClick={
+      <div style={{marginBottom: 5, cursor: 'pointer'}} onClick={
         () => {
           onPersonalMessageClick(userName, online)
         }

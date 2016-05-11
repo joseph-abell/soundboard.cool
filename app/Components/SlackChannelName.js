@@ -9,7 +9,8 @@ export default class App extends React.Component {
         {
           padding: '0 5px', 
           lineHeight: '20px', 
-          opacity: 0.7
+          opacity: 0.7, 
+          cursor: 'pointer'
         }
       } onClick={
         () => {

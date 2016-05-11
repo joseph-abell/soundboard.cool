@@ -168,7 +168,7 @@ const cheatMenu = (state = false, action) => {
 }
 
 const slackMainContent = (state = {
-	slackMainContent: 'suckbot',
+	slackMainContent: 'slackbot',
 	slackContentType: 'personalMessage',
 	slackIsOnline: true
 }, action) => {

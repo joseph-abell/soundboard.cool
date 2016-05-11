@@ -48,7 +48,7 @@ export default class App extends React.Component {
             </div>
 
             <div style={{paddingTop: 10, paddingLeft: 5}}>
-              <SlackPersonalMessageName userName="suckbot" online={true} />
+              <SlackPersonalMessageName userName="slackbot" online={true} />
               <SlackPersonalMessageName userName="bowser" online={false} />
               <SlackPersonalMessageName userName="luigi" online={false} />
               <SlackPersonalMessageName userName="mario" online={false} />
