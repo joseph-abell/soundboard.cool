@@ -1195,7 +1195,7 @@ export default {
 				id: 8,
 				person: 'luigi',
 				time: '12.07pm',
-				says: 'I can\'t see all the tree cars, man, come on. I only have two eyes. two cars.'
+				says: 'I can\'t see all the three cars, man, come on. I only have two eyes. two cars.'
 			},
 			{
 				id: 9,
@@ -1220,6 +1220,12 @@ export default {
 				person: 'luigi',
 				time: '12.12pm',
 				says: 'I am on the podium. It is fine. You are on the podium. It is okay.'
+			},
+			{
+				id: 13,
+				person: 'waluigi',
+				time: '12.13pm',
+				says: 'Wah...'
 			}
 		]
 	}
