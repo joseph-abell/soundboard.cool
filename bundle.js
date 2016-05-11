@@ -70,7 +70,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(219);
+	__webpack_require__(221);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22235,7 +22235,8 @@
 	var slackMainContent = function slackMainContent() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? {
 			slackMainContent: 'suckbot',
-			slackContentType: 'personalMessage'
+			slackContentType: 'personalMessage',
+			slackIsOnline: true
 		} : arguments[0];
 		var action = arguments[1];
 
@@ -22243,7 +22244,8 @@
 			case _Actions.SLACK_MAIN_CONTENT:
 				return {
 					slackMainContent: action.slackMainContent,
-					slackContentType: action.slackContentType
+					slackContentType: action.slackContentType,
+					slackIsOnline: action.slackIsOnline
 				};
 			default:
 				return state;
@@ -22424,11 +22426,12 @@
 
 	var SLACK_MAIN_CONTENT = exports.SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT";
 
-	function slackMainContent(slackMainContent, slackContentType) {
+	function slackMainContent(slackMainContent, slackContentType, slackIsOnline) {
 		return {
 			type: SLACK_MAIN_CONTENT,
 			slackMainContent: slackMainContent,
-			slackContentType: slackContentType
+			slackContentType: slackContentType,
+			slackIsOnline: slackIsOnline
 		};
 	}
 
@@ -23934,7 +23937,75 @@
 					}
 				}]
 			}]
-		}]
+		}],
+		privateConversations: {
+			luigi: [{
+				id: 0,
+				person: 'luigi',
+				time: '12.03pm',
+				says: 'What happened at the start?'
+			}, {
+				id: 1,
+				person: 'waluigi',
+				time: '12.04pm',
+				says: 'You! Asking what happened at the start? If I don\'t go to the left, you crash into us, and all three go out.'
+			}, {
+				id: 2,
+				person: 'luigi',
+				time: '12.04pm',
+				says: 'well'
+			}, {
+				id: 3,
+				person: 'waluigi',
+				time: '12.04pm',
+				says: 'No, no well. You came like a torpedo'
+			}, {
+				id: 4,
+				person: 'luigi',
+				time: '12.05pm',
+				says: 'Well, I was racing lol'
+			}, {
+				id: 5,
+				person: 'waluigi',
+				time: '12.05pm',
+				says: 'Yes, that was racing, but if I kept going in the same line, you know, you would crash.'
+			}, {
+				id: 6,
+				person: 'luigi',
+				time: '12.06pm',
+				says: 'don\'t keep going'
+			}, {
+				id: 7,
+				person: 'waluigi',
+				time: '12.06pm',
+				says: 'well, there was a car on the left, also'
+			}, {
+				id: 8,
+				person: 'luigi',
+				time: '12.07pm',
+				says: 'I can\'t see all the tree cars, man, come on. I only have two eyes. two cars.'
+			}, {
+				id: 9,
+				person: 'waluigi',
+				time: '12.08pm',
+				says: 'You crash if you do like that'
+			}, {
+				id: 10,
+				person: 'luigi',
+				time: '12.08pm',
+				says: 'We didn\'t, so'
+			}, {
+				id: 11,
+				person: 'waluigi',
+				time: '12.09pm',
+				says: 'You didn\'t. You could have damaged you car. you were lucky this time.'
+			}, {
+				id: 12,
+				person: 'luigi',
+				time: '12.12pm',
+				says: 'I am on the podium. It is fine. You are on the podium. It is okay.'
+			}]
+		}
 	};
 
 /***/ },
@@ -31083,8 +31154,8 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onPersonalMessageClick: function onPersonalMessageClick(personalMessageName) {
-				dispatch((0, _Actions.slackMainContent)(personalMessageName, 'personalMessage'));
+			onPersonalMessageClick: function onPersonalMessageClick(personalMessageName, online) {
+				dispatch((0, _Actions.slackMainContent)(personalMessageName, 'personalMessage', online));
 			}
 		};
 	};
@@ -31160,7 +31231,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { style: { marginBottom: 5 }, onClick: function onClick() {
-	            onPersonalMessageClick(userName);
+	            onPersonalMessageClick(userName, online);
 	          } },
 	        _react2.default.createElement('div', { style: onlineIconStyling }),
 	        _react2.default.createElement(
@@ -31199,7 +31270,8 @@
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
 			slackMainContent: state.slackMainContent.slackMainContent,
-			slackContentType: state.slackMainContent.slackContentType
+			slackContentType: state.slackMainContent.slackContentType,
+			slackIsOnline: state.slackMainContent.slackIsOnline
 		};
 	};
 
@@ -31213,6 +31285,147 @@
 
 /***/ },
 /* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _data = __webpack_require__(200);
+
+	var _data2 = _interopRequireDefault(_data);
+
+	var _SlackLineOfText = __webpack_require__(219);
+
+	var _SlackLineOfText2 = _interopRequireDefault(_SlackLineOfText);
+
+	var _SlackPersonalConversationHeader = __webpack_require__(220);
+
+	var _SlackPersonalConversationHeader2 = _interopRequireDefault(_SlackPersonalConversationHeader);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var slackIsOnline = _props.slackIsOnline;
+	      var slackMainContent = _props.slackMainContent;
+	      var slackContentType = _props.slackContentType;
+	      var privateConversations = _data2.default.privateConversations;
+
+	      var onlineStyling = void 0;
+	      var onlineText = void 0;
+	      var conversation = void 0;
+	      var contentType = void 0;
+
+	      if (slackIsOnline) {
+	        onlineStyling = {
+	          float: 'left',
+	          marginRight: 10,
+	          marginTop: 4,
+	          background: 'rgb(113, 190, 88)',
+	          width: 13,
+	          height: 13,
+	          borderRadius: 13
+	        };
+	        onlineText = 'online';
+	      } else {
+	        onlineStyling = {
+	          float: 'left',
+	          marginRight: 10,
+	          marginTop: 4,
+	          background: '#383F45',
+	          width: 13,
+	          height: 13,
+	          borderRadius: 13
+	        };
+	        onlineText = 'away';
+	      }
+
+	      if (privateConversations[slackMainContent]) {
+	        conversation = _react2.default.createElement(
+	          'div',
+	          { style: { textAlign: "left", padding: '10px 20px' } },
+	          privateConversations[slackMainContent].map(function (item) {
+	            return _react2.default.createElement(_SlackLineOfText2.default, { key: item.id, says: item.says, person: item.person, time: item.time });
+	          })
+	        );
+	      } else {
+	        conversation = _react2.default.createElement('div', null);
+	      }
+
+	      if (slackContentType === "personalMessage") {
+	        contentType = _react2.default.createElement(_SlackPersonalConversationHeader2.default, { slackMainContent: slackMainContent, onlineStyling: onlineStyling, onlineText: onlineText });
+	      } else {
+	        contentType = _react2.default.createElement('div', null);
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { position: 'absolute', top: 0, bottom: 0, left: 220, right: 0, background: '#fff' } },
+	        _react2.default.createElement(
+	          'div',
+	          { style: { position: 'absolute', top: 10, paddingLeft: 20, left: 0, right: 0, borderBottom: '1px solid #ddd', paddingBottom: 10 } },
+	          contentType
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: { position: "absolute", top: 64, left: 0, right: 0, bottom: 90, overflow: 'auto' } },
+	          conversation
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'text', style: {
+	              border: '2px solid rgb(224, 224, 224)',
+	              borderRadius: '7px',
+	              position: "absolute",
+	              display: 'block',
+	              width: 'calc(100% - 45px)',
+	              left: 10,
+	              right: 10,
+	              bottom: 10,
+	              height: 40,
+	              padding: 10,
+	              lineHeight: '20px',
+	              fontSize: 15
+	            } })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31248,122 +31461,116 @@
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
-	      var online = _props.online;
-	      var slackMainContent = _props.slackMainContent;
-	      var slackContentType = _props.slackContentType;
+	      var person = _props.person;
+	      var time = _props.time;
+	      var says = _props.says;
 
-
-	      var onlineStyling = void 0;
-	      var onlineContent = void 0;
-
-	      if (online) {
-	        onlineStyling = {
-	          float: 'left',
-	          marginRight: 10,
-	          marginTop: 4,
-	          background: '#383F45',
-	          width: 13,
-	          height: 13,
-	          borderRadius: 13
-	        };
-	        onlineContent = _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('div', { style: onlineStyling }),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
-	            'online'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { float: 'left', fontSize: 11, opacity: 0.3, padding: '0 5px', lineHeight: '22px' } },
-	            '|'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
-	            '@',
-	            slackMainContent
-	          ),
-	          _react2.default.createElement('div', { style: { clear: 'both' } })
-	        );
-	      } else {
-	        onlineStyling = {
-	          float: 'left',
-	          marginRight: 10,
-	          marginTop: 4,
-	          background: '#383F45',
-	          width: 13,
-	          height: 13,
-	          borderRadius: 13
-	        };
-	        onlineContent = _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('div', { style: onlineStyling }),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
-	            'away'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { float: 'left', fontSize: 11, opacity: 0.3, padding: '0 5px', lineHeight: '22px' } },
-	            '|'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
-	            '@',
-	            slackMainContent
-	          ),
-	          _react2.default.createElement('div', { style: { clear: 'both' } })
-	        );
-	      }
-
-	      var contentType = void 0;
-
-	      if (slackContentType === "personalMessage") {
-	        contentType = _react2.default.createElement(
-	          'div',
-	          { style: { textAlign: 'left' } },
-	          _react2.default.createElement(
-	            'div',
-	            { style: { fontSize: 18, fontWeight: 'bold' } },
-	            slackMainContent
-	          ),
-	          onlineContent
-	        );
-	      } else {
-	        contentType = _react2.default.createElement('div', null);
-	      }
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: { position: 'absolute', top: 0, bottom: 0, left: 220, right: 0, background: '#fff' } },
+	        { style: { marginBottom: 10 } },
+	        _react2.default.createElement('div', { style: { float: 'left', width: 36, height: 36, background: '#333', borderRadius: 4, marginRight: 10 } }),
 	        _react2.default.createElement(
 	          'div',
-	          { style: { position: 'absolute', top: 10, paddingLeft: 20, left: 0, right: 0, borderBottom: '1px solid #ddd', paddingBottom: 10 } },
-	          contentType
+	          { style: { float: 'left' } },
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', marginRight: 10, fontSize: '15px' } },
+	            person
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: '12px', lineHeight: '18px', color: '#ddd' } },
+	            time
+	          ),
+	          _react2.default.createElement('div', { style: { clear: 'both' } }),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            says
+	          )
 	        ),
-	        _react2.default.createElement('div', { style: { position: "absolute", top: 61, left: 0, right: 0, bottom: 60 } }),
+	        _react2.default.createElement('div', { style: { clear: 'both' } })
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var slackMainContent = _props.slackMainContent;
+	      var onlineStyling = _props.onlineStyling;
+	      var onlineText = _props.onlineText;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { textAlign: 'left' } },
+	        _react2.default.createElement(
+	          'div',
+	          { style: { fontSize: 18, fontWeight: 'bold' } },
+	          slackMainContent
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement('input', { type: 'text', style: {
-	              border: '2px solid rgb(224, 224, 224)',
-	              borderRadius: '7px',
-	              position: "absolute",
-	              display: 'block',
-	              width: 'calc(100% - 25px)',
-	              left: 10,
-	              right: 10,
-	              bottom: 10,
-	              height: 60,
-	              lineHeight: '20px',
-	              fontSize: 15
-	            } })
+	          _react2.default.createElement('div', { style: onlineStyling }),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	            onlineText
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, padding: '0 5px', lineHeight: '22px' } },
+	            '|'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	            '@',
+	            slackMainContent
+	          ),
+	          _react2.default.createElement('div', { style: { clear: 'both' } })
 	        )
 	      );
 	    }
@@ -31375,7 +31582,7 @@
 	exports.default = App;
 
 /***/ },
-/* 219 */
+/* 221 */
 /***/ function(module, exports) {
 
 	'use strict';

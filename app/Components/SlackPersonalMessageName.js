@@ -30,7 +30,7 @@ export default class App extends React.Component {
     return (
       <div style={{marginBottom: 5}} onClick={
         () => {
-          onPersonalMessageClick(userName)
+          onPersonalMessageClick(userName, online)
         }
       }>
         <div style={onlineIconStyling}></div>

@@ -127,10 +127,11 @@ export function enableCheatMenu (cheatMenu) {
 
 export const SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT"
 
-export function slackMainContent (slackMainContent, slackContentType) {
+export function slackMainContent (slackMainContent, slackContentType, slackIsOnline) {
 	return {
 		type: SLACK_MAIN_CONTENT,
 		slackMainContent: slackMainContent,
-		slackContentType: slackContentType
+		slackContentType: slackContentType,
+		slackIsOnline: slackIsOnline
 	}
 }

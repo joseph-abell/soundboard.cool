@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onPersonalMessageClick: (personalMessageName) => {
-			dispatch(slackMainContent(personalMessageName, 'personalMessage'))
+		onPersonalMessageClick: (personalMessageName, online) => {
+			dispatch(slackMainContent(personalMessageName, 'personalMessage', online))
 		}
 	}
 }

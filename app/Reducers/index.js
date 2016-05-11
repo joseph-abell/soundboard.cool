@@ -169,13 +169,15 @@ const cheatMenu = (state = false, action) => {
 
 const slackMainContent = (state = {
 	slackMainContent: 'suckbot',
-	slackContentType: 'personalMessage'
+	slackContentType: 'personalMessage',
+	slackIsOnline: true
 }, action) => {
 	switch(action.type) {
 		case(SLACK_MAIN_CONTENT):
 			return {
 				slackMainContent: action.slackMainContent,
-				slackContentType: action.slackContentType
+				slackContentType: action.slackContentType,
+				slackIsOnline: action.slackIsOnline
 			}
 		default:
 			return state

@@ -1140,5 +1140,87 @@ export default {
 				}
 			]
 		}
-	]
+	],
+	privateConversations: {
+		luigi: [
+			{
+				id: 0,
+				person: 'luigi',
+				time: '12.03pm',
+				says: 'What happened at the start?'
+			},
+			{
+				id: 1,
+				person: 'waluigi',
+				time: '12.04pm',
+				says: 'You! Asking what happened at the start? If I don\'t go to the left, you crash into us, and all three go out.'
+			},
+			{
+				id: 2,
+				person: 'luigi',
+				time: '12.04pm',
+				says: 'well'
+			},
+			{
+				id: 3,
+				person: 'waluigi',
+				time: '12.04pm',
+				says: 'No, no well. You came like a torpedo'
+			},
+			{
+				id: 4,
+				person: 'luigi',
+				time: '12.05pm',
+				says: 'Well, I was racing lol'
+			},
+			{
+				id: 5,
+				person: 'waluigi',
+				time: '12.05pm',
+				says: 'Yes, that was racing, but if I kept going in the same line, you know, you would crash.'
+			},
+			{
+				id: 6,
+				person: 'luigi',
+				time: '12.06pm',
+				says: 'don\'t keep going'
+			},
+			{
+				id: 7,
+				person: 'waluigi',
+				time: '12.06pm',
+				says: 'well, there was a car on the left, also'
+			},
+			{
+				id: 8,
+				person: 'luigi',
+				time: '12.07pm',
+				says: 'I can\'t see all the tree cars, man, come on. I only have two eyes. two cars.'
+			},
+			{
+				id: 9,
+				person: 'waluigi',
+				time: '12.08pm',
+				says: 'You crash if you do like that'
+			},
+			{
+				id: 10,
+				person: 'luigi',
+				time: '12.08pm',
+				says: 'We didn\'t, so'
+			},
+			{
+				id: 11,
+				person: 'waluigi',
+				time: '12.09pm',
+				says: 'You didn\'t. You could have damaged you car. you were lucky this time.'
+			},
+			{
+				id: 12,
+				person: 'luigi',
+				time: '12.12pm',
+				says: 'I am on the podium. It is fine. You are on the podium. It is okay.'
+			}
+		]
+	}
 };

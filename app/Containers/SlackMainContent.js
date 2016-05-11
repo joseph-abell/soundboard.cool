@@ -4,7 +4,8 @@ import SlackMainContent from '../Components/SlackMainContent'
 const mapStateToProps = (state) => {
 	return {
 		slackMainContent: state.slackMainContent.slackMainContent,
-		slackContentType: state.slackMainContent.slackContentType
+		slackContentType: state.slackMainContent.slackContentType,
+		slackIsOnline: state.slackMainContent.slackIsOnline
 	}
 }
 
