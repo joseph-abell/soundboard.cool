@@ -15,7 +15,8 @@ import {
 	WIZARDS,
 	NEO,
 	SHOW_STATS,
-	ENABLE_CHEAT_MENU
+	ENABLE_CHEAT_MENU,
+	SLACK_MAIN_CONTENT
 } from '../Actions'
 
 const soundboard = ( state = 'Chris Remo', action) => {
@@ -166,6 +167,21 @@ const cheatMenu = (state = false, action) => {
 	}
 }
 
+const slackMainContent = (state = {
+	slackMainContent: 'suckbot',
+	slackContentType: 'personalMessage'
+}, action) => {
+	switch(action.type) {
+		case(SLACK_MAIN_CONTENT):
+			return {
+				slackMainContent: action.slackMainContent,
+				slackContentType: action.slackContentType
+			}
+		default:
+			return state
+	}
+}
+
 const soundboardApp = combineReducers(
 	{
 		soundboard, 
@@ -182,7 +198,8 @@ const soundboardApp = combineReducers(
 		wizards,
 		neo,
 		showStats,
-		cheatMenu
+		cheatMenu,
+		slackMainContent
 	}
 )
 

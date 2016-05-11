@@ -70,7 +70,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(211);
+	__webpack_require__(219);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22220,6 +22220,36 @@
 		}
 	};
 
+	var cheatMenu = function cheatMenu() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ENABLE_CHEAT_MENU:
+				return action.cheatMenu;
+			default:
+				return state;
+		}
+	};
+
+	var slackMainContent = function slackMainContent() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? {
+			slackMainContent: 'suckbot',
+			slackContentType: 'personalMessage'
+		} : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.SLACK_MAIN_CONTENT:
+				return {
+					slackMainContent: action.slackMainContent,
+					slackContentType: action.slackContentType
+				};
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
@@ -22234,7 +22264,9 @@
 		baboos: baboos,
 		wizards: wizards,
 		neo: neo,
-		showStats: showStats
+		showStats: showStats,
+		cheatMenu: cheatMenu,
+		slackMainContent: slackMainContent
 	});
 
 	exports.default = soundboardApp;
@@ -22261,6 +22293,8 @@
 	exports.wizards = wizards;
 	exports.neo = neo;
 	exports.showStats = showStats;
+	exports.enableCheatMenu = enableCheatMenu;
+	exports.slackMainContent = slackMainContent;
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22379,6 +22413,25 @@
 		};
 	}
 
+	var ENABLE_CHEAT_MENU = exports.ENABLE_CHEAT_MENU = "ENABLE_CHEAT_MENU";
+
+	function enableCheatMenu(cheatMenu) {
+		return {
+			type: ENABLE_CHEAT_MENU,
+			cheatMenu: cheatMenu
+		};
+	}
+
+	var SLACK_MAIN_CONTENT = exports.SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT";
+
+	function slackMainContent(slackMainContent, slackContentType) {
+		return {
+			type: SLACK_MAIN_CONTENT,
+			slackMainContent: slackMainContent,
+			slackContentType: slackContentType
+		};
+	}
+
 /***/ },
 /* 193 */
 /***/ function(module, exports, __webpack_require__) {
@@ -22411,6 +22464,10 @@
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
+	var _CheatMenu = __webpack_require__(211);
+
+	var _CheatMenu2 = _interopRequireDefault(_CheatMenu);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22435,6 +22492,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Instructions2.default, null),
+	        _react2.default.createElement(_CheatMenu2.default, null),
 	        _react2.default.createElement(_Soundboard2.default, null),
 	        _react2.default.createElement(_AnimationElements2.default, null),
 	        _react2.default.createElement(_Stats2.default, null)
@@ -22559,7 +22617,7 @@
 	          )
 	        );
 	      } else {
-	        return _react2.default.createElement('div', null);
+	        return _react2.default.createElement('span', null);
 	      }
 	    }
 	  }]);
@@ -22598,7 +22656,15 @@
 		};
 	};
 
-	var SoundboardContainer = (0, _reactRedux.connect)(mapStateToProps)(_Soundboard2.default);
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onCheatMenuButtonClick: function onCheatMenuButtonClick(cheatMenu) {
+				dispatch((0, _Actions.enableCheatMenu)(!cheatMenu));
+			}
+		};
+	};
+
+	var SoundboardContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Soundboard2.default);
 
 	exports.default = SoundboardContainer;
 
@@ -22688,6 +22754,7 @@
 				var soundboard = _props.soundboard;
 				var keyTitle = _props.keyTitle;
 				var killBearButton = _props.killBearButton;
+				var onCheatMenuButtonClick = _props.onCheatMenuButtonClick;
 
 				var trueSoundboard = void 0;
 
@@ -22751,7 +22818,10 @@
 								'You Monster'
 							),
 							_react2.default.createElement(_KillButton2.default, null)
-						)
+						),
+						_react2.default.createElement('span', { id: 'cheatMenuButton', onClick: function onClick() {
+								onCheatMenuButtonClick();
+							} })
 					);
 				}
 			}
@@ -22802,13 +22872,18 @@
 			globalCounter: state.globalCounter,
 			personalCounter: state.personalCounter,
 			baboos: state.baboos,
-			wizards: state.wizards
+			wizards: state.wizards,
+			cheatMenu: state.cheatMenu
 		};
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onLetterClick: function onLetterClick(foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards) {
+			onLetterClick: function onLetterClick(foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards, cheatMenu) {
+				if (cheatMenu === true) {
+					return false;
+				}
+
 				fireRef.update({ 'globalCounter': ++globalCounter });
 				dispatch((0, _Actions.personalCounter)(++personalCount));
 
@@ -22875,6 +22950,7 @@
 	      var baboos = _props.baboos;
 	      var wizards = _props.wizards;
 	      var killBearButton = _props.killBearButton;
+	      var cheatMenu = _props.cheatMenu;
 
 
 	      var trueSoundboard = void 0;
@@ -22902,7 +22978,7 @@
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
-	              onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards);
+	              onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards, cheatMenu);
 	            } },
 	          letter
 	        );
@@ -30214,13 +30290,18 @@
 		return {
 			soundboard: state.soundboard,
 			isPlaying: state.togglePlaying.isPlaying,
-			killBearButton: state.toggleKillBearVisible.killBearButton
+			killBearButton: state.toggleKillBearVisible.killBearButton,
+			cheatMenu: state.cheatMenu
 		};
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onNumberKeyPress: function onNumberKeyPress(number) {
+			onNumberKeyPress: function onNumberKeyPress(number, cheatMenu) {
+				if (cheatMenu === true) {
+					return false;
+				}
+
 				for (var dataId = 0; dataId < _data2.default.numbers.length; dataId++) {
 					if (parseInt(number) == _data2.default.numbers[dataId].id) {
 						dispatch((0, _Actions.soundboard)(_data2.default.numbers[dataId].title || "Chris Remo"));
@@ -30278,6 +30359,7 @@
 	      var soundboard = _props.soundboard;
 	      var enabled = _props.enabled;
 	      var killBearButton = _props.killBearButton;
+	      var cheatMenu = _props.cheatMenu;
 
 
 	      if (killBearButton === 0 && enabled === true) {
@@ -30705,6 +30787,595 @@
 
 /***/ },
 /* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _reactRedux = __webpack_require__(169);
+
+	var _CheatMenu = __webpack_require__(212);
+
+	var _CheatMenu2 = _interopRequireDefault(_CheatMenu);
+
+	var _Actions = __webpack_require__(192);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			cheatMenu: state.cheatMenu
+		};
+	};
+
+	var CheatMenuContainer = (0, _reactRedux.connect)(mapStateToProps)(_CheatMenu2.default);
+
+	exports.default = CheatMenuContainer;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _SlackChannelName = __webpack_require__(213);
+
+	var _SlackChannelName2 = _interopRequireDefault(_SlackChannelName);
+
+	var _SlackPersonalMessageName = __webpack_require__(215);
+
+	var _SlackPersonalMessageName2 = _interopRequireDefault(_SlackPersonalMessageName);
+
+	var _SlackMainContent = __webpack_require__(217);
+
+	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var cheatMenu = this.props.cheatMenu;
+
+
+	      if (cheatMenu === true) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'header', style: {
+	              position: 'absolute',
+	              top: 0,
+	              bottom: 0,
+	              left: 0,
+	              right: 0,
+	              zIndex: 2,
+	              background: '#fff',
+	              paddingTop: 20,
+	              color: "rgb(56, 63, 69)"
+	            } },
+	          _react2.default.createElement(
+	            'div',
+	            { style: { position: 'absolute', top: 0, bottom: 0, left: 0, width: 188, paddingLeft: 16, paddingRight: 16, background: 'rgb(248, 248, 250)' } },
+	            _react2.default.createElement(
+	              'div',
+	              { style: { fontFamily: 'sans-serif', fontSize: '18px', fontWeight: 900, color: '#383F45', paddingTop: 10, textAlign: 'left' } },
+	              'Yoshi Sucks'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement('div', { style: { width: 10, height: 10, float: 'left', borderRadius: 10, background: 'rgb(113, 190, 88)', marginTop: 7, marginRight: 10 } }),
+	              _react2.default.createElement(
+	                'div',
+	                { style: { color: '#383F45', opacity: 0.6, float: 'left', marginTop: 2 } },
+	                'waluigi'
+	              ),
+	              _react2.default.createElement('div', { style: { clear: 'both' } })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: { marginTop: 20 } },
+	              _react2.default.createElement(
+	                'div',
+	                { style: { float: 'left', textTransform: 'uppercase', fontSize: '12.8px', fontWeight: 'bold', color: '#383F45', opacity: 0.5 } },
+	                'Channels (2)'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { style: { float: 'right', border: "2px solid #383F45", borderRadius: 13, height: 13, width: 13, lineHeight: '13px', color: '#383F45', opacity: 0.3 } },
+	                '+'
+	              ),
+	              _react2.default.createElement('div', { style: { clear: 'both' } })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: { textAlign: 'left', paddingTop: 10 } },
+	              _react2.default.createElement(_SlackChannelName2.default, { channelName: 'general' }),
+	              _react2.default.createElement(_SlackChannelName2.default, { channelName: 'random' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: { marginTop: 40 } },
+	              _react2.default.createElement(
+	                'div',
+	                { style: { float: 'left', textTransform: 'uppercase', fontSize: '12.8px', fontWeight: 'bold', color: '#383F45', opacity: 0.5 } },
+	                'Direct Messages (12)'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { style: { float: 'right', border: "2px solid #383F45", borderRadius: 13, height: 13, width: 13, lineHeight: '13px', color: '#383F45', opacity: 0.3 } },
+	                '+'
+	              ),
+	              _react2.default.createElement('div', { style: { clear: 'both' } })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: { paddingTop: 10, paddingLeft: 5 } },
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'suckbot', online: true }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'bowser', online: false }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'luigi', online: false }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'mario', online: false }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'peach', online: false }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'toad', online: false }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'yoshi', online: false })
+	            )
+	          ),
+	          _react2.default.createElement(_SlackMainContent2.default, null)
+	        );
+	      } else {
+	        return _react2.default.createElement('span', null);
+	      }
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _reactRedux = __webpack_require__(169);
+
+	var _SlackChannelName = __webpack_require__(214);
+
+	var _SlackChannelName2 = _interopRequireDefault(_SlackChannelName);
+
+	var _Actions = __webpack_require__(192);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onChannelNameClick: function onChannelNameClick(channelName) {
+				dispatch((0, _Actions.slackMainContent)(channelName, 'channel'));
+			}
+		};
+	};
+
+	var SlackChannelNameContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_SlackChannelName2.default);
+
+	exports.default = SlackChannelNameContainer;
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var channelName = _props.channelName;
+	      var onChannelNameClick = _props.onChannelNameClick;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: {
+	            padding: '0 5px',
+	            lineHeight: '20px',
+	            opacity: 0.7
+	          }, onClick: function onClick() {
+	            onChannelNameClick(channelName);
+	          } },
+	        '# ',
+	        channelName
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _reactRedux = __webpack_require__(169);
+
+	var _SlackPersonalMessageName = __webpack_require__(216);
+
+	var _SlackPersonalMessageName2 = _interopRequireDefault(_SlackPersonalMessageName);
+
+	var _Actions = __webpack_require__(192);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onPersonalMessageClick: function onPersonalMessageClick(personalMessageName) {
+				dispatch((0, _Actions.slackMainContent)(personalMessageName, 'personalMessage'));
+			}
+		};
+	};
+	var SlackPersonalMessageNameContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_SlackPersonalMessageName2.default);
+
+	exports.default = SlackPersonalMessageNameContainer;
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var userName = _props.userName;
+	      var online = _props.online;
+	      var onPersonalMessageClick = _props.onPersonalMessageClick;
+
+	      var onlineIconStyling = void 0;
+
+	      if (online) {
+	        onlineIconStyling = {
+	          float: 'left',
+	          marginRight: 10,
+	          marginTop: 2,
+	          background: 'rgb(113, 190, 88)',
+	          width: 13,
+	          height: 13,
+	          borderRadius: 13
+	        };
+	      } else {
+	        onlineIconStyling = {
+	          float: 'left',
+	          marginRight: 10,
+	          marginTop: 2,
+	          background: '#383F45',
+	          width: 13,
+	          height: 13,
+	          borderRadius: 13
+	        };
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { marginBottom: 5 }, onClick: function onClick() {
+	            onPersonalMessageClick(userName);
+	          } },
+	        _react2.default.createElement('div', { style: onlineIconStyling }),
+	        _react2.default.createElement(
+	          'div',
+	          { style: { float: 'left', opacity: 0.5 } },
+	          userName
+	        ),
+	        _react2.default.createElement('div', { style: { clear: 'both' } })
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _reactRedux = __webpack_require__(169);
+
+	var _SlackMainContent = __webpack_require__(218);
+
+	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			slackMainContent: state.slackMainContent.slackMainContent,
+			slackContentType: state.slackMainContent.slackContentType
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {};
+	};
+
+	var SlackMainContentContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_SlackMainContent2.default);
+
+	exports.default = SlackMainContentContainer;
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var online = _props.online;
+	      var slackMainContent = _props.slackMainContent;
+	      var slackContentType = _props.slackContentType;
+
+
+	      var onlineStyling = void 0;
+	      var onlineContent = void 0;
+
+	      if (online) {
+	        onlineStyling = {
+	          float: 'left',
+	          marginRight: 10,
+	          marginTop: 4,
+	          background: '#383F45',
+	          width: 13,
+	          height: 13,
+	          borderRadius: 13
+	        };
+	        onlineContent = _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('div', { style: onlineStyling }),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	            'online'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, padding: '0 5px', lineHeight: '22px' } },
+	            '|'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	            '@',
+	            slackMainContent
+	          ),
+	          _react2.default.createElement('div', { style: { clear: 'both' } })
+	        );
+	      } else {
+	        onlineStyling = {
+	          float: 'left',
+	          marginRight: 10,
+	          marginTop: 4,
+	          background: '#383F45',
+	          width: 13,
+	          height: 13,
+	          borderRadius: 13
+	        };
+	        onlineContent = _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('div', { style: onlineStyling }),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	            'away'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, padding: '0 5px', lineHeight: '22px' } },
+	            '|'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	            '@',
+	            slackMainContent
+	          ),
+	          _react2.default.createElement('div', { style: { clear: 'both' } })
+	        );
+	      }
+
+	      var contentType = void 0;
+
+	      if (slackContentType === "personalMessage") {
+	        contentType = _react2.default.createElement(
+	          'div',
+	          { style: { textAlign: 'left' } },
+	          _react2.default.createElement(
+	            'div',
+	            { style: { fontSize: 18, fontWeight: 'bold' } },
+	            slackMainContent
+	          ),
+	          onlineContent
+	        );
+	      } else {
+	        contentType = _react2.default.createElement('div', null);
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { position: 'absolute', top: 0, bottom: 0, left: 220, right: 0, background: '#fff' } },
+	        _react2.default.createElement(
+	          'div',
+	          { style: { position: 'absolute', top: 10, paddingLeft: 20, left: 0, right: 0, borderBottom: '1px solid #ddd', paddingBottom: 10 } },
+	          contentType
+	        ),
+	        _react2.default.createElement('div', { style: { position: "absolute", top: 61, left: 0, right: 0, bottom: 60 } }),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'text', style: {
+	              border: '2px solid rgb(224, 224, 224)',
+	              borderRadius: '7px',
+	              position: "absolute",
+	              display: 'block',
+	              width: 'calc(100% - 25px)',
+	              left: 10,
+	              right: 10,
+	              bottom: 10,
+	              height: 60,
+	              lineHeight: '20px',
+	              fontSize: 15
+	            } })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 219 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30712,8 +31383,10 @@
 	$(document).ready(function () {
 		$('html').keypress(function (e) {
 			var keyCode = e.keyCode;
-
 			switch (keyCode) {
+				case 13:
+					$('#cheatMenuButton').click();
+					break;
 				case 48:
 					$('#key0').click();
 					break;

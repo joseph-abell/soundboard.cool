@@ -40,7 +40,7 @@ export default class App extends React.Component {
 
     if (foundKey.urls && killBearButton === 0 ) {
     	return (<div className="key" id={"key" + letter} onClick={() => {
-    		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards)
+    		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards, cheatMenu)
     	}}>{letter}</div>)	
     } else {
     	return (<div className="key disabled">{letter}</div>)
