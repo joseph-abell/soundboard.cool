@@ -23983,7 +23983,7 @@
 				id: 8,
 				person: 'luigi',
 				time: '12.07pm',
-				says: 'I can\'t see all the tree cars, man, come on. I only have two eyes. two cars.'
+				says: 'I can\'t see all the three cars, man, come on. I only have two eyes. two cars.'
 			}, {
 				id: 9,
 				person: 'waluigi',
@@ -24004,6 +24004,11 @@
 				person: 'luigi',
 				time: '12.12pm',
 				says: 'I am on the podium. It is fine. You are on the podium. It is okay.'
+			}, {
+				id: 13,
+				person: 'waluigi',
+				time: '12.13pm',
+				says: 'Wah...'
 			}]
 		}
 	};
@@ -31468,25 +31473,25 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: { marginBottom: 10 } },
-	        _react2.default.createElement('div', { style: { float: 'left', width: 36, height: 36, background: '#333', borderRadius: 4, marginRight: 10 } }),
+	        { style: { marginBottom: 10, position: 'relative' } },
+	        _react2.default.createElement('div', { style: { float: 'left', position: 'absolute', width: 36, height: 36, left: 0, background: '#333', borderRadius: 4, marginRight: 10 } }),
 	        _react2.default.createElement(
 	          'div',
 	          { style: { float: 'left' } },
 	          _react2.default.createElement(
 	            'div',
-	            { style: { float: 'left', marginRight: 10, fontSize: '15px' } },
+	            { style: { float: 'left', marginRight: 10, marginLeft: 46, fontSize: '15px' } },
 	            person
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { style: { float: 'left', fontSize: '12px', lineHeight: '18px', color: '#ddd' } },
+	            { style: { float: 'left', fontSize: '12px', mlineHeight: '18px', color: '#ddd' } },
 	            time
 	          ),
 	          _react2.default.createElement('div', { style: { clear: 'both' } }),
 	          _react2.default.createElement(
 	            'div',
-	            null,
+	            { style: { float: 'left', marginLeft: 46 } },
 	            says
 	          )
 	        ),
