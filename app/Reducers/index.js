@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
 import {
+	USER_ID,
 	SOUNDBOARD,
 	TOGGLE_PLAYING,
 	TOGGLE_INSTRUCTIONS,
@@ -18,6 +19,15 @@ import {
 	ENABLE_CHEAT_MENU,
 	SLACK_MAIN_CONTENT
 } from '../Actions'
+
+const userId = ( state = '', action) => {
+	switch (action.type) {
+		case (USER_ID):
+			return action.userId;
+		default:
+			return state;
+	}
+}
 
 const soundboard = ( state = 'Chris Remo', action) => {
 	switch (action.type) {
@@ -186,6 +196,7 @@ const slackMainContent = (state = {
 
 const soundboardApp = combineReducers(
 	{
+		userId,
 		soundboard, 
 		togglePlaying,
 		toggleInstructions,

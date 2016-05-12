@@ -103,7 +103,7 @@ export default {
 								'./audio/Intros/Wizard2.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'wizards': ++optionalExtras[1]})
+								fireRef.child('global').update({'wizards': ++optionalExtras[1]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -114,7 +114,7 @@ export default {
 								'./audio/Intros/Wizard.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'wizards': ++optionalExtras[1]})
+								fireRef.child('global').update({'wizards': ++optionalExtras[1]})
 								defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2])								
 							}
 						},
@@ -125,7 +125,7 @@ export default {
 								'./audio/Intros/Wizard3.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'wizards': ++optionalExtras[1]})
+								fireRef.child('global').update({'wizards': ++optionalExtras[1]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -136,7 +136,7 @@ export default {
 								'./audio/Intros/Wizard4.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'wizards': ++optionalExtras[1]})
+								fireRef.child('global').update({'wizards': ++optionalExtras[1]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -147,7 +147,7 @@ export default {
 								'./audio/Intros/Wizard5.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'wizards': ++optionalExtras[1]})
+								fireRef.child('global').update({'wizards': ++optionalExtras[1]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -903,7 +903,7 @@ export default {
 								'./audio/Baboo/baboo001.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -914,7 +914,7 @@ export default {
 								'./audio/Baboo/baboo002.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -937,7 +937,7 @@ export default {
 								'./audio/Baboo/baboo005.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -948,7 +948,7 @@ export default {
 								'./audio/Baboo/baboo006.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -959,7 +959,7 @@ export default {
 								'./audio/Baboo/baboo007.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -970,7 +970,7 @@ export default {
 								'./audio/Baboo/baboo009.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -981,7 +981,7 @@ export default {
 								'./audio/Baboo/baboo010.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						}
@@ -1017,7 +1017,7 @@ export default {
 								'./audio/Baboo/baboo004.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1028,7 +1028,7 @@ export default {
 								'./audio/Baboo/BabooIntro.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1039,7 +1039,7 @@ export default {
 								'./audio/Baboo/baboo003.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1065,7 +1065,7 @@ export default {
 								'./audio/Baboo/BabooXeneth001.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1076,7 +1076,7 @@ export default {
 								'./audio/Baboo/BabooXeneth002.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1087,7 +1087,7 @@ export default {
 								'./audio/Baboo/BabooKnight001.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 							
@@ -1099,7 +1099,7 @@ export default {
 								'./audio/Baboo/BabooKnight002.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1110,7 +1110,7 @@ export default {
 								'./audio/Baboo/BabooKnight003.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1121,7 +1121,7 @@ export default {
 								'./audio/Baboo/BabooKnight004.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						},
@@ -1132,7 +1132,7 @@ export default {
 								'./audio/Baboo/BabooKnight005.mp3'
 							],
 							rules: (foundKey, dispatch, optionalExtras = []) => {
-								fireRef.update({'baboos': ++optionalExtras[0]})
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
 								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 							}
 						}
@@ -1142,6 +1142,14 @@ export default {
 		}
 	],
 	privateConversations: {
+		slackbot: [
+			{
+				id: 0,
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'Looks like everyone else is away. Do you want to talk to me?'
+			}
+		],
 		luigi: [
 			{
 				id: 0,
@@ -1226,6 +1234,32 @@ export default {
 				person: 'waluigi',
 				time: '12.13pm',
 				says: 'Wah...'
+			}
+		], 
+		yoshi: [
+			{
+				id: 0,
+				person: 'waluigi',
+				time: '11.12am',
+				says: 'Sorry, Yoshi. Mario\'s just keep being an asshole. I\'ll talk to him later about the situation.'
+			},
+			{
+				id: 1,
+				person: 'yoshi',
+				time: '11.13am',
+				says: 'Yoshi...'
+			},
+			{
+				id: 2,
+				person: 'waluigi',
+				time: '11.13am',
+				says: 'Keep your chin up. If the worst comes to the worst, I\'ll set up another slack that isn\'t called Yoshi Sucks.'
+			},
+			{
+				id: 3,
+				person: 'yoshi',
+				time: '11.14am',
+				says: ':('
 			}
 		]
 	}

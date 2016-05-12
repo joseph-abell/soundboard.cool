@@ -1,3 +1,12 @@
+export const USER_ID = "USER_ID"
+
+export function userId (userId) {
+	return {
+		type: USER_ID,
+		userId: userId
+	}
+}
+
 export const SOUNDBOARD = "SOUNDBOARD"
 
 export function soundboard (title) {

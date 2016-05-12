@@ -13,7 +13,8 @@ export default class App extends React.Component {
       baboos, 
       wizards,
       killBearButton,
-      cheatMenu
+      cheatMenu,
+      userId
     } = this.props;
 
     let trueSoundboard;
@@ -40,7 +41,7 @@ export default class App extends React.Component {
 
     if (foundKey.urls && killBearButton === 0 ) {
     	return (<div className="key" id={"key" + letter} onClick={() => {
-    		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards, cheatMenu)
+    		onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards, cheatMenu, userId)
     	}}>{letter}</div>)	
     } else {
     	return (<div className="key disabled">{letter}</div>)

@@ -64,18 +64,19 @@
 
 	var _Reducers2 = _interopRequireDefault(_Reducers);
 
-	var _Actions = __webpack_require__(192);
-
 	var _App = __webpack_require__(193);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(221);
+	var _setup = __webpack_require__(221);
+
+	var _setup2 = _interopRequireDefault(_setup);
+
+	__webpack_require__(223);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var store = (0, _redux.createStore)(_Reducers2.default);
-	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
 	(0, _reactDom.render)(_react2.default.createElement(
 		_reactRedux.Provider,
@@ -83,31 +84,7 @@
 		_react2.default.createElement(_App2.default, null)
 	), document.getElementById('app'));
 
-	function setupFirebaseValue(firebaseReferenceName, action, localValue) {
-		fireRef.child(firebaseReferenceName).on("value", function (snapshot) {
-			var globalValue = snapshot.val();
-
-			if (localValue !== globalValue) {
-				localValue = globalValue;
-				store.dispatch(action(globalValue));
-			}
-		});
-	}
-
-	var globalCounterLocalValue = 0;
-	setupFirebaseValue("globalCounter", _Actions.globalCounter, globalCounterLocalValue);
-
-	var bearsKilledLocalValue = 0;
-	setupFirebaseValue("bearsKilled", _Actions.bearsKilled, bearsKilledLocalValue);
-
-	var babooLocalValue = 0;
-	setupFirebaseValue('baboos', _Actions.baboos, babooLocalValue);
-
-	var wizardLocalValue = 0;
-	setupFirebaseValue('wizards', _Actions.wizards, wizardLocalValue);
-
-	var neoLocalValue = 0;
-	setupFirebaseValue('neo', _Actions.neo, neoLocalValue);
+	_setup2.default.init(store);
 
 /***/ },
 /* 1 */
@@ -224,6 +201,9 @@
 	var queueIndex = -1;
 
 	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -21952,13 +21932,15 @@
 	};
 
 	module.exports = function hoistNonReactStatics(targetComponent, sourceComponent) {
-	    var keys = Object.getOwnPropertyNames(sourceComponent);
-	    for (var i=0; i<keys.length; ++i) {
-	        if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]]) {
-	            try {
-	                targetComponent[keys[i]] = sourceComponent[keys[i]];
-	            } catch (error) {
+	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+	        var keys = Object.getOwnPropertyNames(sourceComponent);
+	        for (var i=0; i<keys.length; ++i) {
+	            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]]) {
+	                try {
+	                    targetComponent[keys[i]] = sourceComponent[keys[i]];
+	                } catch (error) {
 
+	                }
 	            }
 	        }
 	    }
@@ -22038,6 +22020,18 @@
 	var _redux = __webpack_require__(176);
 
 	var _Actions = __webpack_require__(192);
+
+	var userId = function userId() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.USER_ID:
+				return action.userId;
+			default:
+				return state;
+		}
+	};
 
 	var soundboard = function soundboard() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? 'Chris Remo' : arguments[0];
@@ -22234,7 +22228,7 @@
 
 	var slackMainContent = function slackMainContent() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? {
-			slackMainContent: 'suckbot',
+			slackMainContent: 'slackbot',
 			slackContentType: 'personalMessage',
 			slackIsOnline: true
 		} : arguments[0];
@@ -22253,6 +22247,7 @@
 	};
 
 	var soundboardApp = (0, _redux.combineReducers)({
+		userId: userId,
 		soundboard: soundboard,
 		togglePlaying: togglePlaying,
 		toggleInstructions: toggleInstructions,
@@ -22282,6 +22277,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.userId = userId;
 	exports.soundboard = soundboard;
 	exports.togglePlaying = togglePlaying;
 	exports.toggleInstructions = toggleInstructions;
@@ -22297,6 +22293,15 @@
 	exports.showStats = showStats;
 	exports.enableCheatMenu = enableCheatMenu;
 	exports.slackMainContent = slackMainContent;
+	var USER_ID = exports.USER_ID = "USER_ID";
+
+	function userId(userId) {
+		return {
+			type: USER_ID,
+			userId: userId
+		};
+	}
+
 	var SOUNDBOARD = exports.SOUNDBOARD = "SOUNDBOARD";
 
 	function soundboard(title) {
@@ -22876,19 +22881,20 @@
 			personalCounter: state.personalCounter,
 			baboos: state.baboos,
 			wizards: state.wizards,
-			cheatMenu: state.cheatMenu
+			cheatMenu: state.cheatMenu,
+			userId: state.userId
 		};
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onLetterClick: function onLetterClick(foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards, cheatMenu) {
+			onLetterClick: function onLetterClick(foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards, cheatMenu, userId) {
 				if (cheatMenu === true) {
 					return false;
 				}
 
-				fireRef.update({ 'globalCounter': ++globalCounter });
-				dispatch((0, _Actions.personalCounter)(++personalCount));
+				fireRef.child('global').update({ 'globalCounter': ++globalCounter });
+				fireRef.child(userId).update({ 'personalCounter': ++personalCount });
 
 				if (foundKey.animation) {
 					dispatch((0, _Actions.animation)(foundKey.animation));
@@ -22954,6 +22960,7 @@
 	      var wizards = _props.wizards;
 	      var killBearButton = _props.killBearButton;
 	      var cheatMenu = _props.cheatMenu;
+	      var userId = _props.userId;
 
 
 	      var trueSoundboard = void 0;
@@ -22981,7 +22988,7 @@
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'key', id: "key" + letter, onClick: function onClick() {
-	              onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards, cheatMenu);
+	              onLetterClick(foundKey, soundboard, globalCounter, personalCounter, canAnimate, baboos, wizards, cheatMenu, userId);
 	            } },
 	          letter
 	        );
@@ -23104,7 +23111,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						fireRef.child('global').update({ 'wizards': ++optionalExtras[1] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23114,7 +23121,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						fireRef.child('global').update({ 'wizards': ++optionalExtras[1] });
 						defaultActionWithAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0], 'Wizard', optionalExtras[2]);
 					}
 				}, {
@@ -23124,7 +23131,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						fireRef.child('global').update({ 'wizards': ++optionalExtras[1] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23134,7 +23141,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						fireRef.child('global').update({ 'wizards': ++optionalExtras[1] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23144,7 +23151,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'wizards': ++optionalExtras[1] });
+						fireRef.child('global').update({ 'wizards': ++optionalExtras[1] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23732,7 +23739,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23742,7 +23749,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23761,7 +23768,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23771,7 +23778,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23781,7 +23788,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23791,7 +23798,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23801,7 +23808,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}]
@@ -23829,7 +23836,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23839,7 +23846,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23849,7 +23856,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23871,7 +23878,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23881,7 +23888,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23891,7 +23898,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 
@@ -23902,7 +23909,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23912,7 +23919,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23922,7 +23929,7 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}, {
@@ -23932,13 +23939,19 @@
 					rules: function rules(foundKey, dispatch) {
 						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
-						fireRef.update({ 'baboos': ++optionalExtras[0] });
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
 						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
 					}
 				}]
 			}]
 		}],
 		privateConversations: {
+			slackbot: [{
+				id: 0,
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'Looks like everyone else is away. Do you want to talk to me?'
+			}],
 			luigi: [{
 				id: 0,
 				person: 'luigi',
@@ -24009,6 +24022,27 @@
 				person: 'waluigi',
 				time: '12.13pm',
 				says: 'Wah...'
+			}],
+			yoshi: [{
+				id: 0,
+				person: 'waluigi',
+				time: '11.12am',
+				says: 'Sorry, Yoshi. Mario\'s just keep being an asshole. I\'ll talk to him later about the situation.'
+			}, {
+				id: 1,
+				person: 'yoshi',
+				time: '11.13am',
+				says: 'Yoshi...'
+			}, {
+				id: 2,
+				person: 'waluigi',
+				time: '11.13am',
+				says: 'Keep your chin up. If the worst comes to the worst, I\'ll set up another slack that isn\'t called Yoshi Sucks.'
+			}, {
+				id: 3,
+				person: 'yoshi',
+				time: '11.14am',
+				says: ':('
 			}]
 		}
 	};
@@ -30505,7 +30539,7 @@
 		return {
 			onKillBearClick: function onKillBearClick(soundManager, bears) {
 				soundManager.stopAll();
-				fireRef.update({ 'bearsKilled': ++bears });
+				fireRef.child('global').update({ 'bearsKilled': ++bears });
 			}
 		};
 	};
@@ -31014,7 +31048,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { style: { paddingTop: 10, paddingLeft: 5 } },
-	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'suckbot', online: true }),
+	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'slackbot', online: true }),
 	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'bowser', online: false }),
 	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'luigi', online: false }),
 	              _react2.default.createElement(_SlackPersonalMessageName2.default, { userName: 'mario', online: false }),
@@ -31118,7 +31152,8 @@
 	        { style: {
 	            padding: '0 5px',
 	            lineHeight: '20px',
-	            opacity: 0.7
+	            opacity: 0.7,
+	            cursor: 'pointer'
 	          }, onClick: function onClick() {
 	            onChannelNameClick(channelName);
 	          } },
@@ -31235,7 +31270,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: { marginBottom: 5 }, onClick: function onClick() {
+	        { style: { marginBottom: 5, cursor: 'pointer' }, onClick: function onClick() {
 	            onPersonalMessageClick(userName, online);
 	          } },
 	        _react2.default.createElement('div', { style: onlineIconStyling }),
@@ -31485,7 +31520,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { style: { float: 'left', fontSize: '12px', mlineHeight: '18px', color: '#ddd' } },
+	            { style: { float: 'left', fontSize: '12px', lineHeight: '18px', color: '#ddd' } },
 	            time
 	          ),
 	          _react2.default.createElement('div', { style: { clear: 'both' } }),
@@ -31588,6 +31623,229 @@
 
 /***/ },
 /* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _firebase = __webpack_require__(33);
+
+	var _firebase2 = _interopRequireDefault(_firebase);
+
+	var _tinyCookie = __webpack_require__(222);
+
+	var _tinyCookie2 = _interopRequireDefault(_tinyCookie);
+
+	var _Actions = __webpack_require__(192);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
+
+	var setupObject = {
+		setupFirebaseValue: function setupFirebaseValue(store, childName, firebaseReferenceName, action, localValue) {
+			fireRef.child(childName).child(firebaseReferenceName).on("value", function (snapshot) {
+				var globalValue = snapshot.val();
+				if (globalValue === null) {
+					store.dispatch(action(0));
+					globalValue = 0;
+				}
+
+				if (localValue !== globalValue) {
+					localValue = globalValue;
+					store.dispatch(action(globalValue));
+				}
+			});
+		},
+		init: function init(store) {
+			var userIdCookie = _tinyCookie2.default.get('userId');
+
+			if (userIdCookie === null) {
+				fireRef.authAnonymously(function (error, authData) {
+					_tinyCookie2.default.set('userId', authData.uid);
+					userIdCookie = authData.uid;
+				});
+			}
+
+			store.dispatch((0, _Actions.userId)(userIdCookie));
+
+			var globalCounterValue = 0;
+			setupObject.setupFirebaseValue(store, "global", "globalCounter", _Actions.globalCounter, globalCounterValue);
+
+			var bearsKilledValue = 0;
+			setupObject.setupFirebaseValue(store, "global", "bearsKilled", _Actions.bearsKilled, bearsKilledValue);
+
+			var babooValue = 0;
+			setupObject.setupFirebaseValue(store, "global", 'baboos', _Actions.baboos, babooValue);
+
+			var wizardValue = 0;
+			setupObject.setupFirebaseValue(store, "global", 'wizards', _Actions.wizards, wizardValue);
+
+			var neoValue = 0;
+			setupObject.setupFirebaseValue(store, "global", 'neo', _Actions.neo, neoValue);
+
+			var personalCounterValue = 0;
+			setupObject.setupFirebaseValue(store, store.getState("USER_ID").userId, 'personalCounter', _Actions.personalCounter, personalCounterValue);
+		}
+	};
+
+	exports.default = setupObject;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * tiny-cookie - A tiny cookie manipulation plugin
+	 * https://github.com/Alex1990/tiny-cookie
+	 * Under the MIT license | (c) Alex Chao
+	 */
+
+	!(function(root, factory) {
+
+	  // Uses CommonJS, AMD or browser global to create a jQuery plugin.
+	  // See: https://github.com/umdjs/umd
+	  if (true) {
+	    // Expose this plugin as an AMD module. Register an anonymous module.
+	    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports === 'object') {
+	    // Node/CommonJS module
+	    module.exports = factory();
+	  } else {
+	    // Browser globals 
+	    root.Cookie = factory();
+	  }
+
+	}(this, function() {
+
+	  'use strict';
+
+	  // The public function which can get/set/remove cookie.
+	  function Cookie(key, value, opts) {
+	    if (value === void 0) {
+	      return Cookie.get(key);
+	    } else if (value === null) {
+	      Cookie.remove(key);
+	    } else {
+	      Cookie.set(key, value, opts);
+	    }
+	  }
+
+	  // Check if the cookie is enabled.
+	  Cookie.enabled = function() {
+	    var key = '__test_key';
+	    var enabled;
+
+	    document.cookie = key + '=1';
+	    enabled = !!document.cookie;
+
+	    if (enabled) Cookie.remove(key);
+
+	    return enabled;
+	  };
+
+	  // Get the cookie value by the key.
+	  Cookie.get = function(key, raw) {
+	    if (typeof key !== 'string' || !key) return null;
+
+	    key = '(?:^|; )' + escapeRe(key) + '(?:=([^;]*?))?(?:;|$)';
+
+	    var reKey = new RegExp(key);
+	    var res = reKey.exec(document.cookie);
+
+	    return res !== null ? (raw ? res[1] : decodeURIComponent(res[1])) : null;
+	  };
+
+	  // Get the cookie's value without decoding.
+	  Cookie.getRaw = function(key) {
+	    return Cookie.get(key, true);
+	  };
+
+	  // Set a cookie.
+	  Cookie.set = function(key, value, raw, opts) {
+	    if (raw !== true) {
+	      opts = raw;
+	      raw = false;
+	    }
+	    opts = opts ? convert(opts) : convert({});
+	    var cookie = key + '=' + (raw ? value : encodeURIComponent(value)) + opts;
+	    document.cookie = cookie;
+	  };
+
+	  // Set a cookie without encoding the value.
+	  Cookie.setRaw = function(key, value, opts) {
+	    Cookie.set(key, value, true, opts);
+	  };
+
+	  // Remove a cookie by the specified key.
+	  Cookie.remove = function(key) {
+	    Cookie.set(key, 'a', { expires: new Date() });
+	  };
+
+	  // Helper function
+	  // ---------------
+
+	  // Escape special characters.
+	  function escapeRe(str) {
+	    return str.replace(/[.*+?^$|[\](){}\\-]/g, '\\$&');
+	  }
+
+	  // Convert an object to a cookie option string.
+	  function convert(opts) {
+	    var res = '';
+
+	    for (var p in opts) {
+	      if (opts.hasOwnProperty(p)) {
+
+	        if (p === 'expires') {
+	          var expires = opts[p];
+	          if (typeof expires !== 'object') {
+	            expires += typeof expires === 'number' ? 'D' : '';
+	            expires = computeExpires(expires);
+	          }
+	          opts[p] = expires.toUTCString();
+	        }
+
+	        res += ';' + p + '=' + opts[p];
+	      }
+	    }
+
+	    if (!opts.hasOwnProperty('path')) {
+	      res += ';path=/';
+	    }
+
+	    return res;
+	  }
+
+	  // Return a future date by the given string.
+	  function computeExpires(str) {
+	    var expires = new Date();
+	    var lastCh = str.charAt(str.length - 1);
+	    var value = parseInt(str, 10);
+
+	    switch (lastCh) {
+	      case 'Y': expires.setFullYear(expires.getFullYear() + value); break;
+	      case 'M': expires.setMonth(expires.getMonth() + value); break;
+	      case 'D': expires.setDate(expires.getDate() + value); break;
+	      case 'h': expires.setHours(expires.getHours() + value); break;
+	      case 'm': expires.setMinutes(expires.getMinutes() + value); break;
+	      case 's': expires.setSeconds(expires.getSeconds() + value); break;
+	      default: expires = new Date(str);
+	    }
+
+	    return expires;
+	  }
+
+	  return Cookie;
+
+	}));
+
+
+/***/ },
+/* 223 */
 /***/ function(module, exports) {
 
 	'use strict';

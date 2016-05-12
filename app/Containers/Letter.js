@@ -1,7 +1,12 @@
 import { connect } from 'react-redux'
 import Letter from '../Components/Letter'
 import { soundManager } from 'soundmanager2'
-import { soundboard, togglePlaying, animation, personalCounter } from '../Actions'
+import {
+	soundboard,
+	togglePlaying,
+	animation,
+	personalCounter
+} from '../Actions'
 import Data from '../data'
 import Firebase from 'firebase'
 
@@ -16,19 +21,20 @@ const mapStateToProps = (state) => {
 		personalCounter: state.personalCounter,
 		baboos: state.baboos,
 		wizards: state.wizards,
-		cheatMenu: state.cheatMenu
+		cheatMenu: state.cheatMenu,
+		userId: state.userId
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLetterClick: (foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards, cheatMenu) => {
+		onLetterClick: (foundKey, soundboardName, globalCounter, personalCount, canAnimate, baboos, wizards, cheatMenu, userId) => {
 			if (cheatMenu === true) {
 				return false;
 			}
 			
-			fireRef.update({'globalCounter': ++globalCounter})
-			dispatch(personalCounter(++personalCount))
+			fireRef.child('global').update({'globalCounter': ++globalCounter})
+			fireRef.child(userId).update({'personalCounter': ++personalCount})
 
 			if (foundKey.animation) {
 				dispatch(animation(foundKey.animation))

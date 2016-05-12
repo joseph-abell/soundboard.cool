@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onKillBearClick: (soundManager, bears) => {
 			soundManager.stopAll();
-			fireRef.update({'bearsKilled': ++bears})
+			fireRef.child('global').update({'bearsKilled': ++bears})
 		}
 	}
 }
