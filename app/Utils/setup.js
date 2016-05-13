@@ -9,10 +9,42 @@ import {
 	personalCounter,
 	userId
 } from '../Actions';
+import Data, { privateConversations } from '../data'
 
 let fireRef = new Firebase('https://soundboardcool.firebaseio.com/')
 
 let setupObject = {
+	setupSlack: (store, gameUser) => {
+		const usernames = Data.privateConversations
+
+		for (let username in usernames) {
+			if (!usernames.hasOwnProperty(username)) continue;
+
+			const messages = usernames[username];
+
+   			fireRef.child(gameUser).child('messages').once("value", function(snapshot) {
+			    var data = snapshot.val();
+			    if (data === null) {
+			    	for (let messageId in messages) {
+			    		const message = messages[messageId]
+
+			    		fireRef.child(gameUser).child('messages').child(username).child(messageId).on("value", function (snapshot) {
+			    			console.log(snapshot.val())	
+			    		})
+
+			    		fireRef.child(gameUser).child('messages').child(username).child(messageId).set({
+			    			id: message.id,
+			    			person: message.person,
+			    			time: message.time,
+			    			says: message.says
+			    		})
+
+
+			    	}
+			    }
+			});				
+		}
+	},
 	setupFirebaseValue: (store, childName, firebaseReferenceName, action, localValue) => {
 		fireRef.child(childName).child(firebaseReferenceName).on("value", function(snapshot) {
 			let globalValue = snapshot.val();
@@ -55,7 +87,9 @@ let setupObject = {
 		setupObject.setupFirebaseValue(store, "global", 'neo', neo, neoValue);
 
 		let personalCounterValue = 0;
-		setupObject.setupFirebaseValue(store, store.getState("USER_ID").userId, 'personalCounter', personalCounter, personalCounterValue)	
+		setupObject.setupFirebaseValue(store, store.getState("USER_ID").userId, 'personalCounter', personalCounter, personalCounterValue)
+
+		setupObject.setupSlack(store, store.getState('USER_ID').userId)
 	}
 }
 

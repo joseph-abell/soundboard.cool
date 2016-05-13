@@ -1148,6 +1148,12 @@ export default {
 				person: 'slackbot',
 				time: '10.14am',
 				says: 'Looks like everyone else is away. Do you want to talk to me?'
+			},
+			{
+				id: 1,
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'If you want to leave slack, press escape.'	
 			}
 		],
 		luigi: [

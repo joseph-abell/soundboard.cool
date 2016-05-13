@@ -23951,6 +23951,11 @@
 				person: 'slackbot',
 				time: '10.14am',
 				says: 'Looks like everyone else is away. Do you want to talk to me?'
+			}, {
+				id: 1,
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'If you want to leave slack, press escape.'
 			}],
 			luigi: [{
 				id: 0,
@@ -31641,11 +31646,50 @@
 
 	var _Actions = __webpack_require__(192);
 
+	var _data = __webpack_require__(200);
+
+	var _data2 = _interopRequireDefault(_data);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
 	var setupObject = {
+		setupSlack: function setupSlack(store, gameUser) {
+			var usernames = _data2.default.privateConversations;
+
+			var _loop = function _loop(username) {
+				if (!usernames.hasOwnProperty(username)) return 'continue';
+
+				var messages = usernames[username];
+
+				fireRef.child(gameUser).child('messages').once("value", function (snapshot) {
+					var data = snapshot.val();
+					if (data === null) {
+						for (var messageId in messages) {
+							var message = messages[messageId];
+
+							fireRef.child(gameUser).child('messages').child(username).child(messageId).on("value", function (snapshot) {
+								console.log(snapshot.val());
+							});
+
+							fireRef.child(gameUser).child('messages').child(username).child(messageId).set({
+								id: message.id,
+								person: message.person,
+								time: message.time,
+								says: message.says
+							});
+						}
+					}
+				});
+			};
+
+			for (var username in usernames) {
+				var _ret = _loop(username);
+
+				if (_ret === 'continue') continue;
+			}
+		},
 		setupFirebaseValue: function setupFirebaseValue(store, childName, firebaseReferenceName, action, localValue) {
 			fireRef.child(childName).child(firebaseReferenceName).on("value", function (snapshot) {
 				var globalValue = snapshot.val();
@@ -31689,6 +31733,8 @@
 
 			var personalCounterValue = 0;
 			setupObject.setupFirebaseValue(store, store.getState("USER_ID").userId, 'personalCounter', _Actions.personalCounter, personalCounterValue);
+
+			setupObject.setupSlack(store, store.getState('USER_ID').userId);
 		}
 	};
 
