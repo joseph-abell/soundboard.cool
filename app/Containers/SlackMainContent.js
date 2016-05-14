@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 	slackKeyPress();
 	let privateConversations;
 	let channelMessages;
-	
+
 	switch(state.slackMainContent.slackContentName) {
 		case('slackbot'):
 			privateConversations = state.addSlackbotMessage;
@@ -69,13 +69,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return { 
-		onSendMessageClick: (time, person, says, gameUser, messages) => {
-			const slackbotActions = data.slackbotActions;
-			const slackbotResponses = data.slackbotResponses; 
-
+		onSendMessageClick: (time, person, says, gameUser, messages, contentType) => {
 			if (says.length === 0) {
 				return false;
 			}
+
+			const slackbotActions = data.slackbotActions;
+			const slackbotResponses = data.slackbotResponses; 
+			let messageType;
+
+			if (contentType === 'privateMessage') {
+				messageType = 'messages'
+			} else if (contentType === 'channel') {
+				messageType = 'channelMessages'
+			}
+			
 
 			if (person === 'slackbot') {
 				for (let slackbotActionIndex = 0; slackbotActionIndex < slackbotActions.length; slackbotActionIndex++) {
@@ -93,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
 
 			var messagesLength = messages.length;
 
-			fireRef.child(gameUser).child('messages').child(person).child(messagesLength).set({
+			fireRef.child(gameUser).child(messageType).child(person).child(messagesLength).set({
     			person: 'waluigi',
     			time: time,
     			says: says

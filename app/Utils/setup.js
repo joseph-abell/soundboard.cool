@@ -53,7 +53,7 @@ let setupObject = {
 		}
 	},
 	matchFirebaseValuesToRedux: (store, childName, firebaseReferenceName, action, localValue) => {
-		fireRef.child(childName).child(firebaseReferenceName).once("value", function(snapshot) {
+		fireRef.child(childName).child(firebaseReferenceName).on("value", function(snapshot) {
 			let globalValue = snapshot.val();
 			if (globalValue === null) {
 				store.dispatch(action(0))
@@ -99,9 +99,6 @@ let setupObject = {
 
 		const userIdValue = store.getState('USER_ID').userId;
 
-		setupObject.setupSlackValuesInFirebase(store, userIdValue, 'messages')
-		setupObject.setupSlackValuesInFirebase(store, userIdValue, 'channelMessages')
-
 		let globalCounterValue = 0;
 		setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", globalCounter, globalCounterValue, 'messages');
 
@@ -119,6 +116,9 @@ let setupObject = {
 
 		let personalCounterValue = 0;
 		setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', personalCounter, personalCounterValue, 'messages')
+
+		setupObject.setupSlackValuesInFirebase(store, userIdValue, 'messages')
+		setupObject.setupSlackValuesInFirebase(store, userIdValue, 'channelMessages')
 
 		let slackbotMessages = [];
 		setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', addSlackbotMessage, slackbotMessages, 'messages');

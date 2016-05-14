@@ -31667,12 +31667,19 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			onSendMessageClick: function onSendMessageClick(time, person, says, gameUser, messages) {
-				var slackbotActions = _data2.default.slackbotActions;
-				var slackbotResponses = _data2.default.slackbotResponses;
-
+			onSendMessageClick: function onSendMessageClick(time, person, says, gameUser, messages, contentType) {
 				if (says.length === 0) {
 					return false;
+				}
+
+				var slackbotActions = _data2.default.slackbotActions;
+				var slackbotResponses = _data2.default.slackbotResponses;
+				var messageType = void 0;
+
+				if (contentType === 'privateMessage') {
+					messageType = 'messages';
+				} else if (contentType === 'channel') {
+					messageType = 'channelMessages';
 				}
 
 				if (person === 'slackbot') {
@@ -31691,7 +31698,7 @@
 
 				var messagesLength = messages.length;
 
-				fireRef.child(gameUser).child('messages').child(person).child(messagesLength).set({
+				fireRef.child(gameUser).child(messageType).child(person).child(messagesLength).set({
 					person: 'waluigi',
 					time: time,
 					says: says
@@ -31857,7 +31864,7 @@
 	            } })
 	        ),
 	        _react2.default.createElement('span', { id: 'sendMessage', onClick: function onClick() {
-	            onSendMessageClick("10.00am", slackContentName, input.value, userId, privateConversations);
+	            onSendMessageClick("10.00am", slackContentName, input.value, userId, privateConversations, slackContentType);
 	            input.value = '';
 	          } })
 	      );
@@ -32303,7 +32310,7 @@
 			}
 		},
 		matchFirebaseValuesToRedux: function matchFirebaseValuesToRedux(store, childName, firebaseReferenceName, action, localValue) {
-			fireRef.child(childName).child(firebaseReferenceName).once("value", function (snapshot) {
+			fireRef.child(childName).child(firebaseReferenceName).on("value", function (snapshot) {
 				var globalValue = snapshot.val();
 				if (globalValue === null) {
 					store.dispatch(action(0));
@@ -32347,9 +32354,6 @@
 
 			var userIdValue = store.getState('USER_ID').userId;
 
-			setupObject.setupSlackValuesInFirebase(store, userIdValue, 'messages');
-			setupObject.setupSlackValuesInFirebase(store, userIdValue, 'channelMessages');
-
 			var globalCounterValue = 0;
 			setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", _Actions.globalCounter, globalCounterValue, 'messages');
 
@@ -32367,6 +32371,9 @@
 
 			var personalCounterValue = 0;
 			setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', _Actions.personalCounter, personalCounterValue, 'messages');
+
+			setupObject.setupSlackValuesInFirebase(store, userIdValue, 'messages');
+			setupObject.setupSlackValuesInFirebase(store, userIdValue, 'channelMessages');
 
 			var slackbotMessages = [];
 			setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', _Actions.addSlackbotMessage, slackbotMessages, 'messages');

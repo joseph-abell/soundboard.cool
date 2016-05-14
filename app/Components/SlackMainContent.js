@@ -81,7 +81,7 @@ export default class App extends React.Component {
           }} />
         </div>
         <span id="sendMessage" onClick={() => {
-          onSendMessageClick("10.00am", slackContentName, input.value, userId, privateConversations);
+          onSendMessageClick("10.00am", slackContentName, input.value, userId, privateConversations, slackContentType);
           input.value = '';
         }} />
    	  </div>
