@@ -68,7 +68,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _setup = __webpack_require__(222);
+	var _setup = __webpack_require__(223);
 
 	var _setup2 = _interopRequireDefault(_setup);
 
@@ -22358,6 +22358,38 @@
 		}
 	};
 
+	var addGeneralChannelMessage = function addGeneralChannelMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_GENERAL_CHANNEL_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.generalChannelMessage.time,
+					person: action.generalChannelMessage.person,
+					says: action.generalChannelMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addRandomChannelMessage = function addRandomChannelMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_RANDOM_CHANNEL_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.randomChannelMessage.time,
+					person: action.randomChannelMessage.person,
+					says: action.randomChannelMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
 	var soundboardApp = (0, _redux.combineReducers)({
 		userId: userId,
 		soundboard: soundboard,
@@ -22382,7 +22414,9 @@
 		addMarioMessage: addMarioMessage,
 		addPeachMessage: addPeachMessage,
 		addToadMessage: addToadMessage,
-		addYoshiMessage: addYoshiMessage
+		addYoshiMessage: addYoshiMessage,
+		addGeneralChannelMessage: addGeneralChannelMessage,
+		addRandomChannelMessage: addRandomChannelMessage
 	});
 
 	exports.default = soundboardApp;
@@ -22418,6 +22452,8 @@
 	exports.addPeachMessage = addPeachMessage;
 	exports.addToadMessage = addToadMessage;
 	exports.addYoshiMessage = addYoshiMessage;
+	exports.addGeneralChannelMessage = addGeneralChannelMessage;
+	exports.addRandomChannelMessage = addRandomChannelMessage;
 	exports.slackMainContent = slackMainContent;
 	var USER_ID = exports.USER_ID = "USER_ID";
 
@@ -22646,9 +22682,37 @@
 		};
 	}
 
+	var ADD_GENERAL_CHANNEL_MESSAGE = exports.ADD_GENERAL_CHANNEL_MESSAGE = "ADD_GENERAL_CHANNEL_MESSAGE";
+
+	function addGeneralChannelMessage(time, person, says) {
+		return {
+			type: ADD_GENERAL_CHANNEL_MESSAGE,
+			generalChannelMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_RANDOM_CHANNEL_MESSAGE = exports.ADD_RANDOM_CHANNEL_MESSAGE = "ADD_RANDOM_CHANNEL_MESSAGE";
+
+	function addRandomChannelMessage(time, person, says) {
+		return {
+			type: ADD_RANDOM_CHANNEL_MESSAGE,
+			randomChannelMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
 	var SLACK_MAIN_CONTENT = exports.SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT";
 
-	function slackMainContent(slackContentName, slackContentType, slackIsOnline) {
+	function slackMainContent(slackContentName, slackContentType) {
+		var slackIsOnline = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
+
 		return {
 			type: SLACK_MAIN_CONTENT,
 			slackContentName: slackContentName,
@@ -24162,6 +24226,18 @@
 				}]
 			}]
 		}],
+		channelMessages: {
+			general: [{
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'Looks like everyone else is away. Do you want to talk to me?'
+			}],
+			random: [{
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'Looks like everyone else is away. Do you want to talk to me?'
+			}]
+		},
 		privateConversations: {
 			slackbot: [{
 				person: 'slackbot',
@@ -31313,7 +31389,14 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
 			onChannelNameClick: function onChannelNameClick(channelName) {
-				dispatch((0, _Actions.slackMainContent)(channelName, 'channel'));
+				switch (channelName) {
+					case 'general':
+						dispatch((0, _Actions.slackMainContent)(channelName, 'channel'));
+						break;
+					case 'random':
+						dispatch((0, _Actions.slackMainContent)(channelName, 'channel'));
+						break;
+				}
 			}
 		};
 	};
@@ -31525,7 +31608,7 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _Utils = __webpack_require__(221);
+	var _Utils = __webpack_require__(222);
 
 	var _data = __webpack_require__(200);
 
@@ -31540,6 +31623,7 @@
 	var mapStateToProps = function mapStateToProps(state) {
 		(0, _Utils.slackKeyPress)();
 		var privateConversations = void 0;
+		var channelMessages = void 0;
 
 		switch (state.slackMainContent.slackContentName) {
 			case 'slackbot':
@@ -31563,6 +31647,12 @@
 			case 'yoshi':
 				privateConversations = state.addYoshiMessage;
 				break;
+			case 'general':
+				privateConversations = state.addGeneralChannelMessage;
+				break;
+			case 'random':
+				privateConversations = state.addRandomChannelMessage;
+				break;
 		}
 
 		return {
@@ -31570,6 +31660,7 @@
 			slackContentType: state.slackMainContent.slackContentType,
 			slackIsOnline: state.slackMainContent.slackIsOnline,
 			privateConversations: privateConversations,
+			channelMessages: channelMessages,
 			userId: state.userId
 		};
 	};
@@ -31649,15 +31740,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _data = __webpack_require__(200);
-
-	var _data2 = _interopRequireDefault(_data);
-
 	var _SlackLineOfText = __webpack_require__(219);
 
 	var _SlackLineOfText2 = _interopRequireDefault(_SlackLineOfText);
 
-	var _SlackPersonalConversationHeader = __webpack_require__(220);
+	var _SlackChannelHeader = __webpack_require__(220);
+
+	var _SlackChannelHeader2 = _interopRequireDefault(_SlackChannelHeader);
+
+	var _SlackPersonalConversationHeader = __webpack_require__(221);
 
 	var _SlackPersonalConversationHeader2 = _interopRequireDefault(_SlackPersonalConversationHeader);
 
@@ -31688,11 +31779,13 @@
 	      var onSendMessageClick = _props.onSendMessageClick;
 	      var userId = _props.userId;
 	      var privateConversations = _props.privateConversations;
+	      var channelMessages = _props.channelMessages;
 
 	      var onlineStyling = void 0;
 	      var onlineText = void 0;
 	      var conversation = void 0;
 	      var contentType = void 0;
+	      var mainText = void 0;
 
 	      var input = void 0;
 
@@ -31723,8 +31816,16 @@
 	      if (slackContentType === "personalMessage") {
 	        contentType = _react2.default.createElement(_SlackPersonalConversationHeader2.default, { slackContentName: slackContentName, onlineStyling: onlineStyling, onlineText: onlineText });
 	      } else {
-	        contentType = _react2.default.createElement('div', null);
+	        contentType = _react2.default.createElement(_SlackChannelHeader2.default, { channelName: slackContentName });
 	      }
+
+	      mainText = _react2.default.createElement(
+	        'div',
+	        { style: { position: "absolute", top: 64, padding: 20, left: 0, right: 0, bottom: 90, overflow: 'auto' } },
+	        privateConversations.map(function (conversationPiece, conversationPieceId) {
+	          return _react2.default.createElement(_SlackLineOfText2.default, { key: conversationPieceId, says: conversationPiece.says, person: conversationPiece.person, time: conversationPiece.time });
+	        })
+	      );
 
 	      return _react2.default.createElement(
 	        'div',
@@ -31734,13 +31835,7 @@
 	          { style: { position: 'absolute', top: 10, paddingLeft: 20, left: 0, right: 0, borderBottom: '1px solid #ddd', paddingBottom: 10 } },
 	          contentType
 	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: { position: "absolute", top: 64, padding: 20, left: 0, right: 0, bottom: 90, overflow: 'auto' } },
-	          privateConversations.map(function (conversationPiece, conversationPieceId) {
-	            return _react2.default.createElement(_SlackLineOfText2.default, { key: conversationPieceId, says: conversationPiece.says, person: conversationPiece.person, time: conversationPiece.time });
-	          })
-	        ),
+	        mainText,
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -31886,6 +31981,68 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
+	      var channelName = this.props.channelName;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { textAlign: 'left' } },
+	        _react2.default.createElement(
+	          'div',
+	          { style: { fontSize: 18, fontWeight: 'bold' } },
+	          '#',
+	          channelName
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
+	          '6 members'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	exports.default = App;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
 	      var _props = this.props;
 	      var slackContentName = _props.slackContentName;
 	      var onlineStyling = _props.onlineStyling;
@@ -31932,7 +32089,7 @@
 	exports.default = App;
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32080,7 +32237,7 @@
 	}
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32093,7 +32250,7 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _tinyCookie = __webpack_require__(223);
+	var _tinyCookie = __webpack_require__(224);
 
 	var _tinyCookie2 = _interopRequireDefault(_tinyCookie);
 
@@ -32103,28 +32260,33 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Utils = __webpack_require__(221);
+	var _Utils = __webpack_require__(222);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
 	var setupObject = {
-		setupSlackValuesInFirebase: function setupSlackValuesInFirebase(store, gameUser) {
-			var usernames = _data2.default.privateConversations;
+		setupSlackValuesInFirebase: function setupSlackValuesInFirebase(store, gameUser, dataType) {
+			var usernames = void 0;
+			if (dataType == 'messages') {
+				usernames = _data2.default.privateConversations;
+			} else {
+				usernames = _data2.default.channelMessages;
+			}
 
 			var _loop = function _loop(username) {
 				if (!usernames.hasOwnProperty(username)) return 'continue';
 
 				var messages = usernames[username];
 
-				fireRef.child(gameUser).child('messages').once("value", function (snapshot) {
+				fireRef.child(gameUser).child(dataType).once("value", function (snapshot) {
 					var data = snapshot.val();
 					if (data === null) {
 						for (var messageId in messages) {
 							var message = messages[messageId];
 
-							fireRef.child(gameUser).child('messages').child(username).child(messageId).set({
+							fireRef.child(gameUser).child(dataType).child(username).child(messageId).set({
 								person: message.person,
 								time: message.time,
 								says: message.says
@@ -32154,8 +32316,8 @@
 				}
 			});
 		},
-		matchSlackValuesToRedux: function matchSlackValuesToRedux(store, userId, personUserIsTalkingTo, action, messages) {
-			fireRef.child(userId).child('messages').child(personUserIsTalkingTo).on('value', function (snapshot) {
+		matchSlackValuesToRedux: function matchSlackValuesToRedux(store, userId, personUserIsTalkingTo, action, messages, messageType) {
+			fireRef.child(userId).child(messageType).child(personUserIsTalkingTo).on('value', function (snapshot) {
 				var firebaseMessages = snapshot.val();
 
 				for (var firebaseMessageId in firebaseMessages) {
@@ -32185,53 +32347,60 @@
 
 			var userIdValue = store.getState('USER_ID').userId;
 
-			setupObject.setupSlackValuesInFirebase(store, userIdValue);
+			setupObject.setupSlackValuesInFirebase(store, userIdValue, 'messages');
+			setupObject.setupSlackValuesInFirebase(store, userIdValue, 'channelMessages');
 
 			var globalCounterValue = 0;
-			setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", _Actions.globalCounter, globalCounterValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", _Actions.globalCounter, globalCounterValue, 'messages');
 
 			var bearsKilledValue = 0;
-			setupObject.matchFirebaseValuesToRedux(store, "global", "bearsKilled", _Actions.bearsKilled, bearsKilledValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", "bearsKilled", _Actions.bearsKilled, bearsKilledValue, 'messages');
 
 			var babooValue = 0;
-			setupObject.matchFirebaseValuesToRedux(store, "global", 'baboos', _Actions.baboos, babooValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", 'baboos', _Actions.baboos, babooValue, 'messages');
 
 			var wizardValue = 0;
-			setupObject.matchFirebaseValuesToRedux(store, "global", 'wizards', _Actions.wizards, wizardValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", 'wizards', _Actions.wizards, wizardValue, 'messages');
 
 			var neoValue = 0;
-			setupObject.matchFirebaseValuesToRedux(store, "global", 'neo', _Actions.neo, neoValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", 'neo', _Actions.neo, neoValue, 'messages');
 
 			var personalCounterValue = 0;
-			setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', _Actions.personalCounter, personalCounterValue);
+			setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', _Actions.personalCounter, personalCounterValue, 'messages');
 
 			var slackbotMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', _Actions.addSlackbotMessage, slackbotMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', _Actions.addSlackbotMessage, slackbotMessages, 'messages');
 
 			var bowserMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'bowser', _Actions.addBowserMessage, bowserMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'bowser', _Actions.addBowserMessage, bowserMessages, 'messages');
 
 			var luigiMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'luigi', _Actions.addLuigiMessage, luigiMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'luigi', _Actions.addLuigiMessage, luigiMessages, 'messages');
 
 			var marioMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'mario', _Actions.addMarioMessage, marioMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'mario', _Actions.addMarioMessage, marioMessages, 'messages');
 
 			var peachMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'peach', _Actions.addPeachMessage, peachMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'peach', _Actions.addPeachMessage, peachMessages, 'messages');
 
 			var toadMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'toad', _Actions.addToadMessage, toadMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'toad', _Actions.addToadMessage, toadMessages, 'messages');
 
 			var yoshiMessages = [];
-			setupObject.matchSlackValuesToRedux(store, userIdValue, 'yoshi', _Actions.addYoshiMessage, yoshiMessages);
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'yoshi', _Actions.addYoshiMessage, yoshiMessages, 'messages');
+
+			var generalMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'general', _Actions.addGeneralChannelMessage, generalMessages, 'channelMessages');
+
+			var randomMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'random', _Actions.addRandomChannelMessage, randomMessages, 'channelMessages');
 		}
 	};
 
 	exports.default = setupObject;
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!

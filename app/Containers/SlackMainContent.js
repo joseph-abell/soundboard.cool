@@ -11,6 +11,8 @@ import {
 	addPeachMessage,
 	addToadMessage,
 	addYoshiMessage,
+	addGeneralChannelMessage,
+	addRandomChannelMessage,
 	enableCheatMenu
 } from '../Actions';
 
@@ -21,7 +23,8 @@ let fireRef = new Firebase('https://soundboardcool.firebaseio.com/');
 const mapStateToProps = (state) => {
 	slackKeyPress();
 	let privateConversations;
-
+	let channelMessages;
+	
 	switch(state.slackMainContent.slackContentName) {
 		case('slackbot'):
 			privateConversations = state.addSlackbotMessage;
@@ -44,13 +47,22 @@ const mapStateToProps = (state) => {
 		case('yoshi'):
 			privateConversations = state.addYoshiMessage;
 			break;
+		case('general'):
+			privateConversations = state.addGeneralChannelMessage;
+			break;
+		case('random'):
+			privateConversations = state.addRandomChannelMessage;
+			break;
 	}
+
+
 
 	return {
 		slackContentName: state.slackMainContent.slackContentName,
 		slackContentType: state.slackMainContent.slackContentType,
 		slackIsOnline: state.slackMainContent.slackIsOnline,
 		privateConversations: privateConversations,
+		channelMessages: channelMessages,
 		userId: state.userId
 	}
 }

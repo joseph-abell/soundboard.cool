@@ -1,15 +1,16 @@
 import React from 'react'
-import Data from '../data'
 import SlackLineOfText from './SlackLineOfText'
+import SlackChannelHeader from './SlackChannelHeader'
 import SlackPersonalConversationHeader from './SlackPersonalConversationHeader'
 
 export default class App extends React.Component {
   render() {
-  	let { slackIsOnline, slackContentName, slackContentType, onSendMessageClick, userId, privateConversations } = this.props;
+  	let { slackIsOnline, slackContentName, slackContentType, onSendMessageClick, userId, privateConversations, channelMessages } = this.props;
   	let onlineStyling;
     let onlineText;
     let conversation;
     let contentType;
+    let mainText;
 
     let input;
 
@@ -38,24 +39,26 @@ export default class App extends React.Component {
   	}
 
   	if (slackContentType === "personalMessage") {
-  		contentType = <SlackPersonalConversationHeader slackContentName={slackContentName} onlineStyling={onlineStyling} onlineText={onlineText} />      
+  		contentType = <SlackPersonalConversationHeader slackContentName={slackContentName} onlineStyling={onlineStyling} onlineText={onlineText} />    
   	} else {
-  		contentType = <div></div>
+  		contentType = <SlackChannelHeader channelName={slackContentName} />
   	}
-    
+
+    mainText = <div style={{position: "absolute", top: 64, padding: 20, left: 0, right: 0, bottom: 90, overflow: 'auto'}}>
+      {
+        privateConversations.map((conversationPiece, conversationPieceId) => {
+          return <SlackLineOfText key={conversationPieceId} says={conversationPiece.says} person={conversationPiece.person} time={conversationPiece.time} />
+        })
+      }
+    </div>
+
     return (
 	    <div style={{position: 'absolute', top: 0, bottom: 0, left: 220, right: 0, background: '#fff'}}>
       	<div style={{position: 'absolute', top: 10, paddingLeft: 20, left: 0, right: 0, borderBottom: '1px solid #ddd', paddingBottom: 10}}>
           {contentType}
         </div>
 
-        <div style={{position: "absolute", top: 64, padding: 20, left: 0, right: 0, bottom: 90, overflow: 'auto'}}>
-          {
-            privateConversations.map((conversationPiece, conversationPieceId) => {
-              return <SlackLineOfText key={conversationPieceId} says={conversationPiece.says} person={conversationPiece.person} time={conversationPiece.time} />
-            })
-          }
-        </div>
+        {mainText}
 
         <div>
           <input type="text" style={

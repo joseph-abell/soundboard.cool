@@ -1141,6 +1141,22 @@ export default {
 			]
 		}
 	],
+	channelMessages: {
+		general: [
+			{
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'Looks like everyone else is away. Do you want to talk to me?'	
+			}
+		],
+		random: [
+			{
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'Looks like everyone else is away. Do you want to talk to me?'	
+			}
+		]
+	},
 	privateConversations: {
 		slackbot: [
 			{

@@ -225,9 +225,35 @@ export function addYoshiMessage (time, person, says) {
 	}
 }
 
+export const ADD_GENERAL_CHANNEL_MESSAGE = "ADD_GENERAL_CHANNEL_MESSAGE"
+
+export function addGeneralChannelMessage (time, person, says) {
+	return {
+		type: ADD_GENERAL_CHANNEL_MESSAGE,
+		generalChannelMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_RANDOM_CHANNEL_MESSAGE = "ADD_RANDOM_CHANNEL_MESSAGE"
+
+export function addRandomChannelMessage (time, person, says) {
+	return {
+		type: ADD_RANDOM_CHANNEL_MESSAGE,
+		randomChannelMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
 export const SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT"
 
-export function slackMainContent (slackContentName, slackContentType, slackIsOnline) {
+export function slackMainContent (slackContentName, slackContentType, slackIsOnline = false) {
 	return {
 		type: SLACK_MAIN_CONTENT,
 		slackContentName: slackContentName,

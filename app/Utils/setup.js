@@ -14,7 +14,9 @@ import {
 	addMarioMessage,
 	addPeachMessage,
 	addToadMessage,
-	addYoshiMessage
+	addYoshiMessage,
+	addGeneralChannelMessage,
+	addRandomChannelMessage
 } from '../Actions';
 import Data, { privateConversations } from '../data'
 import { soundboardKeyPress } from '../Utils'
@@ -22,21 +24,25 @@ import { soundboardKeyPress } from '../Utils'
 let fireRef = new Firebase('https://soundboardcool.firebaseio.com/')
 
 let setupObject = {
-	setupSlackValuesInFirebase: (store, gameUser) => {
-		const usernames = Data.privateConversations
-
+	setupSlackValuesInFirebase: (store, gameUser, dataType) => {
+		let usernames;
+		if (dataType == 'messages') {
+			usernames = Data.privateConversations
+		} else {
+			usernames = Data.channelMessages
+		}
 		for (let username in usernames) {
 			if (!usernames.hasOwnProperty(username)) continue;
 
 			const messages = usernames[username];
 
-   			fireRef.child(gameUser).child('messages').once("value", function(snapshot) {
+   			fireRef.child(gameUser).child(dataType).once("value", function(snapshot) {
 			    var data = snapshot.val();
 			    if (data === null) {
 			    	for (let messageId in messages) {
 			    		const message = messages[messageId]
 
-			    		fireRef.child(gameUser).child('messages').child(username).child(messageId).set({
+			    		fireRef.child(gameUser).child(dataType).child(username).child(messageId).set({
 			    			person: message.person,
 			    			time: message.time,
 			    			says: message.says
@@ -60,8 +66,8 @@ let setupObject = {
 			}
 		});
 	},
-	matchSlackValuesToRedux: (store, userId, personUserIsTalkingTo, action, messages) => {
-		fireRef.child(userId).child('messages').child(personUserIsTalkingTo).on('value', (snapshot) => {
+	matchSlackValuesToRedux: (store, userId, personUserIsTalkingTo, action, messages, messageType) => {
+		fireRef.child(userId).child(messageType).child(personUserIsTalkingTo).on('value', (snapshot) => {
 			let firebaseMessages = snapshot.val();
 
 			for (let firebaseMessageId in firebaseMessages) {
@@ -93,46 +99,53 @@ let setupObject = {
 
 		const userIdValue = store.getState('USER_ID').userId;
 
-		setupObject.setupSlackValuesInFirebase(store, userIdValue)
+		setupObject.setupSlackValuesInFirebase(store, userIdValue, 'messages')
+		setupObject.setupSlackValuesInFirebase(store, userIdValue, 'channelMessages')
 
 		let globalCounterValue = 0;
-		setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", globalCounter, globalCounterValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", globalCounter, globalCounterValue, 'messages');
 
 		let bearsKilledValue = 0;
-		setupObject.matchFirebaseValuesToRedux(store, "global", "bearsKilled", bearsKilled, bearsKilledValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", "bearsKilled", bearsKilled, bearsKilledValue, 'messages');
 
 		let babooValue = 0;
-		setupObject.matchFirebaseValuesToRedux(store, "global", 'baboos', baboos, babooValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", 'baboos', baboos, babooValue, 'messages');
 
 		let wizardValue = 0;
-		setupObject.matchFirebaseValuesToRedux(store, "global", 'wizards', wizards, wizardValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", 'wizards', wizards, wizardValue, 'messages');
 
 		let neoValue = 0;
-		setupObject.matchFirebaseValuesToRedux(store, "global", 'neo', neo, neoValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", 'neo', neo, neoValue, 'messages');
 
 		let personalCounterValue = 0;
-		setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', personalCounter, personalCounterValue)
+		setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', personalCounter, personalCounterValue, 'messages')
 
 		let slackbotMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', addSlackbotMessage, slackbotMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', addSlackbotMessage, slackbotMessages, 'messages');
 
 		let bowserMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'bowser', addBowserMessage, bowserMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'bowser', addBowserMessage, bowserMessages, 'messages');
 
 		let luigiMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'luigi', addLuigiMessage, luigiMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'luigi', addLuigiMessage, luigiMessages, 'messages');
 
 		let marioMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'mario', addMarioMessage, marioMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'mario', addMarioMessage, marioMessages, 'messages');
 
 		let peachMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'peach', addPeachMessage, peachMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'peach', addPeachMessage, peachMessages, 'messages');
 
 		let toadMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'toad', addToadMessage, toadMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'toad', addToadMessage, toadMessages, 'messages');
 
 		let yoshiMessages = [];
-		setupObject.matchSlackValuesToRedux(store, userIdValue, 'yoshi', addYoshiMessage, yoshiMessages);
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'yoshi', addYoshiMessage, yoshiMessages, 'messages');
+
+		let generalMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'general', addGeneralChannelMessage, generalMessages, 'channelMessages');
+
+		let randomMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'random', addRandomChannelMessage, randomMessages, 'channelMessages');
 
 	}
 }

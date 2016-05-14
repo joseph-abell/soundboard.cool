@@ -24,7 +24,9 @@ import {
 	ADD_MARIO_MESSAGE,
 	ADD_PEACH_MESSAGE,
 	ADD_TOAD_MESSAGE,
-	ADD_YOSHI_MESSAGE
+	ADD_YOSHI_MESSAGE,
+	ADD_GENERAL_CHANNEL_MESSAGE,
+	ADD_RANDOM_CHANNEL_MESSAGE
 } from '../Actions'
 
 const userId = ( state = '', action) => {
@@ -313,6 +315,38 @@ const addYoshiMessage = (state = [], action) => {
 	}
 }
 
+const addGeneralChannelMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_GENERAL_CHANNEL_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.generalChannelMessage.time,
+					person: action.generalChannelMessage.person,
+					says: action.generalChannelMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addRandomChannelMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_RANDOM_CHANNEL_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.randomChannelMessage.time,
+					person: action.randomChannelMessage.person,
+					says: action.randomChannelMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
 const soundboardApp = combineReducers(
 	{
 		userId,
@@ -338,7 +372,9 @@ const soundboardApp = combineReducers(
 		addMarioMessage,
 		addPeachMessage,
 		addToadMessage,
-		addYoshiMessage
+		addYoshiMessage,
+		addGeneralChannelMessage,
+		addRandomChannelMessage
 	}
 )
 

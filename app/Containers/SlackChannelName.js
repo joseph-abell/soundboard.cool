@@ -3,14 +3,21 @@ import SlackChannelName from '../Components/SlackChannelName'
 import { slackMainContent } from '../Actions'
 
 const mapStateToProps = (state) => {
-	return {
-	}
+	return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onChannelNameClick: (channelName) => {
-			dispatch(slackMainContent(channelName, 'channel'))
+			switch(channelName) {
+				case('general'):
+					dispatch(slackMainContent(channelName, 'channel'))
+					break;
+				case('random'):
+					dispatch(slackMainContent(channelName, 'channel'))
+					break;
+			}
+			
 		}
 	}
 }
