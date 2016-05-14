@@ -6,7 +6,6 @@ import { createStore } from 'redux';
 import soundboardApp from './Reducers';
 import App from './Components/App';
 import setup from './Utils/setup';
-import './Utils';
 
 let store = createStore(soundboardApp);
 

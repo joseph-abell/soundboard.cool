@@ -68,11 +68,9 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _setup = __webpack_require__(221);
+	var _setup = __webpack_require__(222);
 
 	var _setup2 = _interopRequireDefault(_setup);
-
-	__webpack_require__(223);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22021,6 +22019,8 @@
 
 	var _Actions = __webpack_require__(192);
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	var userId = function userId() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
 		var action = arguments[1];
@@ -22228,7 +22228,7 @@
 
 	var slackMainContent = function slackMainContent() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? {
-			slackMainContent: 'slackbot',
+			slackContentName: 'slackbot',
 			slackContentType: 'personalMessage',
 			slackIsOnline: true
 		} : arguments[0];
@@ -22237,10 +22237,122 @@
 		switch (action.type) {
 			case _Actions.SLACK_MAIN_CONTENT:
 				return {
-					slackMainContent: action.slackMainContent,
+					slackContentName: action.slackContentName,
 					slackContentType: action.slackContentType,
 					slackIsOnline: action.slackIsOnline
 				};
+			default:
+				return state;
+		}
+	};
+
+	var addLuigiMessage = function addLuigiMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_LUIGI_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.luigiMessage.time,
+					person: action.luigiMessage.person,
+					says: action.luigiMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addSlackbotMessage = function addSlackbotMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_SLACKBOT_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.slackbotMessage.time,
+					person: action.slackbotMessage.person,
+					says: action.slackbotMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addBowserMessage = function addBowserMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_BOWSER_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.bowserMessage.time,
+					person: action.bowserMessage.person,
+					says: action.bowserMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addMarioMessage = function addMarioMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_MARIO_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.marioMessage.time,
+					person: action.marioMessage.person,
+					says: action.marioMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addPeachMessage = function addPeachMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_PEACH_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.peachMessage.time,
+					person: action.peachMessage.person,
+					says: action.peachMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addToadMessage = function addToadMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_TOAD_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.toadMessage.time,
+					person: action.toadMessage.person,
+					says: action.toadMessage.says
+				}]);
+			default:
+				return state;
+		}
+	};
+
+	var addYoshiMessage = function addYoshiMessage() {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _Actions.ADD_YOSHI_MESSAGE:
+				return [].concat(_toConsumableArray(state), [{
+					time: action.yoshiMessage.time,
+					person: action.yoshiMessage.person,
+					says: action.yoshiMessage.says
+				}]);
 			default:
 				return state;
 		}
@@ -22263,7 +22375,14 @@
 		neo: neo,
 		showStats: showStats,
 		cheatMenu: cheatMenu,
-		slackMainContent: slackMainContent
+		slackMainContent: slackMainContent,
+		addLuigiMessage: addLuigiMessage,
+		addSlackbotMessage: addSlackbotMessage,
+		addBowserMessage: addBowserMessage,
+		addMarioMessage: addMarioMessage,
+		addPeachMessage: addPeachMessage,
+		addToadMessage: addToadMessage,
+		addYoshiMessage: addYoshiMessage
 	});
 
 	exports.default = soundboardApp;
@@ -22292,6 +22411,13 @@
 	exports.neo = neo;
 	exports.showStats = showStats;
 	exports.enableCheatMenu = enableCheatMenu;
+	exports.addLuigiMessage = addLuigiMessage;
+	exports.addSlackbotMessage = addSlackbotMessage;
+	exports.addBowserMessage = addBowserMessage;
+	exports.addMarioMessage = addMarioMessage;
+	exports.addPeachMessage = addPeachMessage;
+	exports.addToadMessage = addToadMessage;
+	exports.addYoshiMessage = addYoshiMessage;
 	exports.slackMainContent = slackMainContent;
 	var USER_ID = exports.USER_ID = "USER_ID";
 
@@ -22429,12 +22555,103 @@
 		};
 	}
 
+	var ADD_LUIGI_MESSAGE = exports.ADD_LUIGI_MESSAGE = "ADD_LUIGI_MESSAGE";
+
+	function addLuigiMessage(time, person, says) {
+		return {
+			type: ADD_LUIGI_MESSAGE,
+			luigiMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_SLACKBOT_MESSAGE = exports.ADD_SLACKBOT_MESSAGE = "ADD_SLACKBOT_MESSAGE";
+
+	function addSlackbotMessage(time, person, says) {
+		return {
+			type: ADD_SLACKBOT_MESSAGE,
+			slackbotMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_BOWSER_MESSAGE = exports.ADD_BOWSER_MESSAGE = "ADD_BOWSER_MESSAGE";
+
+	function addBowserMessage(time, person, says) {
+		return {
+			type: ADD_BOWSER_MESSAGE,
+			bowserMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_MARIO_MESSAGE = exports.ADD_MARIO_MESSAGE = "ADD_MARIO_MESSAGE";
+
+	function addMarioMessage(time, person, says) {
+		return {
+			type: ADD_MARIO_MESSAGE,
+			marioMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_PEACH_MESSAGE = exports.ADD_PEACH_MESSAGE = "ADD_PEACH_MESSAGE";
+
+	function addPeachMessage(time, person, says) {
+		return {
+			type: ADD_PEACH_MESSAGE,
+			peachMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_TOAD_MESSAGE = exports.ADD_TOAD_MESSAGE = "ADD_TOAD_MESSAGE";
+
+	function addToadMessage(time, person, says) {
+		return {
+			type: ADD_TOAD_MESSAGE,
+			toadMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
+	var ADD_YOSHI_MESSAGE = exports.ADD_YOSHI_MESSAGE = "ADD_YOSHI_MESSAGE";
+
+	function addYoshiMessage(time, person, says) {
+		return {
+			type: ADD_YOSHI_MESSAGE,
+			yoshiMessage: {
+				time: time,
+				person: person,
+				says: says
+			}
+		};
+	}
+
 	var SLACK_MAIN_CONTENT = exports.SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT";
 
-	function slackMainContent(slackMainContent, slackContentType, slackIsOnline) {
+	function slackMainContent(slackContentName, slackContentType, slackIsOnline) {
 		return {
 			type: SLACK_MAIN_CONTENT,
-			slackMainContent: slackMainContent,
+			slackContentName: slackContentName,
 			slackContentType: slackContentType,
 			slackIsOnline: slackIsOnline
 		};
@@ -23947,109 +24164,103 @@
 		}],
 		privateConversations: {
 			slackbot: [{
-				id: 0,
 				person: 'slackbot',
 				time: '10.14am',
 				says: 'Looks like everyone else is away. Do you want to talk to me?'
 			}, {
-				id: 1,
 				person: 'slackbot',
 				time: '10.14am',
-				says: 'If you want to leave slack, press escape.'
+				says: 'If you want to leave slack, say "exit", or "quit", to me.'
 			}],
 			luigi: [{
-				id: 0,
 				person: 'luigi',
 				time: '12.03pm',
 				says: 'What happened at the start?'
 			}, {
-				id: 1,
 				person: 'waluigi',
 				time: '12.04pm',
 				says: 'You! Asking what happened at the start? If I don\'t go to the left, you crash into us, and all three go out.'
 			}, {
-				id: 2,
 				person: 'luigi',
 				time: '12.04pm',
 				says: 'well'
 			}, {
-				id: 3,
 				person: 'waluigi',
 				time: '12.04pm',
 				says: 'No, no well. You came like a torpedo'
 			}, {
-				id: 4,
 				person: 'luigi',
 				time: '12.05pm',
 				says: 'Well, I was racing lol'
 			}, {
-				id: 5,
 				person: 'waluigi',
 				time: '12.05pm',
 				says: 'Yes, that was racing, but if I kept going in the same line, you know, you would crash.'
 			}, {
-				id: 6,
 				person: 'luigi',
 				time: '12.06pm',
 				says: 'don\'t keep going'
 			}, {
-				id: 7,
 				person: 'waluigi',
 				time: '12.06pm',
 				says: 'well, there was a car on the left, also'
 			}, {
-				id: 8,
 				person: 'luigi',
 				time: '12.07pm',
 				says: 'I can\'t see all the three cars, man, come on. I only have two eyes. two cars.'
 			}, {
-				id: 9,
 				person: 'waluigi',
 				time: '12.08pm',
 				says: 'You crash if you do like that'
 			}, {
-				id: 10,
 				person: 'luigi',
 				time: '12.08pm',
 				says: 'We didn\'t, so'
 			}, {
-				id: 11,
 				person: 'waluigi',
 				time: '12.09pm',
 				says: 'You didn\'t. You could have damaged you car. you were lucky this time.'
 			}, {
-				id: 12,
 				person: 'luigi',
 				time: '12.12pm',
 				says: 'I am on the podium. It is fine. You are on the podium. It is okay.'
 			}, {
-				id: 13,
 				person: 'waluigi',
 				time: '12.13pm',
 				says: 'Wah...'
 			}],
 			yoshi: [{
-				id: 0,
 				person: 'waluigi',
 				time: '11.12am',
 				says: 'Sorry, Yoshi. Mario\'s just keep being an asshole. I\'ll talk to him later about the situation.'
 			}, {
-				id: 1,
 				person: 'yoshi',
 				time: '11.13am',
 				says: 'Yoshi...'
 			}, {
-				id: 2,
 				person: 'waluigi',
 				time: '11.13am',
 				says: 'Keep your chin up. If the worst comes to the worst, I\'ll set up another slack that isn\'t called Yoshi Sucks.'
 			}, {
-				id: 3,
 				person: 'yoshi',
 				time: '11.14am',
 				says: ':('
 			}]
-		}
+		},
+		slackbotActions: [{
+			respondingTo: ["exit", "quit"],
+			action: function action(dispatch, _action, actionToDo) {
+				dispatch(_action(actionToDo));
+			}
+		}],
+		slackbotResponses: [{
+			respondingTo: ['Exit', 'EXIT', 'Quit', 'QUIT'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'In order to quit, type either "quit" or "exit" in lower case'
+			}
+		}]
 	};
 
 /***/ },
@@ -31310,18 +31521,112 @@
 
 	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
 
+	var _firebase = __webpack_require__(33);
+
+	var _firebase2 = _interopRequireDefault(_firebase);
+
+	var _Utils = __webpack_require__(221);
+
+	var _data = __webpack_require__(200);
+
+	var _data2 = _interopRequireDefault(_data);
+
+	var _Actions = __webpack_require__(192);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
+
 	var mapStateToProps = function mapStateToProps(state) {
+		(0, _Utils.slackKeyPress)();
+		var privateConversations = void 0;
+
+		switch (state.slackMainContent.slackContentName) {
+			case 'slackbot':
+				privateConversations = state.addSlackbotMessage;
+				break;
+			case 'bowser':
+				privateConversations = state.addBowserMessage;
+				break;
+			case 'luigi':
+				privateConversations = state.addLuigiMessage;
+				break;
+			case 'mario':
+				privateConversations = state.addMarioMessage;
+				break;
+			case 'toad':
+				privateConversations = state.addToadMessage;
+				break;
+			case 'peach':
+				privateConversations = state.addPeachMessage;
+				break;
+			case 'yoshi':
+				privateConversations = state.addYoshiMessage;
+				break;
+		}
+
 		return {
-			slackMainContent: state.slackMainContent.slackMainContent,
+			slackContentName: state.slackMainContent.slackContentName,
 			slackContentType: state.slackMainContent.slackContentType,
-			slackIsOnline: state.slackMainContent.slackIsOnline
+			slackIsOnline: state.slackMainContent.slackIsOnline,
+			privateConversations: privateConversations,
+			userId: state.userId
 		};
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {};
+		return {
+			onSendMessageClick: function onSendMessageClick(time, person, says, gameUser, messages) {
+				var slackbotActions = _data2.default.slackbotActions;
+				var slackbotResponses = _data2.default.slackbotResponses;
+
+				if (says.length === 0) {
+					return false;
+				}
+
+				if (person === 'slackbot') {
+					for (var slackbotActionIndex = 0; slackbotActionIndex < slackbotActions.length; slackbotActionIndex++) {
+						var slackbotAction = slackbotActions[slackbotActionIndex];
+						for (var respondsToIndex = 0; respondsToIndex < slackbotAction.respondingTo.length; respondsToIndex++) {
+							var respondsTo = slackbotAction.respondingTo[respondsToIndex];
+
+							if (says === respondsTo) {
+								slackbotAction.action(dispatch, _Actions.enableCheatMenu, false);
+								return false;
+							}
+						}
+					}
+				}
+
+				var messagesLength = messages.length;
+
+				fireRef.child(gameUser).child('messages').child(person).child(messagesLength).set({
+					person: 'waluigi',
+					time: time,
+					says: says
+				});
+
+				if (person === 'slackbot') {
+					messagesLength = ++messagesLength;
+
+					for (var slackbotResponseIndex = 0; slackbotResponseIndex < slackbotResponses.length; slackbotResponseIndex++) {
+						var slackbotResponse = slackbotResponses[slackbotResponseIndex];
+
+						for (var _respondsToIndex = 0; _respondsToIndex < slackbotResponse.respondingTo.length; _respondsToIndex++) {
+							var _respondsTo = slackbotResponse.respondingTo[_respondsToIndex];
+
+							if (says === _respondsTo) {
+								fireRef.child(gameUser).child('messages').child(person).child(messagesLength).set({
+									person: slackbotResponse.response.person,
+									time: slackbotResponse.response.time,
+									says: slackbotResponse.response.says
+								});
+							}
+						}
+					}
+				}
+			}
+		};
 	};
 
 	var SlackMainContentContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_SlackMainContent2.default);
@@ -31378,14 +31683,18 @@
 	    value: function render() {
 	      var _props = this.props;
 	      var slackIsOnline = _props.slackIsOnline;
-	      var slackMainContent = _props.slackMainContent;
+	      var slackContentName = _props.slackContentName;
 	      var slackContentType = _props.slackContentType;
-	      var privateConversations = _data2.default.privateConversations;
+	      var onSendMessageClick = _props.onSendMessageClick;
+	      var userId = _props.userId;
+	      var privateConversations = _props.privateConversations;
 
 	      var onlineStyling = void 0;
 	      var onlineText = void 0;
 	      var conversation = void 0;
 	      var contentType = void 0;
+
+	      var input = void 0;
 
 	      if (slackIsOnline) {
 	        onlineStyling = {
@@ -31411,20 +31720,8 @@
 	        onlineText = 'away';
 	      }
 
-	      if (privateConversations[slackMainContent]) {
-	        conversation = _react2.default.createElement(
-	          'div',
-	          { style: { textAlign: "left", padding: '10px 20px' } },
-	          privateConversations[slackMainContent].map(function (item) {
-	            return _react2.default.createElement(_SlackLineOfText2.default, { key: item.id, says: item.says, person: item.person, time: item.time });
-	          })
-	        );
-	      } else {
-	        conversation = _react2.default.createElement('div', null);
-	      }
-
 	      if (slackContentType === "personalMessage") {
-	        contentType = _react2.default.createElement(_SlackPersonalConversationHeader2.default, { slackMainContent: slackMainContent, onlineStyling: onlineStyling, onlineText: onlineText });
+	        contentType = _react2.default.createElement(_SlackPersonalConversationHeader2.default, { slackContentName: slackContentName, onlineStyling: onlineStyling, onlineText: onlineText });
 	      } else {
 	        contentType = _react2.default.createElement('div', null);
 	      }
@@ -31439,8 +31736,10 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { style: { position: "absolute", top: 64, left: 0, right: 0, bottom: 90, overflow: 'auto' } },
-	          conversation
+	          { style: { position: "absolute", top: 64, padding: 20, left: 0, right: 0, bottom: 90, overflow: 'auto' } },
+	          privateConversations.map(function (conversationPiece, conversationPieceId) {
+	            return _react2.default.createElement(_SlackLineOfText2.default, { key: conversationPieceId, says: conversationPiece.says, person: conversationPiece.person, time: conversationPiece.time });
+	          })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -31458,8 +31757,14 @@
 	              padding: 10,
 	              lineHeight: '20px',
 	              fontSize: 15
+	            }, ref: function ref(node) {
+	              input = node;
 	            } })
-	        )
+	        ),
+	        _react2.default.createElement('span', { id: 'sendMessage', onClick: function onClick() {
+	            onSendMessageClick("10.00am", slackContentName, input.value, userId, privateConversations);
+	            input.value = '';
+	          } })
 	      );
 	    }
 	  }]);
@@ -31582,7 +31887,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
-	      var slackMainContent = _props.slackMainContent;
+	      var slackContentName = _props.slackContentName;
 	      var onlineStyling = _props.onlineStyling;
 	      var onlineText = _props.onlineText;
 
@@ -31593,7 +31898,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { style: { fontSize: 18, fontWeight: 'bold' } },
-	          slackMainContent
+	          slackContentName
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -31613,7 +31918,7 @@
 	            'div',
 	            { style: { float: 'left', fontSize: 11, opacity: 0.3, lineHeight: '22px' } },
 	            '@',
-	            slackMainContent
+	            slackContentName
 	          ),
 	          _react2.default.createElement('div', { style: { clear: 'both' } })
 	        )
@@ -31628,6 +31933,154 @@
 
 /***/ },
 /* 221 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.soundboardKeyPress = soundboardKeyPress;
+	exports.slackKeyPress = slackKeyPress;
+	function soundboardKeyPress() {
+		$(document).ready(function () {
+			$('html').keydown(function (e) {
+				var keyCode = e.keyCode;
+				switch (keyCode) {
+					case 13:
+						$('#cheatMenuButton').click();
+						break;
+					case 48:
+						$('#key0').click();
+						break;
+					case 49:
+						$('#key1').click();
+						break;
+					case 50:
+						$('#key2').click();
+						break;
+					case 51:
+						$('#key3').click();
+						break;
+					case 52:
+						$('#key4').click();
+						break;
+					case 53:
+						$('#key5').click();
+						break;
+					case 54:
+						$('#key6').click();
+						break;
+					case 55:
+						$('#key7').click();
+						break;
+					case 56:
+						$('#key8').click();
+						break;
+					case 57:
+						$('#key9').click();
+						break;
+					case 113:
+						$('#keyq').click();
+						break;
+					case 119:
+						$('#keyw').click();
+						break;
+					case 101:
+						$('#keye').click();
+						break;
+					case 114:
+						$('#keyr').click();
+						break;
+					case 116:
+						$('#keyt').click();
+						break;
+					case 121:
+						$('#keyy').click();
+						break;
+					case 117:
+						$('#keyu').click();
+						break;
+					case 105:
+						$('#keyi').click();
+						break;
+					case 111:
+						$('#keyo').click();
+						break;
+					case 112:
+						$('#keyp').click();
+						break;
+					case 97:
+						$('#keya').click();
+						break;
+					case 115:
+						$('#keys').click();
+						break;
+					case 100:
+						$('#keyd').click();
+						break;
+					case 102:
+						$('#keyf').click();
+						break;
+					case 103:
+						$('#keyg').click();
+						break;
+					case 104:
+						$('#keyh').click();
+						break;
+					case 106:
+						$('#keyj').click();
+						break;
+					case 107:
+						$('#keyk').click();
+						break;
+					case 108:
+						$('#keyl').click();
+						break;
+					case 122:
+						$('#keyz').click();
+						break;
+					case 120:
+						$('#keyx').click();
+						break;
+					case 99:
+						$('#keyc').click();
+						break;
+					case 118:
+						$('#keyv').click();
+						break;
+					case 98:
+						$('#keyb').click();
+						break;
+					case 110:
+						$('#keyn').click();
+						break;
+					case 109:
+						$('#keym').click();
+						break;
+					case 32:
+						$('#spacebar').click();
+						$('#startButton').click();
+						break;
+				}
+			});
+		});
+	}
+
+	function slackKeyPress() {
+		$(document).ready(function () {
+			$('html').keydown(function (e) {
+				var keyCode = e.keyCode;
+				switch (keyCode) {
+					case 13:
+						$('#sendMessage').click();
+				}
+			});
+		});
+	}
+
+/***/ },
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31640,7 +32093,7 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _tinyCookie = __webpack_require__(222);
+	var _tinyCookie = __webpack_require__(223);
 
 	var _tinyCookie2 = _interopRequireDefault(_tinyCookie);
 
@@ -31650,12 +32103,14 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
+	var _Utils = __webpack_require__(221);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
 	var setupObject = {
-		setupSlack: function setupSlack(store, gameUser) {
+		setupSlackValuesInFirebase: function setupSlackValuesInFirebase(store, gameUser) {
 			var usernames = _data2.default.privateConversations;
 
 			var _loop = function _loop(username) {
@@ -31669,12 +32124,7 @@
 						for (var messageId in messages) {
 							var message = messages[messageId];
 
-							fireRef.child(gameUser).child('messages').child(username).child(messageId).on("value", function (snapshot) {
-								console.log(snapshot.val());
-							});
-
 							fireRef.child(gameUser).child('messages').child(username).child(messageId).set({
-								id: message.id,
 								person: message.person,
 								time: message.time,
 								says: message.says
@@ -31690,8 +32140,8 @@
 				if (_ret === 'continue') continue;
 			}
 		},
-		setupFirebaseValue: function setupFirebaseValue(store, childName, firebaseReferenceName, action, localValue) {
-			fireRef.child(childName).child(firebaseReferenceName).on("value", function (snapshot) {
+		matchFirebaseValuesToRedux: function matchFirebaseValuesToRedux(store, childName, firebaseReferenceName, action, localValue) {
+			fireRef.child(childName).child(firebaseReferenceName).once("value", function (snapshot) {
 				var globalValue = snapshot.val();
 				if (globalValue === null) {
 					store.dispatch(action(0));
@@ -31704,7 +32154,24 @@
 				}
 			});
 		},
+		matchSlackValuesToRedux: function matchSlackValuesToRedux(store, userId, personUserIsTalkingTo, action, messages) {
+			fireRef.child(userId).child('messages').child(personUserIsTalkingTo).on('value', function (snapshot) {
+				var firebaseMessages = snapshot.val();
+
+				for (var firebaseMessageId in firebaseMessages) {
+					var firebaseMessage = firebaseMessages[firebaseMessageId];
+
+					if (messages[firebaseMessageId] === undefined) {
+						messages[firebaseMessageId] = firebaseMessage;
+						store.dispatch(action(firebaseMessage.time, firebaseMessage.person, firebaseMessage.says));
+					}
+				}
+			});
+		},
+		watchSlackResultsForChanges: function watchSlackResultsForChanges() {},
 		init: function init(store) {
+			(0, _Utils.soundboardKeyPress)();
+
 			var userIdCookie = _tinyCookie2.default.get('userId');
 
 			if (userIdCookie === null) {
@@ -31716,32 +32183,55 @@
 
 			store.dispatch((0, _Actions.userId)(userIdCookie));
 
+			var userIdValue = store.getState('USER_ID').userId;
+
+			setupObject.setupSlackValuesInFirebase(store, userIdValue);
+
 			var globalCounterValue = 0;
-			setupObject.setupFirebaseValue(store, "global", "globalCounter", _Actions.globalCounter, globalCounterValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", _Actions.globalCounter, globalCounterValue);
 
 			var bearsKilledValue = 0;
-			setupObject.setupFirebaseValue(store, "global", "bearsKilled", _Actions.bearsKilled, bearsKilledValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", "bearsKilled", _Actions.bearsKilled, bearsKilledValue);
 
 			var babooValue = 0;
-			setupObject.setupFirebaseValue(store, "global", 'baboos', _Actions.baboos, babooValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", 'baboos', _Actions.baboos, babooValue);
 
 			var wizardValue = 0;
-			setupObject.setupFirebaseValue(store, "global", 'wizards', _Actions.wizards, wizardValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", 'wizards', _Actions.wizards, wizardValue);
 
 			var neoValue = 0;
-			setupObject.setupFirebaseValue(store, "global", 'neo', _Actions.neo, neoValue);
+			setupObject.matchFirebaseValuesToRedux(store, "global", 'neo', _Actions.neo, neoValue);
 
 			var personalCounterValue = 0;
-			setupObject.setupFirebaseValue(store, store.getState("USER_ID").userId, 'personalCounter', _Actions.personalCounter, personalCounterValue);
+			setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', _Actions.personalCounter, personalCounterValue);
 
-			setupObject.setupSlack(store, store.getState('USER_ID').userId);
+			var slackbotMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', _Actions.addSlackbotMessage, slackbotMessages);
+
+			var bowserMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'bowser', _Actions.addBowserMessage, bowserMessages);
+
+			var luigiMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'luigi', _Actions.addLuigiMessage, luigiMessages);
+
+			var marioMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'mario', _Actions.addMarioMessage, marioMessages);
+
+			var peachMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'peach', _Actions.addPeachMessage, peachMessages);
+
+			var toadMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'toad', _Actions.addToadMessage, toadMessages);
+
+			var yoshiMessages = [];
+			setupObject.matchSlackValuesToRedux(store, userIdValue, 'yoshi', _Actions.addYoshiMessage, yoshiMessages);
 		}
 	};
 
 	exports.default = setupObject;
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31889,135 +32379,6 @@
 
 	}));
 
-
-/***/ },
-/* 223 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	$(document).ready(function () {
-		$('html').keypress(function (e) {
-			var keyCode = e.keyCode;
-			switch (keyCode) {
-				case 13:
-					$('#cheatMenuButton').click();
-					break;
-				case 48:
-					$('#key0').click();
-					break;
-				case 49:
-					$('#key1').click();
-					break;
-				case 50:
-					$('#key2').click();
-					break;
-				case 51:
-					$('#key3').click();
-					break;
-				case 52:
-					$('#key4').click();
-					break;
-				case 53:
-					$('#key5').click();
-					break;
-				case 54:
-					$('#key6').click();
-					break;
-				case 55:
-					$('#key7').click();
-					break;
-				case 56:
-					$('#key8').click();
-					break;
-				case 57:
-					$('#key9').click();
-					break;
-				case 113:
-					$('#keyq').click();
-					break;
-				case 119:
-					$('#keyw').click();
-					break;
-				case 101:
-					$('#keye').click();
-					break;
-				case 114:
-					$('#keyr').click();
-					break;
-				case 116:
-					$('#keyt').click();
-					break;
-				case 121:
-					$('#keyy').click();
-					break;
-				case 117:
-					$('#keyu').click();
-					break;
-				case 105:
-					$('#keyi').click();
-					break;
-				case 111:
-					$('#keyo').click();
-					break;
-				case 112:
-					$('#keyp').click();
-					break;
-				case 97:
-					$('#keya').click();
-					break;
-				case 115:
-					$('#keys').click();
-					break;
-				case 100:
-					$('#keyd').click();
-					break;
-				case 102:
-					$('#keyf').click();
-					break;
-				case 103:
-					$('#keyg').click();
-					break;
-				case 104:
-					$('#keyh').click();
-					break;
-				case 106:
-					$('#keyj').click();
-					break;
-				case 107:
-					$('#keyk').click();
-					break;
-				case 108:
-					$('#keyl').click();
-					break;
-				case 122:
-					$('#keyz').click();
-					break;
-				case 120:
-					$('#keyx').click();
-					break;
-				case 99:
-					$('#keyc').click();
-					break;
-				case 118:
-					$('#keyv').click();
-					break;
-				case 98:
-					$('#keyb').click();
-					break;
-				case 110:
-					$('#keyn').click();
-					break;
-				case 109:
-					$('#keym').click();
-					break;
-				case 32:
-					$('#spacebar').click();
-					$('#startButton').click();
-					break;
-			}
-		});
-	});
 
 /***/ }
 /******/ ]);

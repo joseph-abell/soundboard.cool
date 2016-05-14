@@ -5,12 +5,13 @@ import SlackPersonalConversationHeader from './SlackPersonalConversationHeader'
 
 export default class App extends React.Component {
   render() {
-  	let { slackIsOnline, slackMainContent, slackContentType } = this.props;
-    let { privateConversations } = Data;
+  	let { slackIsOnline, slackContentName, slackContentType, onSendMessageClick, userId, privateConversations } = this.props;
   	let onlineStyling;
     let onlineText;
     let conversation;
     let contentType;
+
+    let input;
 
   	if (slackIsOnline) {
   		onlineStyling = {
@@ -36,18 +37,8 @@ export default class App extends React.Component {
       onlineText = 'away';
   	}
 
-    if (privateConversations[slackMainContent]) {
-      conversation = <div style={{textAlign: "left", padding: '10px 20px'}}>
-        {privateConversations[slackMainContent].map ( (item) => {
-          return <SlackLineOfText key={item.id} says={item.says} person={item.person} time={item.time} />
-        })}
-      </div>
-    } else {
-      conversation = <div />
-    }  
-
   	if (slackContentType === "personalMessage") {
-  		contentType = <SlackPersonalConversationHeader slackMainContent={slackMainContent} onlineStyling={onlineStyling} onlineText={onlineText} />      
+  		contentType = <SlackPersonalConversationHeader slackContentName={slackContentName} onlineStyling={onlineStyling} onlineText={onlineText} />      
   	} else {
   		contentType = <div></div>
   	}
@@ -58,8 +49,12 @@ export default class App extends React.Component {
           {contentType}
         </div>
 
-        <div style={{position: "absolute", top: 64, left: 0, right: 0, bottom: 90, overflow: 'auto'}}>
-          {conversation}         
+        <div style={{position: "absolute", top: 64, padding: 20, left: 0, right: 0, bottom: 90, overflow: 'auto'}}>
+          {
+            privateConversations.map((conversationPiece, conversationPieceId) => {
+              return <SlackLineOfText key={conversationPieceId} says={conversationPiece.says} person={conversationPiece.person} time={conversationPiece.time} />
+            })
+          }
         </div>
 
         <div>
@@ -78,8 +73,14 @@ export default class App extends React.Component {
               lineHeight: '20px',
               fontSize: 15
             }
-          } />
+          } ref={node => {
+            input = node
+          }} />
         </div>
+        <span id="sendMessage" onClick={() => {
+          onSendMessageClick("10.00am", slackContentName, input.value, userId, privateConversations);
+          input.value = '';
+        }} />
    	  </div>
     );
   }

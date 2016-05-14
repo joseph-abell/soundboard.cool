@@ -17,7 +17,14 @@ import {
 	NEO,
 	SHOW_STATS,
 	ENABLE_CHEAT_MENU,
-	SLACK_MAIN_CONTENT
+	SLACK_MAIN_CONTENT,
+	ADD_LUIGI_MESSAGE,
+	ADD_SLACKBOT_MESSAGE,
+	ADD_BOWSER_MESSAGE,
+	ADD_MARIO_MESSAGE,
+	ADD_PEACH_MESSAGE,
+	ADD_TOAD_MESSAGE,
+	ADD_YOSHI_MESSAGE
 } from '../Actions'
 
 const userId = ( state = '', action) => {
@@ -178,17 +185,129 @@ const cheatMenu = (state = false, action) => {
 }
 
 const slackMainContent = (state = {
-	slackMainContent: 'slackbot',
+	slackContentName: 'slackbot',
 	slackContentType: 'personalMessage',
 	slackIsOnline: true
 }, action) => {
 	switch(action.type) {
 		case(SLACK_MAIN_CONTENT):
 			return {
-				slackMainContent: action.slackMainContent,
+				slackContentName: action.slackContentName,
 				slackContentType: action.slackContentType,
 				slackIsOnline: action.slackIsOnline
 			}
+		default:
+			return state
+	}
+}
+
+const addLuigiMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_LUIGI_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.luigiMessage.time,
+					person: action.luigiMessage.person,
+					says: action.luigiMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addSlackbotMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_SLACKBOT_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.slackbotMessage.time,
+					person: action.slackbotMessage.person,
+					says: action.slackbotMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addBowserMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_BOWSER_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.bowserMessage.time,
+					person: action.bowserMessage.person,
+					says: action.bowserMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addMarioMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_MARIO_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.marioMessage.time,
+					person: action.marioMessage.person,
+					says: action.marioMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addPeachMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_PEACH_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.peachMessage.time,
+					person: action.peachMessage.person,
+					says: action.peachMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addToadMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_TOAD_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.toadMessage.time,
+					person: action.toadMessage.person,
+					says: action.toadMessage.says
+				}
+			]
+		default:
+			return state
+	}
+}
+
+const addYoshiMessage = (state = [], action) => {
+	switch (action.type) {
+		case(ADD_YOSHI_MESSAGE):
+			return [
+				...state,
+				{
+					time: action.yoshiMessage.time,
+					person: action.yoshiMessage.person,
+					says: action.yoshiMessage.says
+				}
+			]
 		default:
 			return state
 	}
@@ -212,7 +331,14 @@ const soundboardApp = combineReducers(
 		neo,
 		showStats,
 		cheatMenu,
-		slackMainContent
+		slackMainContent,
+		addLuigiMessage,
+		addSlackbotMessage,
+		addBowserMessage,
+		addMarioMessage,
+		addPeachMessage,
+		addToadMessage,
+		addYoshiMessage
 	}
 )
 

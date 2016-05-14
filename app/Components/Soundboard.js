@@ -67,7 +67,7 @@ export default class Soundboard extends React.Component {
 						onCheatMenuButtonClick();
 					}}></span>
 				</div>
-			);  
+			);
 		}
 	}
 }

@@ -134,12 +134,103 @@ export function enableCheatMenu (cheatMenu) {
 	}
 }
 
+export const ADD_LUIGI_MESSAGE = "ADD_LUIGI_MESSAGE"
+
+export function addLuigiMessage (time, person, says) {
+	return {
+		type: ADD_LUIGI_MESSAGE,
+		luigiMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_SLACKBOT_MESSAGE = "ADD_SLACKBOT_MESSAGE"
+
+export function addSlackbotMessage (time, person, says) {
+	return {
+		type: ADD_SLACKBOT_MESSAGE,
+		slackbotMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_BOWSER_MESSAGE = "ADD_BOWSER_MESSAGE"
+
+export function addBowserMessage (time, person, says) {
+	return {
+		type: ADD_BOWSER_MESSAGE,
+		bowserMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_MARIO_MESSAGE = "ADD_MARIO_MESSAGE"
+
+export function addMarioMessage (time, person, says) {
+	return {
+		type: ADD_MARIO_MESSAGE,
+		marioMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_PEACH_MESSAGE = "ADD_PEACH_MESSAGE"
+
+export function addPeachMessage (time, person, says) {
+	return {
+		type: ADD_PEACH_MESSAGE,
+		peachMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_TOAD_MESSAGE = "ADD_TOAD_MESSAGE"
+
+export function addToadMessage (time, person, says) {
+	return {
+		type: ADD_TOAD_MESSAGE,
+		toadMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
+export const ADD_YOSHI_MESSAGE = "ADD_YOSHI_MESSAGE"
+
+export function addYoshiMessage (time, person, says) {
+	return {
+		type: ADD_YOSHI_MESSAGE,
+		yoshiMessage: {
+			time: time,
+			person: person,
+			says: says
+		}
+	}
+}
+
 export const SLACK_MAIN_CONTENT = "SLACK_MAIN_CONTENT"
 
-export function slackMainContent (slackMainContent, slackContentType, slackIsOnline) {
+export function slackMainContent (slackContentName, slackContentType, slackIsOnline) {
 	return {
 		type: SLACK_MAIN_CONTENT,
-		slackMainContent: slackMainContent,
+		slackContentName: slackContentName,
 		slackContentType: slackContentType,
 		slackIsOnline: slackIsOnline
 	}

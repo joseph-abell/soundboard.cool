@@ -1144,99 +1144,83 @@ export default {
 	privateConversations: {
 		slackbot: [
 			{
-				id: 0,
 				person: 'slackbot',
 				time: '10.14am',
 				says: 'Looks like everyone else is away. Do you want to talk to me?'
 			},
 			{
-				id: 1,
 				person: 'slackbot',
 				time: '10.14am',
-				says: 'If you want to leave slack, press escape.'	
+				says: 'If you want to leave slack, say "exit", or "quit", to me.'	
 			}
 		],
 		luigi: [
 			{
-				id: 0,
 				person: 'luigi',
 				time: '12.03pm',
 				says: 'What happened at the start?'
 			},
 			{
-				id: 1,
 				person: 'waluigi',
 				time: '12.04pm',
 				says: 'You! Asking what happened at the start? If I don\'t go to the left, you crash into us, and all three go out.'
 			},
 			{
-				id: 2,
 				person: 'luigi',
 				time: '12.04pm',
 				says: 'well'
 			},
 			{
-				id: 3,
 				person: 'waluigi',
 				time: '12.04pm',
 				says: 'No, no well. You came like a torpedo'
 			},
 			{
-				id: 4,
 				person: 'luigi',
 				time: '12.05pm',
 				says: 'Well, I was racing lol'
 			},
 			{
-				id: 5,
 				person: 'waluigi',
 				time: '12.05pm',
 				says: 'Yes, that was racing, but if I kept going in the same line, you know, you would crash.'
 			},
 			{
-				id: 6,
 				person: 'luigi',
 				time: '12.06pm',
 				says: 'don\'t keep going'
 			},
 			{
-				id: 7,
 				person: 'waluigi',
 				time: '12.06pm',
 				says: 'well, there was a car on the left, also'
 			},
 			{
-				id: 8,
 				person: 'luigi',
 				time: '12.07pm',
 				says: 'I can\'t see all the three cars, man, come on. I only have two eyes. two cars.'
 			},
 			{
-				id: 9,
 				person: 'waluigi',
 				time: '12.08pm',
 				says: 'You crash if you do like that'
 			},
 			{
-				id: 10,
 				person: 'luigi',
 				time: '12.08pm',
 				says: 'We didn\'t, so'
 			},
 			{
-				id: 11,
 				person: 'waluigi',
 				time: '12.09pm',
 				says: 'You didn\'t. You could have damaged you car. you were lucky this time.'
 			},
 			{
-				id: 12,
 				person: 'luigi',
 				time: '12.12pm',
 				says: 'I am on the podium. It is fine. You are on the podium. It is okay.'
 			},
 			{
-				id: 13,
 				person: 'waluigi',
 				time: '12.13pm',
 				says: 'Wah...'
@@ -1244,29 +1228,43 @@ export default {
 		], 
 		yoshi: [
 			{
-				id: 0,
 				person: 'waluigi',
 				time: '11.12am',
 				says: 'Sorry, Yoshi. Mario\'s just keep being an asshole. I\'ll talk to him later about the situation.'
 			},
 			{
-				id: 1,
 				person: 'yoshi',
 				time: '11.13am',
 				says: 'Yoshi...'
 			},
 			{
-				id: 2,
 				person: 'waluigi',
 				time: '11.13am',
 				says: 'Keep your chin up. If the worst comes to the worst, I\'ll set up another slack that isn\'t called Yoshi Sucks.'
 			},
 			{
-				id: 3,
 				person: 'yoshi',
 				time: '11.14am',
 				says: ':('
 			}
 		]
-	}
+	},
+	slackbotActions: [
+		{
+			respondingTo: ["exit", "quit"],
+			action: (dispatch, action, actionToDo) => {
+				dispatch(action(actionToDo));
+			}
+		}
+	],
+	slackbotResponses: [
+		{
+			respondingTo: ['Exit', 'EXIT', 'Quit', 'QUIT'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'In order to quit, type either "quit" or "exit" in lower case'
+			}
+		}
+	]
 };

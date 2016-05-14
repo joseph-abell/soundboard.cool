@@ -7,14 +7,22 @@ import {
 	wizards,
 	neo,
 	personalCounter,
-	userId
+	userId,
+	addSlackbotMessage,
+	addBowserMessage,
+	addLuigiMessage,
+	addMarioMessage,
+	addPeachMessage,
+	addToadMessage,
+	addYoshiMessage
 } from '../Actions';
 import Data, { privateConversations } from '../data'
+import { soundboardKeyPress } from '../Utils'
 
 let fireRef = new Firebase('https://soundboardcool.firebaseio.com/')
 
 let setupObject = {
-	setupSlack: (store, gameUser) => {
+	setupSlackValuesInFirebase: (store, gameUser) => {
 		const usernames = Data.privateConversations
 
 		for (let username in usernames) {
@@ -28,25 +36,18 @@ let setupObject = {
 			    	for (let messageId in messages) {
 			    		const message = messages[messageId]
 
-			    		fireRef.child(gameUser).child('messages').child(username).child(messageId).on("value", function (snapshot) {
-			    			console.log(snapshot.val())	
-			    		})
-
 			    		fireRef.child(gameUser).child('messages').child(username).child(messageId).set({
-			    			id: message.id,
 			    			person: message.person,
 			    			time: message.time,
 			    			says: message.says
 			    		})
-
-
 			    	}
 			    }
 			});				
 		}
 	},
-	setupFirebaseValue: (store, childName, firebaseReferenceName, action, localValue) => {
-		fireRef.child(childName).child(firebaseReferenceName).on("value", function(snapshot) {
+	matchFirebaseValuesToRedux: (store, childName, firebaseReferenceName, action, localValue) => {
+		fireRef.child(childName).child(firebaseReferenceName).once("value", function(snapshot) {
 			let globalValue = snapshot.val();
 			if (globalValue === null) {
 				store.dispatch(action(0))
@@ -59,7 +60,26 @@ let setupObject = {
 			}
 		});
 	},
+	matchSlackValuesToRedux: (store, userId, personUserIsTalkingTo, action, messages) => {
+		fireRef.child(userId).child('messages').child(personUserIsTalkingTo).on('value', (snapshot) => {
+			let firebaseMessages = snapshot.val();
+
+			for (let firebaseMessageId in firebaseMessages) {
+				const firebaseMessage = firebaseMessages[firebaseMessageId]
+
+				if (messages[firebaseMessageId] === undefined) {
+					messages[firebaseMessageId] = firebaseMessage;
+					store.dispatch(action(firebaseMessage.time, firebaseMessage.person, firebaseMessage.says));
+				}
+			}
+		})
+	},
+	watchSlackResultsForChanges: () => {
+
+	},
 	init: (store) => {
+		soundboardKeyPress();
+
 		let userIdCookie = Cookie.get('userId');
 
 		if ( userIdCookie === null) {
@@ -71,25 +91,49 @@ let setupObject = {
 
 		store.dispatch(userId(userIdCookie))
 
+		const userIdValue = store.getState('USER_ID').userId;
+
+		setupObject.setupSlackValuesInFirebase(store, userIdValue)
+
 		let globalCounterValue = 0;
-		setupObject.setupFirebaseValue(store, "global", "globalCounter", globalCounter, globalCounterValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", globalCounter, globalCounterValue);
 
 		let bearsKilledValue = 0;
-		setupObject.setupFirebaseValue(store, "global", "bearsKilled", bearsKilled, bearsKilledValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", "bearsKilled", bearsKilled, bearsKilledValue);
 
 		let babooValue = 0;
-		setupObject.setupFirebaseValue(store, "global", 'baboos', baboos, babooValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", 'baboos', baboos, babooValue);
 
 		let wizardValue = 0;
-		setupObject.setupFirebaseValue(store, "global", 'wizards', wizards, wizardValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", 'wizards', wizards, wizardValue);
 
 		let neoValue = 0;
-		setupObject.setupFirebaseValue(store, "global", 'neo', neo, neoValue);
+		setupObject.matchFirebaseValuesToRedux(store, "global", 'neo', neo, neoValue);
 
 		let personalCounterValue = 0;
-		setupObject.setupFirebaseValue(store, store.getState("USER_ID").userId, 'personalCounter', personalCounter, personalCounterValue)
+		setupObject.matchFirebaseValuesToRedux(store, userIdValue, 'personalCounter', personalCounter, personalCounterValue)
 
-		setupObject.setupSlack(store, store.getState('USER_ID').userId)
+		let slackbotMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'slackbot', addSlackbotMessage, slackbotMessages);
+
+		let bowserMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'bowser', addBowserMessage, bowserMessages);
+
+		let luigiMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'luigi', addLuigiMessage, luigiMessages);
+
+		let marioMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'mario', addMarioMessage, marioMessages);
+
+		let peachMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'peach', addPeachMessage, peachMessages);
+
+		let toadMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'toad', addToadMessage, toadMessages);
+
+		let yoshiMessages = [];
+		setupObject.matchSlackValuesToRedux(store, userIdValue, 'yoshi', addYoshiMessage, yoshiMessages);
+
 	}
 }
 
