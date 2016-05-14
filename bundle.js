@@ -68,7 +68,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _setup = __webpack_require__(223);
+	var _setup = __webpack_require__(225);
 
 	var _setup2 = _interopRequireDefault(_setup);
 
@@ -22745,15 +22745,15 @@
 
 	var _Soundboard2 = _interopRequireDefault(_Soundboard);
 
-	var _AnimationElements = __webpack_require__(207);
+	var _AnimationElements = __webpack_require__(209);
 
 	var _AnimationElements2 = _interopRequireDefault(_AnimationElements);
 
-	var _Stats = __webpack_require__(209);
+	var _Stats = __webpack_require__(211);
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
-	var _CheatMenu = __webpack_require__(211);
+	var _CheatMenu = __webpack_require__(213);
 
 	var _CheatMenu2 = _interopRequireDefault(_CheatMenu);
 
@@ -22985,6 +22985,10 @@
 
 	var _KillButton2 = _interopRequireDefault(_KillButton);
 
+	var _KillSound = __webpack_require__(207);
+
+	var _KillSound2 = _interopRequireDefault(_KillSound);
+
 	var _data = __webpack_require__(200);
 
 	var _data2 = _interopRequireDefault(_data);
@@ -23106,7 +23110,8 @@
 								{ className: 'spacebar disabled' },
 								'You Monster'
 							),
-							_react2.default.createElement(_KillButton2.default, null)
+							_react2.default.createElement(_KillButton2.default, null),
+							_react2.default.createElement(_KillSound2.default, null)
 						),
 						_react2.default.createElement('span', { id: 'cheatMenuButton', onClick: function onClick() {
 								onCheatMenuButtonClick();
@@ -23297,6 +23302,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.soundManager2 = undefined;
 
 	var _ref;
 
@@ -23312,6 +23318,8 @@
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+	var soundManager2 = exports.soundManager2 = _soundmanager.soundManager;
+
 	var fireRef = new _firebase2.default('https://soundboardcool.firebaseio.com/');
 
 	var defaultActionNoAnimation = function defaultActionNoAnimation(dispatch, audioTitle, audioFileUrl) {
@@ -23322,6 +23330,7 @@
 			autoPlay: true
 		});
 	};
+
 	var defaultActionWithAnimation = function defaultActionWithAnimation(dispatch, audioTitle, audioFileUrl, animationType, isNotAnimating) {
 		dispatch((0, _Actions.togglePlaying)(audioTitle));
 		var canThisAnimate = isNotAnimating;
@@ -30917,7 +30926,115 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _AnimationElements = __webpack_require__(208);
+	var _KillSound = __webpack_require__(208);
+
+	var _KillSound2 = _interopRequireDefault(_KillSound);
+
+	var _Actions = __webpack_require__(192);
+
+	var _data = __webpack_require__(200);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			buttonState: state.toggleKillBearVisible.killBearButton
+		};
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onButtonClick: function onButtonClick() {
+				_data.soundManager2.stopAll();
+			}
+		};
+	};
+
+	var KillSoundContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_KillSound2.default);
+
+	exports.default = KillSoundContainer;
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var KillButton = function (_Component) {
+	  _inherits(KillButton, _Component);
+
+	  function KillButton() {
+	    _classCallCheck(this, KillButton);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(KillButton).apply(this, arguments));
+	  }
+
+	  _createClass(KillButton, [{
+	    key: "render",
+	    value: function render() {
+	      var _props = this.props;
+	      var buttonState = _props.buttonState;
+	      var onButtonClick = _props.onButtonClick;
+
+
+	      var button = void 0;
+
+	      if (buttonState === 0) {
+	        button = _react2.default.createElement(
+	          "div",
+	          { className: "spacebar", id: "stopSound", onClick: function onClick() {
+	              onButtonClick();
+	            } },
+	          "Stop All Sounds"
+	        );
+	      } else {
+	        button = _react2.default.createElement("div", null);
+	      }
+
+	      return _react2.default.createElement(
+	        "span",
+	        null,
+	        button
+	      );
+	    }
+	  }]);
+
+	  return KillButton;
+	}(_react.Component);
+
+	exports.default = KillButton;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _reactRedux = __webpack_require__(169);
+
+	var _AnimationElements = __webpack_require__(210);
 
 	var _AnimationElements2 = _interopRequireDefault(_AnimationElements);
 
@@ -30934,7 +31051,7 @@
 	exports.default = AnimationElementsContainer;
 
 /***/ },
-/* 208 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30993,7 +31110,7 @@
 	exports.default = App;
 
 /***/ },
-/* 209 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31004,7 +31121,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Stats = __webpack_require__(210);
+	var _Stats = __webpack_require__(212);
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
@@ -31037,7 +31154,7 @@
 	exports.default = StatsContainer;
 
 /***/ },
-/* 210 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31188,7 +31305,7 @@
 	exports.default = Stats;
 
 /***/ },
-/* 211 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31199,7 +31316,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _CheatMenu = __webpack_require__(212);
+	var _CheatMenu = __webpack_require__(214);
 
 	var _CheatMenu2 = _interopRequireDefault(_CheatMenu);
 
@@ -31218,7 +31335,7 @@
 	exports.default = CheatMenuContainer;
 
 /***/ },
-/* 212 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31233,15 +31350,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SlackChannelName = __webpack_require__(213);
+	var _SlackChannelName = __webpack_require__(215);
 
 	var _SlackChannelName2 = _interopRequireDefault(_SlackChannelName);
 
-	var _SlackPersonalMessageName = __webpack_require__(215);
+	var _SlackPersonalMessageName = __webpack_require__(217);
 
 	var _SlackPersonalMessageName2 = _interopRequireDefault(_SlackPersonalMessageName);
 
-	var _SlackMainContent = __webpack_require__(217);
+	var _SlackMainContent = __webpack_require__(219);
 
 	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
 
@@ -31363,7 +31480,7 @@
 	exports.default = App;
 
 /***/ },
-/* 213 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31374,7 +31491,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _SlackChannelName = __webpack_require__(214);
+	var _SlackChannelName = __webpack_require__(216);
 
 	var _SlackChannelName2 = _interopRequireDefault(_SlackChannelName);
 
@@ -31406,7 +31523,7 @@
 	exports.default = SlackChannelNameContainer;
 
 /***/ },
-/* 214 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31468,7 +31585,7 @@
 	exports.default = App;
 
 /***/ },
-/* 215 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31479,7 +31596,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _SlackPersonalMessageName = __webpack_require__(216);
+	var _SlackPersonalMessageName = __webpack_require__(218);
 
 	var _SlackPersonalMessageName2 = _interopRequireDefault(_SlackPersonalMessageName);
 
@@ -31503,7 +31620,7 @@
 	exports.default = SlackPersonalMessageNameContainer;
 
 /***/ },
-/* 216 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31589,7 +31706,7 @@
 	exports.default = App;
 
 /***/ },
-/* 217 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31600,7 +31717,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _SlackMainContent = __webpack_require__(218);
+	var _SlackMainContent = __webpack_require__(220);
 
 	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
 
@@ -31608,7 +31725,7 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _Utils = __webpack_require__(222);
+	var _Utils = __webpack_require__(224);
 
 	var _data = __webpack_require__(200);
 
@@ -31732,7 +31849,7 @@
 	exports.default = SlackMainContentContainer;
 
 /***/ },
-/* 218 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31747,15 +31864,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SlackLineOfText = __webpack_require__(219);
+	var _SlackLineOfText = __webpack_require__(221);
 
 	var _SlackLineOfText2 = _interopRequireDefault(_SlackLineOfText);
 
-	var _SlackChannelHeader = __webpack_require__(220);
+	var _SlackChannelHeader = __webpack_require__(222);
 
 	var _SlackChannelHeader2 = _interopRequireDefault(_SlackChannelHeader);
 
-	var _SlackPersonalConversationHeader = __webpack_require__(221);
+	var _SlackPersonalConversationHeader = __webpack_require__(223);
 
 	var _SlackPersonalConversationHeader2 = _interopRequireDefault(_SlackPersonalConversationHeader);
 
@@ -31877,7 +31994,7 @@
 	exports.default = App;
 
 /***/ },
-/* 219 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31953,7 +32070,7 @@
 	exports.default = App;
 
 /***/ },
-/* 220 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32015,7 +32132,7 @@
 	exports.default = App;
 
 /***/ },
-/* 221 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32096,7 +32213,7 @@
 	exports.default = App;
 
 /***/ },
-/* 222 */
+/* 224 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32109,7 +32226,8 @@
 	function soundboardKeyPress() {
 		$(document).ready(function () {
 			$('html').keydown(function (e) {
-				var keyCode = e.keyCode;
+				var keyCode = e.charCode || e.keyCode;
+				console.log(keyCode);
 				switch (keyCode) {
 					case 13:
 						$('#cheatMenuButton').click();
@@ -32144,87 +32262,88 @@
 					case 57:
 						$('#key9').click();
 						break;
-					case 113:
+					case (113, 81):
 						$('#keyq').click();
 						break;
-					case 119:
+					case (119, 87):
 						$('#keyw').click();
 						break;
-					case 101:
+					case (101, 69):
 						$('#keye').click();
 						break;
-					case 114:
+					case (114, 82):
 						$('#keyr').click();
 						break;
-					case 116:
+					case (116, 84):
 						$('#keyt').click();
 						break;
-					case 121:
+					case (121, 89):
 						$('#keyy').click();
 						break;
-					case 117:
+					case (117, 85):
 						$('#keyu').click();
 						break;
-					case 105:
+					case (105, 73):
 						$('#keyi').click();
 						break;
-					case 111:
+					case (111, 79):
 						$('#keyo').click();
 						break;
-					case 112:
+					case (112, 80):
 						$('#keyp').click();
 						break;
-					case 97:
+					case (97, 65):
 						$('#keya').click();
 						break;
-					case 115:
+					case (115, 83):
 						$('#keys').click();
 						break;
-					case 100:
+					case (100, 68):
 						$('#keyd').click();
 						break;
-					case 102:
+					case (102, 70):
 						$('#keyf').click();
 						break;
-					case 103:
+					case (103, 71):
 						$('#keyg').click();
 						break;
-					case 104:
+					case (104, 72):
 						$('#keyh').click();
 						break;
-					case 106:
+					case (106, 74):
 						$('#keyj').click();
 						break;
-					case 107:
+					case (107, 75):
 						$('#keyk').click();
 						break;
-					case 108:
+					case (108, 76):
 						$('#keyl').click();
 						break;
-					case 122:
+					case (122, 90):
 						$('#keyz').click();
 						break;
-					case 120:
+					case (120, 88):
 						$('#keyx').click();
 						break;
-					case 99:
+					case (99, 67):
 						$('#keyc').click();
 						break;
-					case 118:
+					case (118, 86):
 						$('#keyv').click();
 						break;
-					case 98:
+					case (98, 66):
 						$('#keyb').click();
 						break;
-					case 110:
+					case (110, 78):
 						$('#keyn').click();
 						break;
-					case 109:
+					case (109, 77):
 						$('#keym').click();
 						break;
 					case 32:
 						$('#spacebar').click();
 						$('#startButton').click();
+						$('#stopSound').click();
 						break;
 				}
 			});
@@ -32244,7 +32363,7 @@
 	}
 
 /***/ },
-/* 223 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32257,7 +32376,7 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _tinyCookie = __webpack_require__(224);
+	var _tinyCookie = __webpack_require__(226);
 
 	var _tinyCookie2 = _interopRequireDefault(_tinyCookie);
 
@@ -32267,7 +32386,7 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Utils = __webpack_require__(222);
+	var _Utils = __webpack_require__(224);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32407,7 +32526,7 @@
 	exports.default = setupObject;
 
 /***/ },
-/* 224 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!

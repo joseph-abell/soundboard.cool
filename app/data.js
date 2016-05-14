@@ -8,8 +8,10 @@ import {
 	canAnimate, 
 	wizards
 } from './Actions'
-let fireRef = new Firebase('https://soundboardcool.firebaseio.com/');
 
+export const soundManager2 = soundManager;
+
+let fireRef = new Firebase('https://soundboardcool.firebaseio.com/');
 
 const defaultActionNoAnimation = (dispatch, audioTitle, audioFileUrl) => {
 	dispatch(togglePlaying(audioTitle))
@@ -19,6 +21,7 @@ const defaultActionNoAnimation = (dispatch, audioTitle, audioFileUrl) => {
 		autoPlay: true
 	});	
 }
+
 const defaultActionWithAnimation = (dispatch, audioTitle, audioFileUrl, animationType, isNotAnimating) => {
 	dispatch(togglePlaying(audioTitle))
 	const canThisAnimate = isNotAnimating;

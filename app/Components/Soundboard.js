@@ -2,6 +2,7 @@ import React from 'react';
 import Letter from '../Containers/Letter';
 import NumberKey from '../Containers/Number';
 import KillButton from '../Containers/KillButton';
+import KillSound from '../Containers/KillSound';
 import Data from '../data';
 
 class Keys extends React.Component {
@@ -62,6 +63,7 @@ export default class Soundboard extends React.Component {
 						{killBearButton === 1 && <div className="spacebar disabled">Wait for it...</div>}
 						{killBearButton === 3 && <div className="spacebar disabled">You Monster</div>}
 						<KillButton />
+						<KillSound />
 					</div>
 					<span id="cheatMenuButton" onClick={() => {
 						onCheatMenuButtonClick();
