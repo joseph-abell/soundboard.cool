@@ -2,7 +2,6 @@ export function soundboardKeyPress () {
 	$(document).ready(function () {
 		$('html').keydown(function (e) {
 			var keyCode = e.charCode || e.keyCode;
-			console.log(keyCode);
 			switch (keyCode) {
 				case (13):
 					$('#cheatMenuButton').click();

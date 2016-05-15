@@ -24106,7 +24106,14 @@
 				id: 1,
 				keys: [{
 					title: 'a',
-					audioTitle: ''
+					audioTitle: 'Reader Baboo (Jack Giles)',
+					urls: ['./audio/Baboo/BabooJackGiles.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						fireRef.child('global').update({ 'baboos': ++optionalExtras[0] });
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 's',
 					audioTitle: ''
@@ -31793,9 +31800,9 @@
 				var slackbotResponses = _data2.default.slackbotResponses;
 				var messageType = void 0;
 
-				if (contentType === 'privateMessage') {
+				if (contentType === 'personalMessage') {
 					messageType = 'messages';
-				} else if (contentType === 'channel') {
+				} else {
 					messageType = 'channelMessages';
 				}
 
@@ -32037,7 +32044,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { style: { marginBottom: 10, position: 'relative' } },
+	        { style: { marginBottom: 10, position: 'relative', textAlign: 'left' } },
 	        _react2.default.createElement('div', { style: { float: 'left', position: 'absolute', width: 36, height: 36, left: 0, background: '#333', borderRadius: 4, marginRight: 10 } }),
 	        _react2.default.createElement(
 	          'div',
@@ -32227,7 +32234,6 @@
 		$(document).ready(function () {
 			$('html').keydown(function (e) {
 				var keyCode = e.charCode || e.keyCode;
-				console.log(keyCode);
 				switch (keyCode) {
 					case 13:
 						$('#cheatMenuButton').click();

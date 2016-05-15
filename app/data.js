@@ -995,7 +995,14 @@ export default {
 					keys: [
 						{
 							title: 'a',
-							audioTitle: ''
+							audioTitle: 'Reader Baboo (Jack Giles)',
+							urls: [
+								'./audio/Baboo/BabooJackGiles.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								fireRef.child('global').update({'baboos': ++optionalExtras[0]})
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 's',

@@ -78,12 +78,11 @@ const mapDispatchToProps = (dispatch) => {
 			const slackbotResponses = data.slackbotResponses; 
 			let messageType;
 
-			if (contentType === 'privateMessage') {
+			if (contentType === 'personalMessage') {
 				messageType = 'messages'
-			} else if (contentType === 'channel') {
+			} else {
 				messageType = 'channelMessages'
 			}
-			
 
 			if (person === 'slackbot') {
 				for (let slackbotActionIndex = 0; slackbotActionIndex < slackbotActions.length; slackbotActionIndex++) {
