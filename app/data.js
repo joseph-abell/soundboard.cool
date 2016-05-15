@@ -584,6 +584,8 @@ export default {
 								let visibleButton = false;
 								let mySound, mySound2;
 
+								soundManager.stopAll();
+
 								mySound = soundManager.createSound({
 									url: foundKey.urls[0],
 									autoPlay: true,

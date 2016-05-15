@@ -23780,6 +23780,8 @@
 						var mySound = void 0,
 						    mySound2 = void 0;
 
+						_soundmanager.soundManager.stopAll();
+
 						mySound = _soundmanager.soundManager.createSound({
 							url: foundKey.urls[0],
 							autoPlay: true,
