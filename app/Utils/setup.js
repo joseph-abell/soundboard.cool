@@ -97,7 +97,7 @@ let setupObject = {
 
 		store.dispatch(userId(userIdCookie))
 
-		const userIdValue = store.getState('USER_ID').userId;
+		const userIdValue = Cookie.get('userId');
 
 		let globalCounterValue = 0;
 		setupObject.matchFirebaseValuesToRedux(store, "global", "globalCounter", globalCounter, globalCounterValue, 'messages');
