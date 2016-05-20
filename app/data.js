@@ -308,11 +308,23 @@ export default {
 						},
 						{
 							title: 'r',
-							audioTitle: ''
+							audioTitle: 'Robot Remo',
+							urls: [
+								'./audio/Chris/RobotRemo.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 't',
-							audioTitle: ''
+							audioTitle: 'Trust',
+							urls: [
+								'./audio/Chris/Trust.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'y',
@@ -351,19 +363,43 @@ export default {
 						},
 						{
 							title: 's',
-							audioTitle: ''
+							audioTitle: 'Swallowed My D',
+							urls: [
+								'./audio/Chris/Swallowed My D.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'd',
-							audioTitle: ''
+							audioTitle: 'Stupid',
+							urls: [
+								'./audio/Chris/Stupid.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'f',
-							audioTitle: ''
+							audioTitle: 'Flower',
+							urls: [
+								'./audio/Chris/Flower.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'g',
-							audioTitle: ''
+							audioTitle: 'Good Counterpoint',
+							urls: [
+								'./audio/Chris/Good Counterpoint.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'h',
@@ -371,11 +407,23 @@ export default {
 						},
 						{
 							title: 'j',
-							audioTitle: ''
+							audioTitle: 'Jonathan Bro',
+							urls: [
+								'./audio/Chris/JonathanBro.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'k',
-							audioTitle: ''
+							audioTitle: 'I Know I Nailed It',
+							urls: [
+								'./audio/Chris/NailedIt.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'l',
@@ -404,11 +452,23 @@ export default {
 						},
 						{
 							title: 'b',
-							audioTitle: ''
+							audioTitle: 'Break',
+							urls: [
+								'./audio/Chris/Break.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'n',
-							audioTitle: ''
+							audioTitle: 'Become Metalheads',
+							urls: [
+								'./audio/Chris/BecomeMetalheads.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'm',
@@ -456,7 +516,13 @@ export default {
 						},
 						{
 							title: 'r',
-							audioTitle: ''
+							audioTitle: 'Romantic',
+							urls: [
+								'./audio/Nick/Romantic.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 't',
@@ -470,23 +536,53 @@ export default {
 						},
 						{
 							title: 'y',
-							audioTitle: ''
+							audioTitle: 'You Know',
+							urls: [
+								'./audio/Nick/HesYouKnow.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'u',
-							audioTitle: ''
+							audioTitle: 'Fun',
+							urls: [
+								'./audio/Nick/Fun.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'i',
-							audioTitle: ''
+							audioTitle: 'Yeah I Am',
+							urls: [
+								'./audio/Nick/Yeah.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'o',
-							audioTitle: ''
+							audioTitle: 'Okay',
+							urls: [
+								'./audio/Nick/Ok.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'p',
-							audioTitle: ''
+							audioTitle: 'Surely Is',
+							urls: [
+								'./audio/Nick/SurelyIs.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				},
@@ -526,7 +622,13 @@ export default {
 						},
 						{
 							title: 'f',
-							audioTitle: ''
+							audioTitle: 'Fine',
+							urls: [
+								'./audio/Nick/Fine.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'g',
@@ -548,7 +650,13 @@ export default {
 						},
 						{
 							title: 'k',
-							audioTitle: ''
+							audioTitle: 'Killed My Son',
+							urls: [
+								'./audio/Nick/KilledSon.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'l',
@@ -569,7 +677,13 @@ export default {
 						},
 						{
 							title: 'c',
-							audioTitle: ''
+							audioTitle: 'Jesus Christ',
+							urls: [
+								'./audio/Nick/Christ.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'v',
@@ -627,11 +741,23 @@ export default {
 						},
 						{
 							title: 'n',
-							audioTitle: ''
+							audioTitle: 'Not That Good',
+							urls: [
+								'./audio/Nick/NotThatGood.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'm',
-							audioTitle: ''
+							audioTitle: 'Mind Control',
+							urls: [
+								'./audio/Nick/MindControl.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				}
@@ -649,19 +775,43 @@ export default {
 						},
 						{
 							title: 'w',
-							audioTitle: ''
+							audioTitle: 'What You Want',
+							urls: [
+								'./audio/Jake/WhatYouWant.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'e',
-							audioTitle: ''
+							audioTitle: 'Eyeroll',
+							urls: [
+								'./audio/Jake/Eyeroll.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'r',
-							audioTitle: ''
+							audioTitle: 'Robot Don\'t Care',
+							urls: [
+								'./audio/Jake/Robot.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 't',
-							audioTitle: ''
+							audioTitle: 'Throw',
+							urls: [
+								'./audio/Jake/Throw.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'y',
@@ -673,7 +823,13 @@ export default {
 						},
 						{
 							title: 'u',
-							audioTitle: ''
+							audioTitle: 'Trust',
+							urls: [
+								'./audio/Jake/Trust.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'i',
@@ -694,11 +850,23 @@ export default {
 					keys: [
 						{
 							title: 'a',
-							audioTitle: ''
+							audioTitle: 'Alt F4',
+							urls: [
+								'./audio/Jake/AltF4.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 's',
-							audioTitle: ''
+							audioTitle: 'Snake',
+							urls: [
+								'./audio/Jake/Snake.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'd',
@@ -706,7 +874,13 @@ export default {
 						},
 						{
 							title: 'f',
-							audioTitle: ''
+							audioTitle: 'Fire',
+							urls: [
+								'./audio/Jake/Fire.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'g',
@@ -726,7 +900,13 @@ export default {
 						},
 						{
 							title: 'l',
-							audioTitle: ''
+							audioTitle: 'Love',
+							urls: [
+								'./audio/Jake/Love.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				},
@@ -749,17 +929,36 @@ export default {
 							title: 'v',
 							audioTitle: ''
 						},
+						
 						{
 							title: 'b',
-							audioTitle: ''
+							audioTitle: 'No Bees Mode',
+							urls: [
+								'./audio/Jake/NoBeesMode.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'n',
-							audioTitle: ''
+							audioTitle: 'No It\'s Not!',
+							urls: [
+								'./audio/Jake/NoItsNot.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						},
 						{
 							title: 'm',
-							audioTitle: ''
+							audioTitle: 'Shithead Man',
+							urls: [
+								'./audio/Jake/ShitheadMan.mp3'
+							],
+							rules: (foundKey, dispatch, optionalExtras = []) => {
+								defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+							}
 						}
 					]
 				}

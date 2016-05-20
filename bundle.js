@@ -60,15 +60,15 @@
 
 	var _redux = __webpack_require__(176);
 
-	var _Reducers = __webpack_require__(191);
+	var _Reducers = __webpack_require__(195);
 
 	var _Reducers2 = _interopRequireDefault(_Reducers);
 
-	var _App = __webpack_require__(193);
+	var _App = __webpack_require__(197);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _setup = __webpack_require__(225);
+	var _setup = __webpack_require__(229);
 
 	var _setup2 = _interopRequireDefault(_setup);
 
@@ -20641,15 +20641,15 @@
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _isPlainObject = __webpack_require__(178);
+	var _isPlainObject = __webpack_require__(189);
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _hoistNonReactStatics = __webpack_require__(189);
+	var _hoistNonReactStatics = __webpack_require__(193);
 
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-	var _invariant = __webpack_require__(190);
+	var _invariant = __webpack_require__(194);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -21901,6 +21901,164 @@
 
 /***/ },
 /* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var getPrototype = __webpack_require__(190),
+	    isHostObject = __webpack_require__(191),
+	    isObjectLike = __webpack_require__(192);
+
+	/** `Object#toString` result references. */
+	var objectTag = '[object Object]';
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/** Used to resolve the decompiled source of functions. */
+	var funcToString = Function.prototype.toString;
+
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+
+	/** Used to infer the `Object` constructor. */
+	var objectCtorString = funcToString.call(Object);
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+
+	/**
+	 * Checks if `value` is a plain object, that is, an object created by the
+	 * `Object` constructor or one with a `[[Prototype]]` of `null`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.8.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a plain object,
+	 *  else `false`.
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1;
+	 * }
+	 *
+	 * _.isPlainObject(new Foo);
+	 * // => false
+	 *
+	 * _.isPlainObject([1, 2, 3]);
+	 * // => false
+	 *
+	 * _.isPlainObject({ 'x': 0, 'y': 0 });
+	 * // => true
+	 *
+	 * _.isPlainObject(Object.create(null));
+	 * // => true
+	 */
+	function isPlainObject(value) {
+	  if (!isObjectLike(value) ||
+	      objectToString.call(value) != objectTag || isHostObject(value)) {
+	    return false;
+	  }
+	  var proto = getPrototype(value);
+	  if (proto === null) {
+	    return true;
+	  }
+	  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+	  return (typeof Ctor == 'function' &&
+	    Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString);
+	}
+
+	module.exports = isPlainObject;
+
+
+/***/ },
+/* 190 */
+/***/ function(module, exports) {
+
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeGetPrototype = Object.getPrototypeOf;
+
+	/**
+	 * Gets the `[[Prototype]]` of `value`.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @returns {null|Object} Returns the `[[Prototype]]`.
+	 */
+	function getPrototype(value) {
+	  return nativeGetPrototype(Object(value));
+	}
+
+	module.exports = getPrototype;
+
+
+/***/ },
+/* 191 */
+/***/ function(module, exports) {
+
+	/**
+	 * Checks if `value` is a host object in IE < 9.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+	 */
+	function isHostObject(value) {
+	  // Many host objects are `Object` objects that can coerce to strings
+	  // despite having improperly defined `toString` methods.
+	  var result = false;
+	  if (value != null && typeof value.toString != 'function') {
+	    try {
+	      result = !!(value + '');
+	    } catch (e) {}
+	  }
+	  return result;
+	}
+
+	module.exports = isHostObject;
+
+
+/***/ },
+/* 192 */
+/***/ function(module, exports) {
+
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && typeof value == 'object';
+	}
+
+	module.exports = isObjectLike;
+
+
+/***/ },
+/* 193 */
 /***/ function(module, exports) {
 
 	/**
@@ -21948,7 +22106,7 @@
 
 
 /***/ },
-/* 190 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22006,7 +22164,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 191 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22017,7 +22175,7 @@
 
 	var _redux = __webpack_require__(176);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -22422,7 +22580,7 @@
 	exports.default = soundboardApp;
 
 /***/ },
-/* 192 */
+/* 196 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22722,7 +22880,7 @@
 	}
 
 /***/ },
-/* 193 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22737,23 +22895,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Instructions = __webpack_require__(194);
+	var _Instructions = __webpack_require__(198);
 
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 
-	var _Soundboard = __webpack_require__(196);
+	var _Soundboard = __webpack_require__(200);
 
 	var _Soundboard2 = _interopRequireDefault(_Soundboard);
 
-	var _AnimationElements = __webpack_require__(209);
+	var _AnimationElements = __webpack_require__(213);
 
 	var _AnimationElements2 = _interopRequireDefault(_AnimationElements);
 
-	var _Stats = __webpack_require__(211);
+	var _Stats = __webpack_require__(215);
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
-	var _CheatMenu = __webpack_require__(213);
+	var _CheatMenu = __webpack_require__(217);
 
 	var _CheatMenu2 = _interopRequireDefault(_CheatMenu);
 
@@ -22795,7 +22953,7 @@
 	exports.default = App;
 
 /***/ },
-/* 194 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22806,11 +22964,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Instructions = __webpack_require__(195);
+	var _Instructions = __webpack_require__(199);
 
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22833,7 +22991,7 @@
 	exports.default = InstructionsContainer;
 
 /***/ },
-/* 195 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22917,7 +23075,7 @@
 	exports.default = App;
 
 /***/ },
-/* 196 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22928,11 +23086,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Soundboard = __webpack_require__(197);
+	var _Soundboard = __webpack_require__(201);
 
 	var _Soundboard2 = _interopRequireDefault(_Soundboard);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22958,7 +23116,7 @@
 	exports.default = SoundboardContainer;
 
 /***/ },
-/* 197 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22973,23 +23131,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Letter = __webpack_require__(198);
+	var _Letter = __webpack_require__(202);
 
 	var _Letter2 = _interopRequireDefault(_Letter);
 
-	var _Number = __webpack_require__(203);
+	var _Number = __webpack_require__(207);
 
 	var _Number2 = _interopRequireDefault(_Number);
 
-	var _KillButton = __webpack_require__(205);
+	var _KillButton = __webpack_require__(209);
 
 	var _KillButton2 = _interopRequireDefault(_KillButton);
 
-	var _KillSound = __webpack_require__(207);
+	var _KillSound = __webpack_require__(211);
 
 	var _KillSound2 = _interopRequireDefault(_KillSound);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -23127,7 +23285,7 @@
 	exports.default = Soundboard;
 
 /***/ },
-/* 198 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23138,15 +23296,15 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Letter = __webpack_require__(199);
+	var _Letter = __webpack_require__(203);
 
 	var _Letter2 = _interopRequireDefault(_Letter);
 
-	var _soundmanager = __webpack_require__(201);
+	var _soundmanager = __webpack_require__(205);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -23196,7 +23354,7 @@
 	exports.default = LetterContainer;
 
 /***/ },
-/* 199 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23211,7 +23369,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -23294,7 +23452,7 @@
 	exports.default = App;
 
 /***/ },
-/* 200 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23306,13 +23464,13 @@
 
 	var _ref;
 
-	var _soundmanager = __webpack_require__(201);
+	var _soundmanager = __webpack_require__(205);
 
 	var _firebase = __webpack_require__(33);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23566,10 +23724,22 @@
 					audioTitle: ''
 				}, {
 					title: 'r',
-					audioTitle: ''
+					audioTitle: 'Robot Remo',
+					urls: ['./audio/Chris/RobotRemo.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 't',
-					audioTitle: ''
+					audioTitle: 'Trust',
+					urls: ['./audio/Chris/Trust.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'y',
 					audioTitle: ''
@@ -23599,25 +23769,61 @@
 					audioTitle: ''
 				}, {
 					title: 's',
-					audioTitle: ''
+					audioTitle: 'Swallowed My D',
+					urls: ['./audio/Chris/Swallowed My D.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'd',
-					audioTitle: ''
+					audioTitle: 'Stupid',
+					urls: ['./audio/Chris/Stupid.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'f',
-					audioTitle: ''
+					audioTitle: 'Flower',
+					urls: ['./audio/Chris/Flower.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'g',
-					audioTitle: ''
+					audioTitle: 'Good Counterpoint',
+					urls: ['./audio/Chris/Good Counterpoint.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'h',
 					audioTitle: ''
 				}, {
 					title: 'j',
-					audioTitle: ''
+					audioTitle: 'Jonathan Bro',
+					urls: ['./audio/Chris/JonathanBro.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'k',
-					audioTitle: ''
+					audioTitle: 'I Know I Nailed It',
+					urls: ['./audio/Chris/NailedIt.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'l',
 					audioTitle: ''
@@ -23638,10 +23844,22 @@
 					audioTitle: ''
 				}, {
 					title: 'b',
-					audioTitle: ''
+					audioTitle: 'Break',
+					urls: ['./audio/Chris/Break.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'n',
-					audioTitle: ''
+					audioTitle: 'Become Metalheads',
+					urls: ['./audio/Chris/BecomeMetalheads.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'm',
 					audioTitle: 'The Moon, and the Enjoyment thereof',
@@ -23680,7 +23898,13 @@
 					audioTitle: ''
 				}, {
 					title: 'r',
-					audioTitle: ''
+					audioTitle: 'Romantic',
+					urls: ['./audio/Nick/Romantic.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 't',
 					audioTitle: 'That\'s Cool',
@@ -23692,19 +23916,49 @@
 					}
 				}, {
 					title: 'y',
-					audioTitle: ''
+					audioTitle: 'You Know',
+					urls: ['./audio/Nick/HesYouKnow.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'u',
-					audioTitle: ''
+					audioTitle: 'Fun',
+					urls: ['./audio/Nick/Fun.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'i',
-					audioTitle: ''
+					audioTitle: 'Yeah I Am',
+					urls: ['./audio/Nick/Yeah.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'o',
-					audioTitle: ''
+					audioTitle: 'Okay',
+					urls: ['./audio/Nick/Ok.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'p',
-					audioTitle: ''
+					audioTitle: 'Surely Is',
+					urls: ['./audio/Nick/SurelyIs.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}]
 			}, {
 				id: 1,
@@ -23735,7 +23989,13 @@
 					}
 				}, {
 					title: 'f',
-					audioTitle: ''
+					audioTitle: 'Fine',
+					urls: ['./audio/Nick/Fine.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'g',
 					audioTitle: ''
@@ -23753,7 +24013,13 @@
 					}
 				}, {
 					title: 'k',
-					audioTitle: ''
+					audioTitle: 'Killed My Son',
+					urls: ['./audio/Nick/KilledSon.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'l',
 					audioTitle: ''
@@ -23768,7 +24034,13 @@
 					audioTitle: ''
 				}, {
 					title: 'c',
-					audioTitle: ''
+					audioTitle: 'Jesus Christ',
+					urls: ['./audio/Nick/Christ.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'v',
 					audioTitle: ''
@@ -23822,10 +24094,22 @@
 					}
 				}, {
 					title: 'n',
-					audioTitle: ''
+					audioTitle: 'Not That Good',
+					urls: ['./audio/Nick/NotThatGood.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'm',
-					audioTitle: ''
+					audioTitle: 'Mind Control',
+					urls: ['./audio/Nick/MindControl.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}]
 			}]
 		}, {
@@ -23837,16 +24121,40 @@
 					audioTitle: ''
 				}, {
 					title: 'w',
-					audioTitle: ''
+					audioTitle: 'What You Want',
+					urls: ['./audio/Jake/WhatYouWant.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'e',
-					audioTitle: ''
+					audioTitle: 'Eyeroll',
+					urls: ['./audio/Jake/Eyeroll.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'r',
-					audioTitle: ''
+					audioTitle: 'Robot Don\'t Care',
+					urls: ['./audio/Jake/Robot.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 't',
-					audioTitle: ''
+					audioTitle: 'Throw',
+					urls: ['./audio/Jake/Throw.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'y',
 					audioTitle: 'Year of the Playstation What?',
@@ -23858,7 +24166,13 @@
 					}
 				}, {
 					title: 'u',
-					audioTitle: ''
+					audioTitle: 'Trust',
+					urls: ['./audio/Jake/Trust.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'i',
 					audioTitle: ''
@@ -23873,16 +24187,34 @@
 				id: 1,
 				keys: [{
 					title: 'a',
-					audioTitle: ''
+					audioTitle: 'Alt F4',
+					urls: ['./audio/Jake/AltF4.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 's',
-					audioTitle: ''
+					audioTitle: 'Snake',
+					urls: ['./audio/Jake/Snake.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'd',
 					audioTitle: ''
 				}, {
 					title: 'f',
-					audioTitle: ''
+					audioTitle: 'Fire',
+					urls: ['./audio/Jake/Fire.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'g',
 					audioTitle: ''
@@ -23897,7 +24229,13 @@
 					audioTitle: ''
 				}, {
 					title: 'l',
-					audioTitle: ''
+					audioTitle: 'Love',
+					urls: ['./audio/Jake/Love.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}]
 			}, {
 				id: 2,
@@ -23915,13 +24253,31 @@
 					audioTitle: ''
 				}, {
 					title: 'b',
-					audioTitle: ''
+					audioTitle: 'No Bees Mode',
+					urls: ['./audio/Jake/NoBeesMode.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'n',
-					audioTitle: ''
+					audioTitle: 'No It\'s Not!',
+					urls: ['./audio/Jake/NoItsNot.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}, {
 					title: 'm',
-					audioTitle: ''
+					audioTitle: 'Shithead Man',
+					urls: ['./audio/Jake/ShitheadMan.mp3'],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						defaultActionNoAnimation(dispatch, foundKey.audioTitle, foundKey.urls[0]);
+					}
 				}]
 			}]
 		}, {
@@ -24364,7 +24720,7 @@
 	};
 
 /***/ },
-/* 201 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {/** @license
@@ -30670,10 +31026,10 @@
 
 	}(window));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(202)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(206)(module)))
 
 /***/ },
-/* 202 */
+/* 206 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -30689,7 +31045,7 @@
 
 
 /***/ },
-/* 203 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30700,13 +31056,13 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Number = __webpack_require__(204);
+	var _Number = __webpack_require__(208);
 
 	var _Number2 = _interopRequireDefault(_Number);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	var _data2 = _interopRequireDefault(_data);
 
@@ -30743,7 +31099,7 @@
 	exports.default = NumberKeyContainer;
 
 /***/ },
-/* 204 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30818,7 +31174,7 @@
 	exports.default = NumberKey;
 
 /***/ },
-/* 205 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30829,11 +31185,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _KillButton = __webpack_require__(206);
+	var _KillButton = __webpack_require__(210);
 
 	var _KillButton2 = _interopRequireDefault(_KillButton);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	var _firebase = __webpack_require__(33);
 
@@ -30865,7 +31221,7 @@
 	exports.default = KillButtonContainer;
 
 /***/ },
-/* 206 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30930,7 +31286,7 @@
 	exports.default = KillButton;
 
 /***/ },
-/* 207 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30941,13 +31297,13 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _KillSound = __webpack_require__(208);
+	var _KillSound = __webpack_require__(212);
 
 	var _KillSound2 = _interopRequireDefault(_KillSound);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30970,7 +31326,7 @@
 	exports.default = KillSoundContainer;
 
 /***/ },
-/* 208 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -31038,7 +31394,7 @@
 	exports.default = KillButton;
 
 /***/ },
-/* 209 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31049,7 +31405,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _AnimationElements = __webpack_require__(210);
+	var _AnimationElements = __webpack_require__(214);
 
 	var _AnimationElements2 = _interopRequireDefault(_AnimationElements);
 
@@ -31066,7 +31422,7 @@
 	exports.default = AnimationElementsContainer;
 
 /***/ },
-/* 210 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -31125,7 +31481,7 @@
 	exports.default = App;
 
 /***/ },
-/* 211 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31136,11 +31492,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _Stats = __webpack_require__(212);
+	var _Stats = __webpack_require__(216);
 
 	var _Stats2 = _interopRequireDefault(_Stats);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31169,7 +31525,7 @@
 	exports.default = StatsContainer;
 
 /***/ },
-/* 212 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31320,7 +31676,7 @@
 	exports.default = Stats;
 
 /***/ },
-/* 213 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31331,11 +31687,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _CheatMenu = __webpack_require__(214);
+	var _CheatMenu = __webpack_require__(218);
 
 	var _CheatMenu2 = _interopRequireDefault(_CheatMenu);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31350,7 +31706,7 @@
 	exports.default = CheatMenuContainer;
 
 /***/ },
-/* 214 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31365,15 +31721,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SlackChannelName = __webpack_require__(215);
+	var _SlackChannelName = __webpack_require__(219);
 
 	var _SlackChannelName2 = _interopRequireDefault(_SlackChannelName);
 
-	var _SlackPersonalMessageName = __webpack_require__(217);
+	var _SlackPersonalMessageName = __webpack_require__(221);
 
 	var _SlackPersonalMessageName2 = _interopRequireDefault(_SlackPersonalMessageName);
 
-	var _SlackMainContent = __webpack_require__(219);
+	var _SlackMainContent = __webpack_require__(223);
 
 	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
 
@@ -31495,7 +31851,7 @@
 	exports.default = App;
 
 /***/ },
-/* 215 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31506,11 +31862,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _SlackChannelName = __webpack_require__(216);
+	var _SlackChannelName = __webpack_require__(220);
 
 	var _SlackChannelName2 = _interopRequireDefault(_SlackChannelName);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31538,7 +31894,7 @@
 	exports.default = SlackChannelNameContainer;
 
 /***/ },
-/* 216 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31600,7 +31956,7 @@
 	exports.default = App;
 
 /***/ },
-/* 217 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31611,11 +31967,11 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _SlackPersonalMessageName = __webpack_require__(218);
+	var _SlackPersonalMessageName = __webpack_require__(222);
 
 	var _SlackPersonalMessageName2 = _interopRequireDefault(_SlackPersonalMessageName);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31635,7 +31991,7 @@
 	exports.default = SlackPersonalMessageNameContainer;
 
 /***/ },
-/* 218 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31721,7 +32077,7 @@
 	exports.default = App;
 
 /***/ },
-/* 219 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31732,7 +32088,7 @@
 
 	var _reactRedux = __webpack_require__(169);
 
-	var _SlackMainContent = __webpack_require__(220);
+	var _SlackMainContent = __webpack_require__(224);
 
 	var _SlackMainContent2 = _interopRequireDefault(_SlackMainContent);
 
@@ -31740,13 +32096,13 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _Utils = __webpack_require__(224);
+	var _Utils = __webpack_require__(228);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31864,7 +32220,7 @@
 	exports.default = SlackMainContentContainer;
 
 /***/ },
-/* 220 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31879,15 +32235,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SlackLineOfText = __webpack_require__(221);
+	var _SlackLineOfText = __webpack_require__(225);
 
 	var _SlackLineOfText2 = _interopRequireDefault(_SlackLineOfText);
 
-	var _SlackChannelHeader = __webpack_require__(222);
+	var _SlackChannelHeader = __webpack_require__(226);
 
 	var _SlackChannelHeader2 = _interopRequireDefault(_SlackChannelHeader);
 
-	var _SlackPersonalConversationHeader = __webpack_require__(223);
+	var _SlackPersonalConversationHeader = __webpack_require__(227);
 
 	var _SlackPersonalConversationHeader2 = _interopRequireDefault(_SlackPersonalConversationHeader);
 
@@ -32009,7 +32365,7 @@
 	exports.default = App;
 
 /***/ },
-/* 221 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32085,7 +32441,7 @@
 	exports.default = App;
 
 /***/ },
-/* 222 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32147,7 +32503,7 @@
 	exports.default = App;
 
 /***/ },
-/* 223 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32228,7 +32584,7 @@
 	exports.default = App;
 
 /***/ },
-/* 224 */
+/* 228 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32377,7 +32733,7 @@
 	}
 
 /***/ },
-/* 225 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32390,17 +32746,17 @@
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
-	var _tinyCookie = __webpack_require__(226);
+	var _tinyCookie = __webpack_require__(230);
 
 	var _tinyCookie2 = _interopRequireDefault(_tinyCookie);
 
-	var _Actions = __webpack_require__(192);
+	var _Actions = __webpack_require__(196);
 
-	var _data = __webpack_require__(200);
+	var _data = __webpack_require__(204);
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Utils = __webpack_require__(224);
+	var _Utils = __webpack_require__(228);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32540,7 +32896,7 @@
 	exports.default = setupObject;
 
 /***/ },
-/* 226 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
