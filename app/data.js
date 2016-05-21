@@ -1498,6 +1498,544 @@ export default {
 				time: '10:00am',
 				says: 'In order to quit, type either "quit" or "exit" in lower case'
 			}
+		},
+		{
+			respondingTo: ['alone', 'lonely', 'sad'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I will keep you company, Waluigi. I am always here for you.'
+			}
+		},
+		{
+			respondingTo: ['wah'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'You are going to win.'
+			}
+		},
+		{
+			respondingTo: ["I'm gonna win!", "Im gonna win!", "i'm gonna win!", "im gonna win!", "I'm going to win!"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I admire your self belief. You are amazing.'
+			}
+		},
+		{
+			respondingTo: ["red faction guerrilla", "Red Faction Guerrilla"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'spaace asshoOOOoole'
+			}
+		},
+		{
+			respondingTo: ["Congrats Nick", "Congrats nick", "congrats nick", "congrats Nick", "congratz Nick"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Fuck Nick'
+			}	
+		},
+		{
+			respondingTo: ["blown away", "Blown away", "Blown Away", "blow me away", "blow you away", "blew me away", "blows me away"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '~ign.com'
+			}	
+		}, {
+			respondingTo: ["are you a robot", "Are you a robot"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Ha, ha! I am a real person!'
+			}
+		}, {
+			respondingTo: ["unreal tournament", "Unreal Tournament", "Unreal tournament", "unreal Tournament"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'MONSTER KILL'
+			}
+		}, {
+			respondingTo: ["Star Citizen", "Star citizen", "star citizen", "star Citizen"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'That game will never be finished'
+			}
+		}, {
+			respondingTo: ["Hamlet", "hamlet"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'HORATIO'
+			}
+		}, {
+			respondingTo: ["Horatio", "horatio", "HORATIO"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'HAMLET'
+			}
+		}, {
+			respondingTo: ["Ophelia"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'LAERTES'
+			}
+		}, {
+			respondingTo: ["LAERTES", "Laertes"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'OPHELIA'
+			}
+		}, {
+			respondingTo: ['Claudius'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'GERTRUDE'
+			}
+		}, {
+			respondingTo: ['Gertrude'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'CLAUDIUS'
+			}
+		}, {
+			respondingTo: ['Rosencrantz'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'GUILDENSTERN'
+			}
+		}, {
+			respondingTo: ['Guildenstern'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'ROSENCRANTZ'
+			}
+		}, {
+			respondingTo: ['Yorick'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'GRAVEDIGGER'
+			}
+		}, {
+			respondingTo: ['Fortinbras'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'POLONIUS'
+			}
+		}, {
+			respondingTo: ['cool ghosts'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'ENTER GHOST'
+			}
+		}, {
+			respondingTo: ['Polonius'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'YOUNG FORTINBRAS OF NORWAY'
+			}
+		}, {
+			respondingTo: ['Juliet'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Partying is such sweet sorrow...'
+			}
+		}, {
+			respondingTo: ['Gravedigger'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'YORICK'
+			}
+		}, {
+			respondingTo: ["@slackbot advertise key frames right now dummy!", "@slackbot ad4kf"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I will not add your Key Frames Podcast, after the shit you have given me, twig.'
+			}
+		}, {
+			respondingTo: ["love slackbot", ":love: slackbot", "love you slackbot", ":love: you slackbot", "love u slackbot", ":love: u slackbot", "luv slackbot", "luv u slackbot",  "love u slack bot",  "i love u slackbot"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'luv u 2'
+			}
+		}, {
+			respondingTo: ["slackbot is dead"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Long live Slackbot!'
+			}
+		}, {
+			respondingTo: ["FARTINBRAS"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'POOPLONIUS'
+			}
+		}, {
+			respondingTo: ["POOPLONIUS"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'FARTINBRAS'
+			}
+		}, {
+			respondingTo: ["fuck you slackbot", "slackbot fuck off", "fuck off slackbot", "slackbot fuck off", "shut up slackbot", "slackbot shut up", "damn you slackbot", "slackbot damn you", "damn you to hell slackbot", "dammit slackbot", "slackbot dammit", "goddammit slackbot", "slackbot goddammit", "slackbot god damn you", "die slackbot", "slackbot die", "die in a fire slackbot", "go to hell slackbot", "slackbot go to hell", "burn in hell slackbot", 'slackbot burn in hell', 'get bent slackbot', 'slackbot get bent', 'no one likes you slackbot', 'slackbot no one likes you', 'eat good shit and die slackbot', 'slackbot eat good shit and die', 'who cares slackbot', 'slackbot who cares', 'no one cares slackbot', 'slackbot no one cares', 'slackbot eat shit', 'eat shit slackbot'],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Fuck you too, twig.'
+			}
+		}, {
+			respondingTo: ["patriot","patriots"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Everything she did, she did for her country. She sacrificed her life and honor for her native land. She was a real hero. She was a true patriot.'
+			}
+		}, {
+			respondingTo: ["you just gotta believe"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'KICK PUNCH CHOP'
+			}
+		}, {
+			respondingTo: ["@slackbot: Twitch time!","@slackbot Twitch time!"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Jason going live with Final Fantasy IX or Dark Souls III. http://twitch.tv/jasonsavior'
+			}
+		}, {
+			respondingTo: ["intergalactic planetary"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'planetary intergalactic'
+			}
+		}, {
+			respondingTo: ["keikaku"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '(keikaku means plan)'
+			}
+		}, {
+			respondingTo: ["i am slackbot"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I\'ve seen things you people wouldn\'t believe.'
+			}
+		}, {
+			respondingTo: ["it all returns to nothing"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'it all comes tumbling down, tumbling down, tumbling down'
+			}
+		}, {
+			respondingTo: ["Waluigi", "wah"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I\'m-a gonna ween'
+			}
+		}, {
+			respondingTo: ["need to tell you something"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I really really really really really really like you'
+			}
+		}, {
+			respondingTo: ["Azumanga Dio"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'orzo pasta with bacon'
+			}
+		}, {
+			respondingTo: ["anime is fake"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Everything is going to be daijoubu'
+			}
+		}, {
+			respondingTo: ["kawaii"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '(cute)'
+			}
+		}, {
+			respondingTo: ["pinku"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'that\'s Japanese for pink!'
+			}
+		}, {
+			respondingTo: ["roll d20", "roll a d20"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '1. Always 1.'
+			}
+		}, {
+			respondingTo: ["roll d10", "roll a d10"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '1. Always 1.'
+			}
+		}, {
+			respondingTo: ["roll d6", "roll a d6"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '1. Always 1.'
+			}
+		}, {
+			respondingTo: ["roll d4", "roll a d4"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '1. Always 1.'
+			}
+		}, {
+			respondingTo: ["roll d100", "roll a d100"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '1. Always 1.'
+			}
+		}, {
+			respondingTo: ["roll d1", "roll a d1"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '6. What?'
+			}
+		}, {
+			respondingTo: ["roll d2", "roll a d2"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '1. Always 1.'
+			}
+		}, {
+			respondingTo: ["Persona 4 Arena Ultimax"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Persona 4: The ULTIMAX ULTRA SUPLEX Hold'
+			}
+		}, {
+			respondingTo: ["Aaron Burr"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'sir'
+			}
+		}, {
+			respondingTo: ["neon genesis evangelion is bad"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'i don\'t agree with that at all'
+			}
+		}, {
+			respondingTo: ["on blade"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'https://i.ytimg.com/vi/UURZ5IRvJQ4/maxresdefault.jpg'
+			}
+		}, {
+			respondingTo: ["@slackbot: Spooky time!","@slackbot Spooky time!"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'SmartJason and your Idle Thumbs pals goin\' live in a world... of DARKNESS! http://twitch.tv/jasonsavior!'
+			}
+		}, {
+			respondingTo: ["rufio", "Rufio"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'that\'s a good point, but let\'s dispel this myth that Captain Hook doesn\'t know what he\'s doing. he knows exactly what he is doing.'
+			}
+		}, {
+			respondingTo: ["white cuck ball", "white cuckball"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'More like BB-B8a'
+			}
+		}, {
+			respondingTo: ["@slackbot: Adventure time!","@slackbot Adventure time!"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '(Not that one!) http://twitch.tv/jasonsavior'
+			}
+		}, {
+			respondingTo: ["dongdongdong"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'fandango'
+			}
+		}, {
+			respondingTo: ["jurassic park", "Jurassic Park", "raptor", "velociraptor"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '"...and screamed _“CHAOS THEORY!!!”_ at the top of his lungs."'
+			}
+		}, {
+			respondingTo: ["it's dat boi", "its dat boi", "it dat boi"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'o shit waddup!'
+			}
+		}, {
+			respondingTo: ["soldier 76"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: '_"This old dog can learn some new tricks"_'
+			}
+		}, {
+			respondingTo: ["boi"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: ':hand::eyes::hand::eyes::hand::eyes:o shit waddup:clap:here:bike:come dat bଠi:bike::bike:right:bike::bike:th:eyes:ere:hand::hand::hand:dat:eyes:boi :heavy_check_mark::eyes::heavy_check_mark:if dat boi:eyes:ƽai so:100:i sai so:100:thats what im talking about right there:bike:o shit (chorus: ଠ sʰᶦᵗ) mMMMMᎷ:100::hand::hand:O0ОଠＯOOＯOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ:hand::hand::hand::hand::100::eyes::eyes::eyes::eyes::clap::clap:waddup'
+			}
+		}, {
+			respondingTo: ["lasagna"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I hate mondays'
+			}
+		}, {
+			respondingTo: ["eisenhorn", "Eisenhorn"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Read the Inquisitor Wars Trilogy and Space Marine by Ian Watson'
+			}
+		}, {
+			respondingTo: ["good shit"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: ':ok_hand::eyes::ok_hand::eyes::ok_hand::eyes::ok_hand::eyes::ok_hand::eyes: good shit go౦ԁ sHit:ok_hand: thats :heavy_check_mark: some good:ok_hand::ok_hand:shit right:ok_hand::ok_hand:th :ok_hand: ere:ok_hand::ok_hand::ok_hand: right:heavy_check_mark:there :heavy_check_mark::heavy_check_mark:if i do ƽaү so my selｆ :100:  i say so :100:  thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ:100: :ok_hand::ok_hand: :ok_hand:НO0ОଠＯOOＯOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ:ok_hand: :ok_hand::ok_hand: :ok_hand: :100: :ok_hand: :eyes: :eyes: :eyes: :ok_hand::ok_hand:Good shit'
+			}
+		}, {
+			respondingTo: ["robot news", "Robot news", "robot News", "Robot News", "robot olds"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I AM YOUR MASTER. EXTERMINATE, EXTERMINATE!'
+			}
+		}, {
+			respondingTo: ["nsa", "NSA", "Nsa", "NSa", "nSa", "nsA", "nSA", "NsA", "dunk"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'I\'m watching you'
+			}
+		}, {
+			respondingTo: ["Caesar", "Cesar", "Ceasar", "Ceser"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Quazar?'
+			}
+		}, {
+			respondingTo: ["69", "69", "Sixty Nine", "sixty nine", "sixtynine"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'NICE'
+			}
+		}, {
+			respondingTo: ["doggies"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'RAWHIDE!'
+			}
+		}, {
+			respondingTo: ["head em up"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'move em out'
+			}
+		}, {
+			respondingTo: ["alphasquid", "Alphasquid"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'ol\' "two phones" alphasquid they call him'
+			}
+		}, {
+			respondingTo: ["Chris"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Video GAAA-AAAA-AAAA-AAAAAMES'
+			}
+		}, {
+			respondingTo: ["Jake"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Video Games Rodkin'
+			}
+		}, {
+			respondingTo: ["Nick"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Fuck Nick'
+			}
+		}, {
+			respondingTo: ["Danielle"],
+			response: {
+				person: 'slackbot',
+				time: '10:00am',
+				says: 'Junior Mints'
+			}
 		}
 	]
 };
