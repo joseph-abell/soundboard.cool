@@ -23532,7 +23532,8 @@
 			numberKey: '5'
 		}, {
 			id: 6,
-			numberKey: '6'
+			numberKey: '6',
+			title: 'Slack Slack Slack Slack Slack Slack Slack Slack Slack Slack'
 		}, {
 			id: 7,
 			numberKey: '7'
@@ -24383,9 +24384,264 @@
 				}]
 			}]
 		}, {
+			title: 'Slack Slack Slack Slack Slack Slack Slack Slack Slack Slack',
+			rows: [{
+				id: 0,
+				keys: [{
+					title: 'q',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'w',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'e',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'r',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 't',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 't',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'y',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'u',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'i',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'o',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'p',
+					audioTitle: '',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}]
+			}, {
+				id: 1,
+				keys: [{
+					title: 'a',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 's',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'd',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'f',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'g',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'h',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'j',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'k',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'l',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}]
+			}, {
+				id: 2,
+				keys: [{
+					title: 'z',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'x',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'c',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'v',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'b',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'n',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}, {
+					title: 'm',
+					audioTitle: 'Slack',
+					urls: ["hi"],
+					rules: function rules(foundKey, dispatch) {
+						var optionalExtras = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+						$('#cheatMenuButton').click();
+					}
+				}]
+			}]
+		}, {
 			title: 'Baboo',
 			rows: [{
-				id: 10,
+				id: 0,
 				keys: [{
 					title: 'q',
 					audioTitle: 'Baboo',
