@@ -33955,6 +33955,13 @@
 					case (109, 77):
 						$('#keym').click();
 						break;
+					case 32:
+						e.preventDefault();
+						$('#spacebar').click();
+						$('#startButton').click();
+						$('#stopSound').click();
+						break;
+
 				}
 			});
 		});
