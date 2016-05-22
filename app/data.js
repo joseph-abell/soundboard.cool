@@ -1716,6 +1716,530 @@ export default {
 				time: '11.14am',
 				says: ':('
 			}
+		],
+		toad: [
+			{
+				person: 'waluigi',
+				time: '5.45pm',
+				says: 'Have you seen this? Pretty crazy: http://www.blankexit.com/mermaid-skeleton-found-bulgaria/'
+			},
+			{
+				person: 'toad',
+				time: '5.45pm',
+				says: 'uh'
+			},
+			{
+				person: 'toad',
+				time: '5.47pm',
+				says: 'yeah'
+			},
+			{
+				person: 'waluigi',
+				time: '5.47pm',
+				says: 'Oh. Well I know you\'re into that old temple stuff.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.47pm',
+				says: 'in Gloomy Galleon even'
+			},
+			{
+				person: 'toad',
+				time: '5.48pm',
+				says: 'Yeah. The thing is.'
+			},
+			{
+				person: 'toad',
+				time: '5.48pm',
+				says: 'That\'s fake.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.48pm',
+				says: 'Wah?'
+			},
+			{
+				person: 'toad',
+				time: '5.49pm',
+				says: 'I know you were just trying to be polite, share something relevant to my interests.'
+			},
+			{
+				person: 'toad',
+				time: '5.49pm',
+				says: 'But that\'s been debunked. I debunked it.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.49pm',
+				says: 'Wah?'
+			},
+			{
+				person: 'toad',
+				time: '5.50pm',
+				says: 'Last year, a Professor at U Goom asked me to check it out. Long story short: it was quite a trek. But it was all for naught; turned out to just be a crazy cobbled together thing. Though there was a mermaid living out there, she was nice.'
+			},
+			{
+				person: 'toad',
+				time: '5.51pm',
+				says: 'You send me all these stories, I\'m surprised you didn\'t hear about "The Lady of Gloomy Galleon.”'
+			},
+			{
+				person: 'waluigi',
+				time: '5.52pm',
+				says: 'I must\'ve missed it…'
+			},
+			{
+				person: 'toad',
+				time: '5.52pm',
+				says: 'On a related note, you\'ve shared a lot of these with me.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.52pm',
+				says: 'yeah'
+			},
+			{
+				person: 'toad',
+				time: '5.53pm',
+				says: 'And I appreciate the enthusiasm! But'
+			},
+			{
+				person: 'toad',
+				time: '5.53pm',
+				says: 'they\'ve always been fakes.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.53pm',
+				says: 'oh'
+			},
+			{
+				person: 'waluigi',
+				time: '5.54pm',
+				says: 'But what about the bumpties on Pyropuff Peaks?'
+			},
+			{
+				person: 'toad',
+				time: '5.54pm',
+				says: 'Fake. It\'s a little too warm up there for penguins.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.54pm',
+				says: 'The Shadow Manor Phantom?'
+			},
+			{
+				person: 'toad',
+				time: '5.55pm',
+				says: 'Boos. Common. An amalgamation of five Boos? Not so common.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.55pm',
+				says: 'The Sprixie Pixie Sprites?'
+			},
+			{
+				person: 'toad',
+				time: '5.56pm',
+				says: 'Well'
+			},
+			{
+				person: 'waluigi',
+				time: '5.56pm',
+				says: 'aha!'
+			},
+			{
+				person: 'toad',
+				time: '5.57pm',
+				says: 'the sprixies are real, of course. But the mummies weren\'t. The sprixies don\'t actually mummify their rulers.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.58pm',
+				says: 'Wah…'
+			},
+			{
+				person: 'toad',
+				time: '5.58pm',
+				says: 'I guess what I\'m asking is'
+			},
+			{
+				person: 'toad',
+				time: '5.58pm',
+				says: 'Maybe you could stop sending me these? Their hoaxes, and really, you\'re just wasting your time.'
+			},
+			{
+				person: 'waluigi',
+				time: '5.59pm',
+				says: 'Yeah. I could do that.'
+			},
+			{
+				person: 'toad',
+				time: '5.59pm',
+				says: 'It\'s for your good really! Now you\'ll have more time in your day for'
+			},
+			{
+				person: 'toad',
+				time: '6.00pm',
+				says: 'other stuff'
+			},
+			{
+				person: 'toad',
+				time: '6.00pm',
+				says: 'Yeah!'
+			},
+			{
+				person: 'waluigi',
+				time: '6.00pm',
+				says: 'Yeah.'
+			},
+			{
+				person: 'toad',
+				time: '6.01pm',
+				says: 'Great! I\'ve an appointment, but if you\'d like – tomorrow – I can share some stories of the digs I\'ve gone on. Much more interesting than this fake stuff.'
+			},
+			{
+				person: 'waluigi',
+				time: '6.01pm',
+				says: 'Sure.'
+			},
+			{
+				person: 'waluigi',
+				time: '6.01pm',
+				says: 'That\'d be great.'
+			},
+			{
+				person: 'toad',
+				time: '6.02pm',
+				says: 'Alright! See ya tomorrow!'
+			},
+			{
+				person: 'waluigi',
+				time: '6.07pm',
+				says: 'Bye.'
+			}
+		],
+		bowser: [
+			{
+				person: 'bowser',
+				time: '10.05am',
+				says: 'Wario, you remember where I left those tennis rackets?'
+			},
+			{
+				person: 'waluigi',
+				time: '10.07am',
+				says: 'What?'
+			},
+			{
+				person: 'bowser',
+				time: '10.08am',
+				says: 'the rackets Wario'
+			},
+			{
+				person: 'bowser',
+				time: '10.08am',
+				says: 'for tomorrow'
+			},
+			{
+				person: 'bowser',
+				time: '10.08am',
+				says: 'memory like a glurp, I swear...'
+			},
+			{
+				person: 'waluigi',
+				time: '10.09am',
+				says: 'WHAT'
+			},
+			{
+				person: 'waluigi',
+				time: '10.09am',
+				says: 'THIS IS WA_LUIGI_. HOW DO YOU EVEN CONFUSE US.'
+			},
+			{
+				person: 'bowser',
+				time: '10.09am',
+				says: 'oh'
+			},
+			{
+				person: 'bowser',
+				time: '10.09am',
+				says: 'uhh'
+			},
+			{
+				person: 'bowser',
+				time: '10.10am',
+				says: 'my bad'
+			},
+			{
+				person: 'waluigi',
+				time: '10.10am',
+				says: 'That\'s it?! We\'re nothing alike!'
+			},
+			{
+				person: 'bowser',
+				time: '10.10am',
+				says: 'That\'s not entirely true... You both wear purple...'
+			},
+			{
+				person: 'waluigi',
+				time: '10.11am',
+				says: 'Purple?! That\'s all you can think of???'
+			},
+			{
+				person: 'waluigi',
+				time: '10.11am',
+				says: 'How about I\'m taller than him.'
+			},
+			{
+				person: 'waluigi',
+				time: '10.11am',
+				says: 'or I\'m better than him at soccer'
+			},
+			{
+				person: 'bowser',
+				time: '10.12am',
+				says: 'or he\'s got a business?'
+			},
+			{
+				person: 'waluigi',
+				time: '10.13am',
+				says: 'WAH!'
+			},
+			{
+				person: 'bowser',
+				time: '10.14am',
+				says: 'uh, i\'ll go now'
+			},
+			{
+				person: 'bowser',
+				time: '10.14am',
+				says: 'sorry'
+			},
+			{
+				person: 'waluigi',
+				time: '10.15am',
+				says: 'Wah...'
+			},
+			{
+				person: 'waluigi',
+				time: '11.15am',
+				says: 'Wait.'
+			},
+			{
+				person: 'waluigi',
+				time: '11.15am',
+				says: 'Rackets for tomorrow?'
+			}
+		],
+		peach: [
+			{
+				person: 'waluigi',
+				time: '12.11pm',
+				says: 'Peach? Just had a question.'
+			},
+			{
+				person: 'waluigi',
+				time: '12.21pm',
+				says: 'Hello?'
+			},
+			{
+				person: 'waluigi',
+				time: '1.01pm',
+				says: 'You back yet?'
+			},
+			{
+				person: 'waluigi',
+				time: '1.32pm',
+				says: 'Ok well'
+			},
+			{
+				person: 'waluigi',
+				time: '1.32pm',
+				says: 'Just had a question about Daisy.'
+			},
+			{
+				person: 'waluigi',
+				time: '1.33pm',
+				says: 'Maybe you\'ll be around later...'
+			}
+		],
+
+		mario: [
+			{
+				person: 'waluigi',
+				time: '12.14pm',
+				says: 'Hey.'
+			},
+			{
+				person: 'mario',
+				time: '12.15pm',
+				says: 'what'
+			},
+			{
+				person: 'waluigi',
+				time: '12.15pm',
+				says: 'We need to talk.'
+			},
+			{
+				person: 'mario',
+				time: '12.16pm',
+				says: 'about what'
+			},
+			{
+				person: 'waluigi',
+				time: '12.16pm',
+				says: 'Yoshi.'
+			},
+			{
+				person: 'mario',
+				time: '12.17pm',
+				says: 'and'
+			},
+			{
+				person: 'waluigi',
+				time: '12.18pm',
+				says: 'Don\'t be obtuse.'
+			},
+			{
+				person: 'mario',
+				time: '12.18pm',
+				says: 'then say it, you\'re wasting my time'
+			},
+			{
+				person: 'waluigi',
+				time: '12.18pm',
+				says: 'The Slack title. Don\'t you think it\'s rude?'
+			},
+			{
+				person: 'mario',
+				time: '12.19pm',
+				says: 'It\'s funny. everyone thinks it\'s funny.'
+			},
+			{
+				person: 'waluigi',
+				time: '12.19pm',
+				says: 'Yoshi doesn\'t find it funny.'
+			},
+			{
+				person: 'mario',
+				time: '12.19pm',
+				says: 'did he say that'
+			},
+			{
+				person: 'waluigi',
+				time: '12.20pm',
+				says: 'Yeah! He did. To me.'
+			},
+			{
+				person: 'mario',
+				time: '12.21pm',
+				says: 'If he doesn\'t find it funny, he can say it to me. he\'s never minded before'
+			},
+			{
+				person: 'mario',
+				time: '12.21pm',
+				says: 'I joke about everyone, no one\'s complained before. I think you\'re just starting trouble.'
+			},
+			{
+				person: 'waluigi',
+				time: '12.22pm',
+				says: 'Wah?'
+			},
+			{
+				person: 'mario',
+				time: '12.22pm',
+				says: 'you\'re always starting shit and you back off as soon as someone calls you on it'
+			},
+			{
+				person: 'mario',
+				time: '12.22pm',
+				says: 'so back off'
+			},
+			{
+				person: 'waluigi',
+				time: '12.23pm',
+				says: 'Hey, I\'m not the one cracking “jokes” and making rude channels.'
+			},
+			{
+				person: 'waluigi',
+				time: '12.23pm',
+				says: 'Don\'t try to paint me as the villain.'
+			},
+			{
+				person: 'waluigi',
+				time: '12.24pm',
+				says: 'You\'re starting to be a real Wario.'
+			},
+			{
+				person: 'mario',
+				time: '12.25pm',
+				says: 'Fuck you man. I don\'t have to take crap from you.'
+			},
+			{
+				person: 'mario',
+				time: '12.25pm',
+				says: 'and you are a villain remember that'
+			},
+			{
+				person: 'mario',
+				time: '12.26pm',
+				says: 'I started this slack, and if you don\'t like it, you can leave. no one would notice'
+			},
+			{
+				person: 'waluigi',
+				time: '12.27pm',
+				says: 'Oh I think Yoshi would leave too if I told him your reaction.'
+			},
+			{
+				person: 'mario',
+				time: '12.27pm',
+				says: 'crap again from you'
+			},
+			{
+				person: 'waluigi',
+				time: '12.27pm',
+				says: 'Like I said, you hurt his feelings.'
+			},
+			{
+				person: 'mario',
+				time: '12.28pm',
+				says: 'And another thing. it\'s clever'
+			},
+			{
+				person: 'mario',
+				time: '12.28pm',
+				says: 'he eats Shy Guys, _sucks_ them in'
+			},
+			{
+				person: 'waluigi',
+				time: '12.29pm',
+				says: 'Wha?'
+			},
+			{
+				person: 'mario',
+				time: '12.29pm',
+				says: 'Clever.'
+			},
+			{
+				person: 'mario',
+				time: '12.33pm',
+				says: 'ive got actual things to do kingdoms to save and stuff'
+			},
+			{
+				person: 'mario',
+				time: '12.33pm',
+				says: 'the usual'
+			},
+			{
+				person: 'mario',
+				time: '12.33pm',
+				says: 'and yoshis gonna help me with that'
+			},
+			{
+				person: 'mario',
+				time: '12.33pm',
+				says: 'you enjoy your imaginary conversations'
+			}
 		]
 	},
 	slackbotActions: [
