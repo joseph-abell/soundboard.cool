@@ -96,10 +96,6 @@ let setupObject = {
 
 		userIdCookie = Cookie.get('userId');
 
-		if (userIdCookie === null) {
-			location.reload();
-		}
-
 		store.dispatch(userId(userIdCookie))
 
 		const userIdValue = Cookie.get('userId');
