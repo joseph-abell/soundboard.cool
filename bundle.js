@@ -33633,7 +33633,7 @@
 	          image = "./images/IT_slack_icons_Peach-36px_01.jpg";
 	          break;
 	        case 'toad':
-	          image = "./images/IT_slack_icons_Toad-36px_01.jpg";
+	          image = "./images/IT_slack_icons_Toad-36px_02.jpg";
 	          break;
 	        case 'yoshi':
 	          image = "./images/IT_slack_icons_Yoshi-36px_01.jpg";
