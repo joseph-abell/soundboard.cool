@@ -33573,7 +33573,7 @@
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -33603,7 +33603,7 @@
 	  }
 
 	  _createClass(App, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      var _props = this.props;
 	      var person = _props.person;
@@ -33611,31 +33611,71 @@
 	      var says = _props.says;
 
 
+	      var image = void 0;
+
+	      switch (person) {
+	        case "slackbot":
+	          image = "./images/slackbot.jpg";
+	          break;
+	        case "waluigi":
+	          image = "./images/IT_slack_icons_Waluigi-36px_01.jpg";
+	          break;
+	        case 'bowser':
+	          image = "./images/IT_slack_icons_Bowser-36px_01.jpg";
+	          break;
+	        case 'luigi':
+	          image = "./images/IT_slack_icons_Luigi-36px_01.jpg";
+	          break;
+	        case 'mario':
+	          image = "./images/IT_slack_icons_Mario-36px_01.jpg";
+	          break;
+	        case 'peach':
+	          image = "./images/IT_slack_icons_Peach-36px_01.jpg";
+	          break;
+	        case 'toad':
+	          image = "./images/IT_slack_icons_Toad-36px_01.jpg";
+	          break;
+	        case 'yoshi':
+	          image = "./images/IT_slack_icons_Yoshi-36px_01.jpg";
+	          break;
+	        default:
+	          image = "";
+	          break;
+	      }
+
 	      return _react2.default.createElement(
-	        'div',
+	        "div",
 	        { style: { marginBottom: 10, position: 'relative', textAlign: 'left' } },
-	        _react2.default.createElement('div', { style: { float: 'left', position: 'absolute', width: 36, height: 36, left: 0, background: '#333', borderRadius: 4, marginRight: 10 } }),
+	        _react2.default.createElement("img", { src: image, style: {
+	            float: 'left',
+	            position: 'absolute',
+	            width: 36,
+	            height: 36,
+	            left: 0,
+	            borderRadius: 4,
+	            marginRight: 10
+	          } }),
 	        _react2.default.createElement(
-	          'div',
+	          "div",
 	          { style: { float: 'left' } },
 	          _react2.default.createElement(
-	            'div',
+	            "div",
 	            { style: { float: 'left', marginRight: 10, marginLeft: 46, fontSize: '15px' } },
 	            person
 	          ),
 	          _react2.default.createElement(
-	            'div',
+	            "div",
 	            { style: { float: 'left', fontSize: '12px', lineHeight: '18px', color: '#ddd' } },
 	            time
 	          ),
-	          _react2.default.createElement('div', { style: { clear: 'both' } }),
+	          _react2.default.createElement("div", { style: { clear: 'both' } }),
 	          _react2.default.createElement(
-	            'div',
+	            "div",
 	            { style: { float: 'left', marginLeft: 46 } },
 	            says
 	          )
 	        ),
-	        _react2.default.createElement('div', { style: { clear: 'both' } })
+	        _react2.default.createElement("div", { style: { clear: 'both' } })
 	      );
 	    }
 	  }]);
