@@ -91,8 +91,13 @@ let setupObject = {
 		if ( userIdCookie === null) {
 			fireRef.authAnonymously(function(error, authData) {
 				Cookie.set('userId', authData.uid)
-				userIdCookie = authData.uid
 			})	
+		}
+
+		userIdCookie = Cookie.get('userId');
+
+		if (userIdCookie === null) {
+			location.reload();
 		}
 
 		store.dispatch(userId(userIdCookie))

@@ -115,7 +115,10 @@ export function soundboardKeyPress () {
 					$('#keym').click();
 					break;
 				case (32):
-					e.preventDefault();
+					if ($('input').is(':focus') === false) {
+						e.preventDefault();
+					}
+					
 					$('#spacebar').click();
 					$('#startButton').click();
 					$('#stopSound').click();
