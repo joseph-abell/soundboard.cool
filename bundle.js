@@ -33956,7 +33956,7 @@
 						$('#keym').click();
 						break;
 					case 32:
-						e.preventDefault();
+
 						$('#spacebar').click();
 						$('#startButton').click();
 						$('#stopSound').click();
@@ -34082,9 +34082,10 @@
 			if (userIdCookie === null) {
 				fireRef.authAnonymously(function (error, authData) {
 					_tinyCookie2.default.set('userId', authData.uid);
-					userIdCookie = authData.uid;
 				});
 			}
+
+			userIdCookie = _tinyCookie2.default.get('userId');
 
 			store.dispatch((0, _Actions.userId)(userIdCookie));
 
