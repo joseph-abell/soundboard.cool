@@ -23072,7 +23072,7 @@
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'If you don\'t head sound, refresh'
+	            'If you don\'t hear sound, refresh'
 	          ),
 	          _react2.default.createElement(
 	            'p',
