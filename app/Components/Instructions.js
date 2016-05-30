@@ -15,6 +15,16 @@ export default class App extends React.Component {
           <p>Click a letter to play a sound.</p>
 
           <button id="startButton" style={{cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', color: '#ddd', padding: '20px 40px', background: '#714766', fontSize: 20, borderRadius: 5}}>Start</button>
+
+          <h1 style={
+            {
+              color: '#f10000'
+            }
+          }>
+            BUG WORKAROUNDS
+          </h1>
+          <p>If you don't head sound, refresh</p>
+          <p>Don't use firefox! If you do, don't press the space bar! If you do, click the url and press enter. Refresh won't work.</p>
         </div>
       )
     }	else {
