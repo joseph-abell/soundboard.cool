@@ -24,7 +24,8 @@ export default class App extends React.Component {
             BUG WORKAROUNDS
           </h1>
           <p>If you don't head sound, refresh</p>
-          <p>Don't use firefox! If you do, don't press the space bar! If you do, click the url and press enter. Refresh won't work.</p>
+          <p>Use Chrome! Don't use firefox! Especially don't press the spacebar in firefox, all the content will disappear. To fix it, click the url, and press enter. plain refreshing won't work.</p>
+
         </div>
       )
     }	else {

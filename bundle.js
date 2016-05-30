@@ -23061,6 +23061,23 @@
 	            'button',
 	            { id: 'startButton', style: { cursor: 'pointer', marginTop: 60, border: '1px solid #ddd', color: '#ddd', padding: '20px 40px', background: '#714766', fontSize: 20, borderRadius: 5 } },
 	            'Start'
+	          ),
+	          _react2.default.createElement(
+	            'h1',
+	            { style: {
+	                color: '#f10000'
+	              } },
+	            'BUG WORKAROUNDS'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'If you don\'t head sound, refresh'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Use Chrome! Don\'t use firefox! Especially don\'t press the spacebar in firefox, all the content will disappear. To fix it, click the url, and press enter. plain refreshing won\'t work.'
 	          )
 	        );
 	      } else {
