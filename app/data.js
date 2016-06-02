@@ -1599,14 +1599,14 @@ export default {
 			{
 				person: 'slackbot',
 				time: '10.14am',
-				says: 'Looks like everyone else is away. Do you want to talk to me?'	
+				says: 'To quit slack, go to slackbot in messages, and type the word exit.'	
 			}
 		],
 		random: [
 			{
 				person: 'slackbot',
 				time: '10.14am',
-				says: 'Looks like everyone else is away. Do you want to talk to me?'	
+				says: 'To quit slack, go to slackbot in messages, and type the word exit.'	
 			}
 		]
 	},
@@ -1615,13 +1615,19 @@ export default {
 			{
 				person: 'slackbot',
 				time: '10.14am',
-				says: 'Looks like everyone else is away. Do you want to talk to me?'
+				says: 'If you want to leave slack, say "exit", or "quit", to me.'	
 			},
 			{
 				person: 'slackbot',
 				time: '10.14am',
-				says: 'If you want to leave slack, say "exit", or "quit", to me.'	
+				says: 'Looks like everyone else is away. I was meant to be a fully featured chatbot, but my maker ran out of time.'
+			},
+			{
+				person: 'slackbot',
+				time: '10.14am',
+				says: 'You can try typing a few things, maybe I will respond to them. Most likely not.'
 			}
+			
 		],
 		luigi: [
 			{
