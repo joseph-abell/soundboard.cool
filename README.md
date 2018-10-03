@@ -1,5 +1,7 @@
 # soundboard.cool
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/gerbilsinspace/soundboard.cool.svg)](https://greenkeeper.io/)
+
 ## Prerequisites:
 
 Node. go to https://nodejs.org/en/download/ to download it, and follow the instructions for installation.
