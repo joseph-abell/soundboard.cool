@@ -22,7 +22,7 @@
     "firebase": "^5.5.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.1",
     "redux": "^4.0.0",
     "soundmanager2": "^2.97.20150601",
     "tiny-cookie": "^2.1.2"
